@@ -1,0 +1,48 @@
+name: Build
+on:
+  push:
+    tags:
+      - v*
+jobs:
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: adopt
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.6'
+          channel: 'stable'
+
+      - run: flutter pub get
+
+      - run: flutter build apk --release
+
+      - name: Get tag name
+        run: |
+          set -x
+          echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
+
+      - name: Clean up build artifacts
+        run: |
+          set -e
+          mv build/app/outputs/flutter-apk/app-release.apk agatra-${{ env.VERSION_TAG }}.apk
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION_TAG }}
+          name: Release ${{ env.VERSION_TAG }}
+          files: |
+            agatra-${{ env.VERSION_TAG }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
