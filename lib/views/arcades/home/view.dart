@@ -7,44 +7,17 @@ class ArcadesSearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          Card(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Theme.of(context).colorScheme.outline,
-              ),
-              borderRadius: const BorderRadius.all(Radius.circular(12)),
-            ),
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: () {},
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text('Outlined'),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
+      body: ListView(
+        padding: const EdgeInsets.all(8.0),
+        children: [for (int i = 0; i < 12; i++) _ArcadeItemCard()],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<void>(
             context: context,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             constraints: const BoxConstraints(maxWidth: 640),
             builder: (context) {
               return ListView(
@@ -57,7 +30,7 @@ class ArcadesSearchView extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: const Text("Reset"),
+                          child: Text("Reset"),
                         ),
                         FilledButton(
                           onPressed: () {
@@ -78,7 +51,8 @@ class ArcadesSearchView extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(24),
                               child: ConstrainedBox(
-                                constraints: const BoxConstraints(maxHeight: 400),
+                                constraints:
+                                    const BoxConstraints(maxHeight: 400),
                                 child: ListView(
                                   children: [
                                     InkWell(
@@ -190,7 +164,8 @@ class ArcadesSearchView extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(24),
                               child: ConstrainedBox(
-                                constraints: const BoxConstraints(maxHeight: 400),
+                                constraints:
+                                    const BoxConstraints(maxHeight: 400),
                                 child: ListView(
                                   children: [
                                     InkWell(
@@ -302,7 +277,8 @@ class ArcadesSearchView extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.all(24),
                               child: ConstrainedBox(
-                                constraints: const BoxConstraints(maxHeight: 400),
+                                constraints:
+                                    const BoxConstraints(maxHeight: 400),
                                 child: ListView(
                                   children: [
                                     InkWell(
@@ -422,6 +398,104 @@ class ArcadesSearchView extends StatelessWidget {
           );
         },
         child: const Icon(Icons.search),
+      ),
+    );
+  }
+}
+
+class _ArcadeItemCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 1,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Arcade Name", style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 16.0),
+            SizedBox(
+              width: double.infinity,
+              child: Wrap(
+                alignment: WrapAlignment.spaceEvenly,
+                spacing: 8.0,
+                children: [
+                  Chip(
+                    elevation: 5,
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    labelPadding: EdgeInsets.zero,
+                    label: Text(
+                      'maimai FiNALE',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Chip(
+                    elevation: 5,
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    labelPadding: EdgeInsets.zero,
+                    label: Text(
+                      'SOUND VOLTEX EXCEED GEAR',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Chip(
+                    elevation: 5,
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    labelPadding: EdgeInsets.zero,
+                    label: Text(
+                      'Pump It Up XX',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Chip(
+                    elevation: 5,
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    labelPadding: EdgeInsets.zero,
+                    label: Text(
+                      'Danz Base',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                  Chip(
+                    elevation: 5,
+                    side: const BorderSide(
+                      color: Colors.transparent,
+                    ),
+                    labelPadding: EdgeInsets.zero,
+                    label: Text(
+                      'Wangan Midnight Maximum Tune 6RR',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
