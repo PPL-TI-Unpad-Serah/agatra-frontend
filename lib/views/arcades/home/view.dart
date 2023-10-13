@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ArcadesSearchView extends StatelessWidget {
   const ArcadesSearchView({super.key});
@@ -406,95 +407,98 @@ class ArcadesSearchView extends StatelessWidget {
 class _ArcadeItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 1,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Timezone Bandung Indah Plaza", style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 16.0),
-            SizedBox(
-              width: double.infinity,
-              child: Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                spacing: 8.0,
-                children: [
-                  Chip(
-                    elevation: 5,
-                    side: const BorderSide(
-                      color: Colors.transparent,
+    return GestureDetector(
+      onTap: () => context.go('/arcades/1'),
+      child: Card(
+        elevation: 1,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Timezone Bandung Indah Plaza", style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: 16.0),
+              SizedBox(
+                width: double.infinity,
+                child: Wrap(
+                  alignment: WrapAlignment.spaceEvenly,
+                  spacing: 8.0,
+                  children: [
+                    Chip(
+                      elevation: 5,
+                      side: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      labelPadding: EdgeInsets.zero,
+                      label: Text(
+                        'maimai FiNALE',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
                     ),
-                    labelPadding: EdgeInsets.zero,
-                    label: Text(
-                      'maimai FiNALE',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500,
-                          ),
+                    Chip(
+                      elevation: 5,
+                      side: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      labelPadding: EdgeInsets.zero,
+                      label: Text(
+                        'SOUND VOLTEX EXCEED GEAR',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
                     ),
-                  ),
-                  Chip(
-                    elevation: 5,
-                    side: const BorderSide(
-                      color: Colors.transparent,
+                    Chip(
+                      elevation: 5,
+                      side: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      labelPadding: EdgeInsets.zero,
+                      label: Text(
+                        'Pump It Up XX',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
                     ),
-                    labelPadding: EdgeInsets.zero,
-                    label: Text(
-                      'SOUND VOLTEX EXCEED GEAR',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500,
-                          ),
+                    Chip(
+                      elevation: 5,
+                      side: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      labelPadding: EdgeInsets.zero,
+                      label: Text(
+                        'Danz Base',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
                     ),
-                  ),
-                  Chip(
-                    elevation: 5,
-                    side: const BorderSide(
-                      color: Colors.transparent,
+                    Chip(
+                      elevation: 5,
+                      side: const BorderSide(
+                        color: Colors.transparent,
+                      ),
+                      labelPadding: EdgeInsets.zero,
+                      label: Text(
+                        'Wangan Midnight Maximum Tune 6RR',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
                     ),
-                    labelPadding: EdgeInsets.zero,
-                    label: Text(
-                      'Pump It Up XX',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Chip(
-                    elevation: 5,
-                    side: const BorderSide(
-                      color: Colors.transparent,
-                    ),
-                    labelPadding: EdgeInsets.zero,
-                    label: Text(
-                      'Danz Base',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                  Chip(
-                    elevation: 5,
-                    side: const BorderSide(
-                      color: Colors.transparent,
-                    ),
-                    labelPadding: EdgeInsets.zero,
-                    label: Text(
-                      'Wangan Midnight Maximum Tune 6RR',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context).colorScheme.primary,
-                            fontWeight: FontWeight.w500,
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

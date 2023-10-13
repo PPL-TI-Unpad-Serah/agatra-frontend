@@ -24,6 +24,13 @@ class AgatraRouter {
           path: 'arcades',
           builder: (BuildContext context, GoRouterState state) =>
               ArcadesSearchView(),
+          routes: [
+            GoRoute(
+              path: ':id',
+              builder: (BuildContext context, GoRouterState state) =>
+                  ArcadesDetailsView(),
+            ),
+          ],
         ),
       ],
     ),
