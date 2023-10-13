@@ -7,457 +7,104 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: const [
-          IconButtonAnchorExample(),
-        ],
-      ),
-      body: Column(
-        children: [
-          Card(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Theme.of(context).colorScheme.outline,
+      appBar: AppBar(),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
               ),
-              borderRadius: const BorderRadius.all(Radius.circular(12)),
+              child: const Text('Agatra'),
             ),
-            child: Container(
-              padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: const Icon(Icons.search),
-                      onPressed: () {},
+            ListTile(
+              title: const Text('Login'),
+              onTap: () {
+                Navigator.pop(context);
+                context.go('/login');
+              },
+            ),
+          ],
+        ),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(24.0),
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Selamat pagi,",
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              Text(
+                "Guest!",
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24.0),
+          SizedBox(
+            child: Card(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    const Expanded(
+                      flex: 2,
+                      child: Align(
+                        child: Icon(
+                          Icons.cloud,
+                          size: 64,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Text('Outlined'),
-                  )
-                ],
+                    const SizedBox(width: 16.0),
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Jakarta, Indonesia",
+                          ),
+                          const SizedBox(height: 4.0),
+                          Text(
+                            "Mendung",
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                          const SizedBox(height: 4.0),
+                          const Text("18°C"),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
+          const SizedBox(height: 24.0),
+          Column(
+            children: [
+              const Text(
+                "Mau main di mana hari ini?",
+              ),
+              const SizedBox(height: 8.0),
+              FilledButton.icon(
+                onPressed: () {
+                  context.go('/arcades');
+                },
+                icon: const Icon(Icons.search),
+                label: const Text("Cari permainan"),
+              )
+            ],
+          ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showModalBottomSheet<void>(
-            context: context,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            constraints: const BoxConstraints(maxWidth: 640),
-            builder: (context) {
-              return ListView(
-                padding: const EdgeInsets.only(top: 8),
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text("Reset"),
-                        ),
-                        FilledButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Filter'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Divider(),
-                  InkWell(
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (context) => Dialog(
-                            insetPadding: const EdgeInsets.all(16),
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(maxHeight: 400),
-                                child: ListView(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Sound Voltex"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Beatmania IIDX"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("maimai"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Chunithm"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text(
-                                            "Wangan Midnight Maximum Tune"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Pump It Up"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Dance Dance Revolution"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Ongeki"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Nostalgia"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Jubeat"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Time Crisis"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
-                      );
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Game",
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          const Text("Chunithm"),
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (context) => Dialog(
-                            insetPadding: const EdgeInsets.all(16),
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(maxHeight: 400),
-                                child: ListView(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Sound Voltex"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Beatmania IIDX"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("maimai"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Chunithm"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text(
-                                            "Wangan Midnight Maximum Tune"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Pump It Up"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Dance Dance Revolution"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Ongeki"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Nostalgia"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Jubeat"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Time Crisis"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
-                      );
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Version",
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          const Text("Sun"),
-                        ],
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (context) => Dialog(
-                            insetPadding: const EdgeInsets.all(16),
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(maxHeight: 400),
-                                child: ListView(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Sound Voltex"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Beatmania IIDX"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("maimai"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Chunithm"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text(
-                                            "Wangan Midnight Maximum Tune"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Pump It Up"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Dance Dance Revolution"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Ongeki"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Nostalgia"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Jubeat"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Time Crisis"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
-                      );
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Arcade Center",
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          const Icon(Icons.chevron_right),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const Divider(),
-                  CheckboxListTile(
-                    value: false,
-                    title: Text(
-                      'Sort by nearest',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    onChanged: (value) {},
-                  ),
-                ],
-              );
-            },
-          );
-        },
-        child: const Icon(Icons.search),
-      ),
-    );
-  }
-}
-
-class IconButtonAnchorExample extends StatelessWidget {
-  const IconButtonAnchorExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MenuAnchor(
-      builder: (context, controller, child) {
-        return IconButton(
-          onPressed: () {
-            if (controller.isOpen) {
-              controller.close();
-            } else {
-              controller.open();
-            }
-          },
-          icon: const Icon(Icons.person),
-        );
-      },
-      menuChildren: [
-        MenuItemButton(
-          child: const Text('Login'),
-          onPressed: () {
-            context.go('/login');
-          },
-        ),
-      ],
     );
   }
 }

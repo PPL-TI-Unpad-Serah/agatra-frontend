@@ -8,18 +8,24 @@ final routerProvider = Provider<AgatraRouter>((ref) => AgatraRouter());
 class AgatraRouter {
   late final router = GoRouter(routes: [
     GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) =>
-            const HomeView(),
-        routes: [
-          GoRoute(
-              path: 'login',
-              builder: (BuildContext context, GoRouterState state) =>
-                  LoginView()),
-          GoRoute(
-              path: 'register',
-              builder: (BuildContext context, GoRouterState state) =>
-                  RegisterView()),
-        ]),
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) => const HomeView(),
+      routes: [
+        GoRoute(
+          path: 'login',
+          builder: (BuildContext context, GoRouterState state) => LoginView(),
+        ),
+        GoRoute(
+          path: 'register',
+          builder: (BuildContext context, GoRouterState state) =>
+              RegisterView(),
+        ),
+        GoRoute(
+          path: 'arcades',
+          builder: (BuildContext context, GoRouterState state) =>
+              ArcadesSearchView(),
+        ),
+      ],
+    ),
   ]);
 }
