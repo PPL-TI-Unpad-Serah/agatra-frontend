@@ -413,7 +413,7 @@ class _ArcadeItemCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Arcade Name", style: Theme.of(context).textTheme.titleMedium),
+            Text("Timezone Bandung Indah Plaza", style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 16.0),
             SizedBox(
               width: double.infinity,
