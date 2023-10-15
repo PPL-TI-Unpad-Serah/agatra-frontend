@@ -25,6 +25,14 @@ class HomeView extends StatelessWidget {
                 context.go('/login');
               },
             ),
+            const Divider(),
+            ListTile(
+              title: const Text('Manage Users'),
+              onTap: () {
+                Navigator.pop(context);
+                context.go('/admin/users');
+              },
+            ),
           ],
         ),
       ),
