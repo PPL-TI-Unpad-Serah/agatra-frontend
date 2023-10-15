@@ -46,6 +46,11 @@ class AgatraRouter {
               ),
             ],
           ),
+          GoRoute(
+            path: 'admin/games',
+            builder: (BuildContext context, GoRouterState state) =>
+                AdminGamesView(),
+          )
         ],
       ),
     ],

@@ -7,3 +7,5 @@ export 'arcades/details/view.dart';
 
 export 'admin/users/home/view.dart';
 export 'admin/users/details/view.dart';
+
+export 'admin/games/view.dart';

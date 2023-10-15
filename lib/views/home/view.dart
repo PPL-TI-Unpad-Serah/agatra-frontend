@@ -33,6 +33,13 @@ class HomeView extends StatelessWidget {
                 context.go('/admin/users');
               },
             ),
+            ListTile(
+              title: const Text('Manage Supported Games'),
+              onTap: () {
+                Navigator.pop(context);
+                context.go('/admin/games');
+              },
+            ),
           ],
         ),
       ),
