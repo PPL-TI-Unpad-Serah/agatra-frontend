@@ -31,7 +31,7 @@ class ArcadesSearchView extends StatelessWidget {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: Text("Reset"),
+                          child: const Text("Reset"),
                         ),
                         FilledButton(
                           onPressed: () {
@@ -418,86 +418,63 @@ class _ArcadeItemCard extends StatelessWidget {
             children: [
               Text("Timezone Bandung Indah Plaza", style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16.0),
-              SizedBox(
+              const SizedBox(
                 width: double.infinity,
                 child: Wrap(
-                  alignment: WrapAlignment.spaceEvenly,
+                  alignment: WrapAlignment.spaceAround,
                   spacing: 8.0,
+                  runSpacing: 12.0,
                   children: [
-                    Chip(
-                      elevation: 5,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                      labelPadding: EdgeInsets.zero,
-                      label: Text(
-                        'maimai FiNALE',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
+                    _ArcadeChipWidget(
+                        name: 'maimai FiNALE',
                     ),
-                    Chip(
-                      elevation: 5,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                      labelPadding: EdgeInsets.zero,
-                      label: Text(
-                        'SOUND VOLTEX EXCEED GEAR',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
+                    _ArcadeChipWidget(
+                        name: 'Pump It Up XX',
                     ),
-                    Chip(
-                      elevation: 5,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                      labelPadding: EdgeInsets.zero,
-                      label: Text(
-                        'Pump It Up XX',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
+                    _ArcadeChipWidget(
+                        name: 'SOUND VOLTEX EXCEED GEAR',
                     ),
-                    Chip(
-                      elevation: 5,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                      labelPadding: EdgeInsets.zero,
-                      label: Text(
-                        'Danz Base',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
+                    _ArcadeChipWidget(
+                        name: 'Danz Base',
                     ),
-                    Chip(
-                      elevation: 5,
-                      side: const BorderSide(
-                        color: Colors.transparent,
-                      ),
-                      labelPadding: EdgeInsets.zero,
-                      label: Text(
-                        'Wangan Midnight Maximum Tune 6RR',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: Theme.of(context).colorScheme.primary,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
+                    _ArcadeChipWidget(
+                        name: 'Wangan Midnight Maximum Tune 6RR',
                     ),
                   ],
                 ),
               )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ArcadeChipWidget extends StatelessWidget {
+  final String name;
+
+  const _ArcadeChipWidget({
+    super.key,
+    required this.name,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.tertiaryContainer.withAlpha(200),
+        borderRadius: BorderRadius.circular(16.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
+        child: Text(
+          name,
+          style: TextStyle(
+            height: 1.2,
+            color: Theme.of(context).colorScheme.onTertiaryContainer.withAlpha(200),
+            fontWeight: FontWeight.w500,
+            fontSize: Theme.of(context).textTheme.bodySmall!.fontSize!,
           ),
         ),
       ),

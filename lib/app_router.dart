@@ -34,6 +34,23 @@ class AgatraRouter {
               ),
             ],
           ),
+          GoRoute(
+            path: 'admin/users',
+            builder: (BuildContext context, GoRouterState state) =>
+                AdminUsersHomeView(),
+            routes: [
+              GoRoute(
+                path: ':id',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminUsersDetailsView(),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: 'admin/games',
+            builder: (BuildContext context, GoRouterState state) =>
+                AdminGamesView(),
+          )
         ],
       ),
     ],
