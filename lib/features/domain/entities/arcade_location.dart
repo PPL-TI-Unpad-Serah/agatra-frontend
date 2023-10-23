@@ -1,11 +1,11 @@
 import 'package:agatra/features/domain/entities/arcade_machine.dart';
-import 'package:agatra/features/domain/entities/game_center.dart';
+import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:equatable/equatable.dart';
 
 class ArcadeLocationEntity extends Equatable {
   final int id;
   final String name;
-  final GameCenterEntity gameCenter;
+  final ArcadeCenterEntity gameCenter;
   final String description;
   final double latitude;
   final double longitude;

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-class GameCenterEntity extends Equatable {
+class ArcadeCenterEntity extends Equatable {
   final int id;
   final String name;
   final String info;
 
-  const GameCenterEntity({
+  const ArcadeCenterEntity({
     required this.id,
     required this.name,
     required this.info,
