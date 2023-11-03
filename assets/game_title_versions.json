@@ -1,0 +1,52 @@
+{
+    "game_title_versions": [
+        {
+            "id": 1,
+            "game_title_id": 1,
+            "name": "5",
+            "info": "Hii"
+        },
+        {
+            "id": 2,
+            "game_title_id": 1,
+            "name": "5DX",
+            "info": "Hii"
+        },
+        {
+            "id": 3,
+            "game_title_id": 1,
+            "name": "6",
+            "info": "Hii"
+        },
+        {
+            "id": 4,
+            "game_title_id": 1,
+            "name": "6RR",
+            "info": "Hii"
+        },
+        {
+            "id": 5,
+            "game_title_id": 2,
+            "name": "infinite infection",
+            "info": "Hii"
+        },
+        {
+            "id": 6,
+            "game_title_id": 2,
+            "name": "GRAVITY WARS",
+            "info": "Hii"
+        },
+        {
+            "id": 7,
+            "game_title_id": 2,
+            "name": "HEAVENLY HAVEN",
+            "info": "Hii"
+        },
+        {
+            "id": 8,
+            "game_title_id": 2,
+            "name": "EXCEED GEAR",
+            "info": "Hii"
+        }
+    ]
+}
