@@ -1,0 +1,14 @@
+{
+    "arcade_centers": [
+        {
+            "id": 1,
+            "name": "Timezone",
+            "info": "Currency in tizo"
+        },
+        {
+            "id": 2,
+            "name": "Game Master",
+            "info": "Hii"
+        }
+    ]
+}

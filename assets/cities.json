@@ -1,0 +1,24 @@
+{
+    "cities": [
+        {
+            "id": 1,
+            "name": "Jakarta"
+        },
+        {
+            "id": 2,
+            "name": "Bekasi"
+        },
+        {
+            "id": 3,
+            "name": "Bandung"
+        },
+        {
+            "id": 4,
+            "name": "Depok"
+        },
+        {
+            "id": 5,
+            "name": "Tangerang"
+        }
+    ]
+}
