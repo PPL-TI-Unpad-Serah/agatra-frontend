@@ -34,10 +34,6 @@ class SearchQueryState extends _$SearchQueryState {
     );
   }
 
-  bool canPickGameTitleVersion() {
-    return state.gameTitle != null;
-  }
-
   void setGameTitleVersion(GameTitleVersionEntity gameTitleVersion) {
     state = state.copyWith(gameTitleVersion: gameTitleVersion);
   }
