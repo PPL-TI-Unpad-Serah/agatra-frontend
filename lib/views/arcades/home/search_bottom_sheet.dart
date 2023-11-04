@@ -1,6 +1,8 @@
+import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
+import 'package:agatra/views/arcades/home/arcade_centers_list.dart';
 import 'package:agatra/views/arcades/home/cities_list.dart';
 import 'package:agatra/views/arcades/home/game_title_versions_list.dart';
 import 'package:agatra/views/arcades/home/game_titles_list.dart';
@@ -118,7 +120,7 @@ class SearchBottomSheetList extends ConsumerWidget {
         ),
         InkWell(
           onTap: () async {
-            final result = await showDialog<GameTitleEntity>(
+            final result = await showDialog<ArcadeCenterEntity>(
               context: context,
               builder: (context) => Dialog(
                 insetPadding: const EdgeInsets.all(16),
@@ -126,11 +128,15 @@ class SearchBottomSheetList extends ConsumerWidget {
                   padding: const EdgeInsets.all(24),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 400),
-                    child: const GameTitlesList(),
+                    child: const ArcadeCentersList(),
                   ),
                 ),
               ),
             );
+
+            if (result != null) {
+              ref.read(searchQueryStateProvider.notifier).setArcadeCenter(result);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -143,7 +149,10 @@ class SearchBottomSheetList extends ConsumerWidget {
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w500),
                 ),
-                const Icon(Icons.chevron_right),
+                if (searchQuery.arcadeCenter != null)
+                  Text(searchQuery.arcadeCenter!.name)
+                else
+                  const Icon(Icons.chevron_right),
               ],
             ),
           ),

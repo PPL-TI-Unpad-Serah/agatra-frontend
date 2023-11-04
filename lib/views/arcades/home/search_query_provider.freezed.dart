@@ -20,6 +20,7 @@ mixin _$SearchQuery {
   GameTitleEntity? get gameTitle => throw _privateConstructorUsedError;
   GameTitleVersionEntity? get gameTitleVersion =>
       throw _privateConstructorUsedError;
+  ArcadeCenterEntity? get arcadeCenter => throw _privateConstructorUsedError;
   bool get sortByNearest => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,6 +38,7 @@ abstract class $SearchQueryCopyWith<$Res> {
       {CityEntity? city,
       GameTitleEntity? gameTitle,
       GameTitleVersionEntity? gameTitleVersion,
+      ArcadeCenterEntity? arcadeCenter,
       bool sortByNearest});
 }
 
@@ -56,6 +58,7 @@ class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
     Object? city = freezed,
     Object? gameTitle = freezed,
     Object? gameTitleVersion = freezed,
+    Object? arcadeCenter = freezed,
     Object? sortByNearest = null,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +74,10 @@ class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
           ? _value.gameTitleVersion
           : gameTitleVersion // ignore: cast_nullable_to_non_nullable
               as GameTitleVersionEntity?,
+      arcadeCenter: freezed == arcadeCenter
+          ? _value.arcadeCenter
+          : arcadeCenter // ignore: cast_nullable_to_non_nullable
+              as ArcadeCenterEntity?,
       sortByNearest: null == sortByNearest
           ? _value.sortByNearest
           : sortByNearest // ignore: cast_nullable_to_non_nullable
@@ -91,6 +98,7 @@ abstract class _$$SearchQueryImplCopyWith<$Res>
       {CityEntity? city,
       GameTitleEntity? gameTitle,
       GameTitleVersionEntity? gameTitleVersion,
+      ArcadeCenterEntity? arcadeCenter,
       bool sortByNearest});
 }
 
@@ -108,6 +116,7 @@ class __$$SearchQueryImplCopyWithImpl<$Res>
     Object? city = freezed,
     Object? gameTitle = freezed,
     Object? gameTitleVersion = freezed,
+    Object? arcadeCenter = freezed,
     Object? sortByNearest = null,
   }) {
     return _then(_$SearchQueryImpl(
@@ -123,6 +132,10 @@ class __$$SearchQueryImplCopyWithImpl<$Res>
           ? _value.gameTitleVersion
           : gameTitleVersion // ignore: cast_nullable_to_non_nullable
               as GameTitleVersionEntity?,
+      arcadeCenter: freezed == arcadeCenter
+          ? _value.arcadeCenter
+          : arcadeCenter // ignore: cast_nullable_to_non_nullable
+              as ArcadeCenterEntity?,
       sortByNearest: null == sortByNearest
           ? _value.sortByNearest
           : sortByNearest // ignore: cast_nullable_to_non_nullable
@@ -138,6 +151,7 @@ class _$SearchQueryImpl implements _SearchQuery {
       {this.city,
       this.gameTitle,
       this.gameTitleVersion,
+      this.arcadeCenter,
       required this.sortByNearest});
 
   @override
@@ -147,11 +161,13 @@ class _$SearchQueryImpl implements _SearchQuery {
   @override
   final GameTitleVersionEntity? gameTitleVersion;
   @override
+  final ArcadeCenterEntity? arcadeCenter;
+  @override
   final bool sortByNearest;
 
   @override
   String toString() {
-    return 'SearchQuery(city: $city, gameTitle: $gameTitle, gameTitleVersion: $gameTitleVersion, sortByNearest: $sortByNearest)';
+    return 'SearchQuery(city: $city, gameTitle: $gameTitle, gameTitleVersion: $gameTitleVersion, arcadeCenter: $arcadeCenter, sortByNearest: $sortByNearest)';
   }
 
   @override
@@ -164,13 +180,15 @@ class _$SearchQueryImpl implements _SearchQuery {
                 other.gameTitle == gameTitle) &&
             (identical(other.gameTitleVersion, gameTitleVersion) ||
                 other.gameTitleVersion == gameTitleVersion) &&
+            (identical(other.arcadeCenter, arcadeCenter) ||
+                other.arcadeCenter == arcadeCenter) &&
             (identical(other.sortByNearest, sortByNearest) ||
                 other.sortByNearest == sortByNearest));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, city, gameTitle, gameTitleVersion, sortByNearest);
+  int get hashCode => Object.hash(runtimeType, city, gameTitle,
+      gameTitleVersion, arcadeCenter, sortByNearest);
 
   @JsonKey(ignore: true)
   @override
@@ -184,6 +202,7 @@ abstract class _SearchQuery implements SearchQuery {
       {final CityEntity? city,
       final GameTitleEntity? gameTitle,
       final GameTitleVersionEntity? gameTitleVersion,
+      final ArcadeCenterEntity? arcadeCenter,
       required final bool sortByNearest}) = _$SearchQueryImpl;
 
   @override
@@ -192,6 +211,8 @@ abstract class _SearchQuery implements SearchQuery {
   GameTitleEntity? get gameTitle;
   @override
   GameTitleVersionEntity? get gameTitleVersion;
+  @override
+  ArcadeCenterEntity? get arcadeCenter;
   @override
   bool get sortByNearest;
   @override

@@ -1,3 +1,4 @@
+import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
@@ -13,6 +14,7 @@ class SearchQuery with _$SearchQuery {
     CityEntity? city,
     GameTitleEntity? gameTitle,
     GameTitleVersionEntity? gameTitleVersion,
+    ArcadeCenterEntity? arcadeCenter,
     required bool sortByNearest,
   }) = _SearchQuery;
 }
@@ -39,6 +41,10 @@ class SearchQueryState extends _$SearchQueryState {
 
   void setGameTitleVersion(GameTitleVersionEntity gameTitleVersion) {
     state = state.copyWith(gameTitleVersion: gameTitleVersion);
+  }
+
+  void setArcadeCenter(ArcadeCenterEntity arcadeCenter) {
+    state = state.copyWith(arcadeCenter: arcadeCenter);
   }
 
   void setSortByNearest(bool sortByNearest) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:agatra/features/data/models/arcade_center.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:flutter/services.dart';
@@ -48,7 +49,17 @@ class MockSearchArcadeLocationsRepository
 
   @override
   Future<DataState<List<ArcadeCenterEntity>>> getArcadeCenters() async {
-    throw UnimplementedError();
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    final dataString = await _loadAsset('assets/arcade_centers.json');
+    final Map<String, dynamic> json = jsonDecode(dataString);
+
+    List<ArcadeCenterEntity> items = [];
+    for (Map<String, dynamic> item in json["arcade_centers"]) {
+      items.add(ArcadeCenterModel.fromJson(item).toEntity());
+    }
+
+    return DataSuccess(items);
   }
 
   @override
