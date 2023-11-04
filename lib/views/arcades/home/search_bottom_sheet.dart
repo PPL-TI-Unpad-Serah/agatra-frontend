@@ -23,7 +23,9 @@ class SearchBottomSheetList extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref.read(searchQueryStateProvider.notifier).reset();
+                },
                 child: const Text("Reset"),
               ),
               FilledButton(
