@@ -2,13 +2,16 @@ import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/views/arcades/home/cities_list.dart';
 import 'package:agatra/views/arcades/home/game_titles_list.dart';
+import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SearchBottomSheetList extends StatelessWidget {
+class SearchBottomSheetList extends ConsumerWidget {
   const SearchBottomSheetList({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    SearchQuery searchQuery = ref.watch(searchQueryStateProvider);
     return ListView(
       padding: const EdgeInsets.only(top: 8),
       children: [
@@ -46,6 +49,9 @@ class SearchBottomSheetList extends StatelessWidget {
                 ),
               ),
             );
+            if (result != null) {
+              ref.read(searchQueryStateProvider.notifier).setGameTitle(result);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -58,7 +64,10 @@ class SearchBottomSheetList extends StatelessWidget {
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w500),
                 ),
-                const Text("Chunithm"),
+                if (searchQuery.gameTitle != null)
+                  Text(searchQuery.gameTitle!.name)
+                else
+                  const Icon(Icons.chevron_right),
               ],
             ),
           ),
@@ -90,7 +99,10 @@ class SearchBottomSheetList extends StatelessWidget {
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w500),
                 ),
-                const Text("Sun"),
+                if (searchQuery.gameTitleVersion != null)
+                  Text(searchQuery.gameTitleVersion!.name)
+                else
+                  const Icon(Icons.chevron_right),
               ],
             ),
           ),
@@ -143,6 +155,9 @@ class SearchBottomSheetList extends StatelessWidget {
                 ),
               ),
             );
+            if (result != null) {
+              ref.read(searchQueryStateProvider.notifier).setCity(result);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -155,7 +170,10 @@ class SearchBottomSheetList extends StatelessWidget {
                       color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.w500),
                 ),
-                const Text("Bandung"),
+                if (searchQuery.city != null)
+                  Text(searchQuery.city!.name)
+                else
+                const Icon(Icons.chevron_right),
               ],
             ),
           ),

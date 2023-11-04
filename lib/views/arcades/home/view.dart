@@ -1,12 +1,17 @@
 import 'package:agatra/views/arcades/home/search_bottom_sheet.dart';
+import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ArcadesSearchView extends StatelessWidget {
+class ArcadesSearchView extends ConsumerWidget {
   const ArcadesSearchView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // merely to have the state initialized and destroyed on the view rather than the bottom sheet widget that gets destroyed on every close
+    SearchQuery _ = ref.watch(searchQueryStateProvider);
+
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
@@ -16,13 +21,12 @@ class ArcadesSearchView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet<void>(
-            context: context,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            constraints: const BoxConstraints(maxWidth: 640),
-            builder: (context) => const SearchBottomSheetList()
-          );
+              context: context,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              constraints: const BoxConstraints(maxWidth: 640),
+              builder: (context) => const SearchBottomSheetList());
         },
         child: const Icon(Icons.search),
       ),
@@ -42,7 +46,8 @@ class _ArcadeItemCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Timezone Bandung Indah Plaza", style: Theme.of(context).textTheme.titleLarge),
+              Text("Timezone Bandung Indah Plaza",
+                  style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16.0),
               const SizedBox(
                 width: double.infinity,
@@ -52,19 +57,19 @@ class _ArcadeItemCard extends StatelessWidget {
                   runSpacing: 12.0,
                   children: [
                     _ArcadeChipWidget(
-                        name: 'maimai FiNALE',
+                      name: 'maimai FiNALE',
                     ),
                     _ArcadeChipWidget(
-                        name: 'Pump It Up XX',
+                      name: 'Pump It Up XX',
                     ),
                     _ArcadeChipWidget(
-                        name: 'SOUND VOLTEX EXCEED GEAR',
+                      name: 'SOUND VOLTEX EXCEED GEAR',
                     ),
                     _ArcadeChipWidget(
-                        name: 'Danz Base',
+                      name: 'Danz Base',
                     ),
                     _ArcadeChipWidget(
-                        name: 'Wangan Midnight Maximum Tune 6RR',
+                      name: 'Wangan Midnight Maximum Tune 6RR',
                     ),
                   ],
                 ),
@@ -98,7 +103,10 @@ class _ArcadeChipWidget extends StatelessWidget {
           name,
           style: TextStyle(
             height: 1.2,
-            color: Theme.of(context).colorScheme.onTertiaryContainer.withAlpha(200),
+            color: Theme.of(context)
+                .colorScheme
+                .onTertiaryContainer
+                .withAlpha(200),
             fontWeight: FontWeight.w500,
             fontSize: Theme.of(context).textTheme.bodySmall!.fontSize!,
           ),
