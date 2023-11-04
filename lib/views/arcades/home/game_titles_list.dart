@@ -1,4 +1,3 @@
-import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/views/arcades/home/providers.dart';
 import 'package:flutter/material.dart';

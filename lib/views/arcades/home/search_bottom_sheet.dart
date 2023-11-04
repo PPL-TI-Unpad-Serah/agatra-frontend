@@ -1,7 +1,7 @@
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
-import 'package:agatra/views/arcades/home/cities_picker_dialog.dart';
-import 'package:agatra/views/arcades/home/games_picker_dialog.dart';
+import 'package:agatra/views/arcades/home/cities_list.dart';
+import 'package:agatra/views/arcades/home/game_titles_list.dart';
 import 'package:flutter/material.dart';
 
 class SearchBottomSheetList extends StatelessWidget {

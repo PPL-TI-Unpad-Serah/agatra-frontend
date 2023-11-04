@@ -7,10 +7,10 @@ class CitiesList extends ConsumerStatefulWidget {
   const CitiesList({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<CitiesList> createState() => _CitiesListDialogState();
+  ConsumerState<CitiesList> createState() => _CitiesListState();
 }
 
-class _CitiesListDialogState extends ConsumerState<CitiesList> {
+class _CitiesListState extends ConsumerState<CitiesList> {
   @override
   Widget build(BuildContext context) {
     final listValue = ref.watch(getCitiesProvider);
