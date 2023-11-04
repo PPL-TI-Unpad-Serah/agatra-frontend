@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:agatra/features/data/models/city.dart';
+import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:flutter/services.dart';
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/data/data_mapper.dart';
@@ -32,7 +33,17 @@ class MockSearchArcadeLocationsRepository
   Future<DataState<List<GameTitleVersionEntity>>> getGameTitleVersionsOf(
     GameTitleEntity gameTitle,
   ) async {
-    throw UnimplementedError();
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    GameTitleCompactEntity compactedTitle = GameTitleCompactEntity(id: gameTitle.id, name: gameTitle.name); 
+    List<GameTitleVersionEntity> items = gameTitle.versions.map((e) => GameTitleVersionEntity(
+      id: e.id,
+      name: e.name,
+      info: e.info,
+      title: compactedTitle,
+    )).toList();
+
+    return DataSuccess(items);
   }
 
   @override
