@@ -1,6 +1,8 @@
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
+import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/views/arcades/home/cities_list.dart';
+import 'package:agatra/views/arcades/home/game_title_versions_list.dart';
 import 'package:agatra/views/arcades/home/game_titles_list.dart';
 import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:flutter/material.dart';
@@ -72,9 +74,9 @@ class SearchBottomSheetList extends ConsumerWidget {
             ),
           ),
         ),
-        InkWell(
+        if (searchQuery.gameTitle != null) InkWell(
           onTap: () async {
-            final result = await showDialog<GameTitleEntity>(
+            final result = await showDialog<GameTitleVersionEntity>(
               context: context,
               builder: (context) => Dialog(
                 insetPadding: const EdgeInsets.all(16),
@@ -82,11 +84,16 @@ class SearchBottomSheetList extends ConsumerWidget {
                   padding: const EdgeInsets.all(24),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxHeight: 400),
-                    child: const GameTitlesList(),
+                    child: const GameTitleVersionsList(),
                   ),
                 ),
               ),
             );
+            if (result != null) {
+              ref
+                  .read(searchQueryStateProvider.notifier)
+                  .setGameTitleVersion(result);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
