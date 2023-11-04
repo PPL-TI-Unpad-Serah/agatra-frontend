@@ -1,3 +1,5 @@
+import 'package:agatra/features/domain/entities/city.dart';
+import 'package:agatra/views/arcades/home/cities_picker_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -383,6 +385,38 @@ class ArcadesSearchView extends StatelessWidget {
                     ),
                   ),
                   const Divider(),
+                  InkWell(
+                    onTap: () async {
+                      final result = await showDialog<CityEntity>(
+                        context: context,
+                        builder: (context) => Dialog(
+                          insetPadding: const EdgeInsets.all(16),
+                          child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxHeight: 400),
+                              child: const CitiesList(),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Place",
+                            style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const Text("Bandung"),
+                        ],
+                      ),
+                    ),
+                  ),
                   CheckboxListTile(
                     value: false,
                     title: Text(
