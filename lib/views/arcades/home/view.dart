@@ -1,5 +1,7 @@
 import 'package:agatra/features/domain/entities/city.dart';
+import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/views/arcades/home/cities_picker_dialog.dart';
+import 'package:agatra/views/arcades/home/games_picker_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,100 +48,19 @@ class ArcadesSearchView extends StatelessWidget {
                   ),
                   const Divider(),
                   InkWell(
-                    onTap: () {
-                      showDialog<void>(
+                    onTap: () async {
+                      final result = await showDialog<GameTitleEntity>(
                         context: context,
                         builder: (context) => Dialog(
-                            insetPadding: const EdgeInsets.all(16),
-                            child: Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxHeight: 400),
-                                child: ListView(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Sound Voltex"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Beatmania IIDX"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("maimai"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Chunithm"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text(
-                                            "Wangan Midnight Maximum Tune"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Pump It Up"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Dance Dance Revolution"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Ongeki"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Nostalgia"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Jubeat"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Time Crisis"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
+                          insetPadding: const EdgeInsets.all(16),
+                          child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxHeight: 400),
+                              child: const GameTitlesList(),
+                            ),
+                          ),
+                        ),
                       );
                     },
                     child: Padding(
@@ -159,101 +80,20 @@ class ArcadesSearchView extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      showDialog<void>(
+                    onTap: () async {
+                      final result = await showDialog<GameTitleEntity>(
                         context: context,
                         builder: (context) => Dialog(
-                            insetPadding: const EdgeInsets.all(16),
-                            child: Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxHeight: 400),
-                                child: ListView(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Sound Voltex"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Beatmania IIDX"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("maimai"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Chunithm"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text(
-                                            "Wangan Midnight Maximum Tune"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Pump It Up"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Dance Dance Revolution"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Ongeki"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Nostalgia"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Jubeat"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Time Crisis"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
-                      );
+                          insetPadding: const EdgeInsets.all(16),
+                          child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxHeight: 400),
+                              child: const GameTitlesList(),
+                            ),
+                          ),
+                        ),
+                      );                    
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(16),
@@ -272,101 +112,20 @@ class ArcadesSearchView extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      showDialog<void>(
+                    onTap: () async {
+                      final result = await showDialog<GameTitleEntity>(
                         context: context,
                         builder: (context) => Dialog(
-                            insetPadding: const EdgeInsets.all(16),
-                            child: Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxHeight: 400),
-                                child: ListView(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Sound Voltex"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Beatmania IIDX"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("maimai"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Chunithm"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text(
-                                            "Wangan Midnight Maximum Tune"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Pump It Up"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Dance Dance Revolution"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Ongeki"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Nostalgia"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Jubeat"),
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(16),
-                                        child: Text("Time Crisis"),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )),
-                      );
+                          insetPadding: const EdgeInsets.all(16),
+                          child: Padding(
+                            padding: const EdgeInsets.all(24),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxHeight: 400),
+                              child: const GameTitlesList(),
+                            ),
+                          ),
+                        ),
+                      );                    
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(16),
