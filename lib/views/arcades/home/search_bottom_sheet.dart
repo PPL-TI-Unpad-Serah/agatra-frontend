@@ -147,7 +147,19 @@ class SearchBottomSheetList extends ConsumerWidget {
           ),
         ),
         const Divider(),
-        InkWell(
+        CheckboxListTile(
+          value: searchQuery.sortByNearest,
+          title: Text(
+            'Sort by nearest',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+                fontWeight: FontWeight.w500),
+          ),
+          onChanged: (value) {
+            ref.read(searchQueryStateProvider.notifier).setSortByNearest(value!);
+          },
+        ),
+        if (!searchQuery.sortByNearest) InkWell(
           onTap: () async {
             final result = await showDialog<CityEntity>(
               context: context,
@@ -184,16 +196,6 @@ class SearchBottomSheetList extends ConsumerWidget {
               ],
             ),
           ),
-        ),
-        CheckboxListTile(
-          value: false,
-          title: Text(
-            'Sort by nearest',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w500),
-          ),
-          onChanged: (value) {},
         ),
       ],
     );

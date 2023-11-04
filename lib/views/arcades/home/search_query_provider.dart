@@ -13,6 +13,7 @@ class SearchQuery with _$SearchQuery {
     CityEntity? city,
     GameTitleEntity? gameTitle,
     GameTitleVersionEntity? gameTitleVersion,
+    required bool sortByNearest,
   }) = _SearchQuery;
 }
 
@@ -20,7 +21,9 @@ class SearchQuery with _$SearchQuery {
 class SearchQueryState extends _$SearchQueryState {
   @override
   SearchQuery build() {
-    return SearchQuery();
+    return SearchQuery(
+      sortByNearest: false
+    );
   }
 
   void setCity(CityEntity city) {
@@ -38,7 +41,13 @@ class SearchQueryState extends _$SearchQueryState {
     state = state.copyWith(gameTitleVersion: gameTitleVersion);
   }
 
+  void setSortByNearest(bool sortByNearest) {
+    state = state.copyWith(sortByNearest: sortByNearest);
+  }
+
   void reset() {
-    state = SearchQuery();
+    state = SearchQuery(
+      sortByNearest: false
+    );
   }
 }
