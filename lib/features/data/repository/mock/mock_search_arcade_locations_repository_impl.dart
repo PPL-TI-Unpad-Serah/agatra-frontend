@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:agatra/features/data/models/arcade_center.dart';
 import 'package:agatra/features/data/models/city.dart';
+import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
+import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:flutter/services.dart';
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/data/data_mapper.dart';
@@ -36,13 +38,16 @@ class MockSearchArcadeLocationsRepository
   ) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    GameTitleCompactEntity compactedTitle = GameTitleCompactEntity(id: gameTitle.id, name: gameTitle.name); 
-    List<GameTitleVersionEntity> items = gameTitle.versions.map((e) => GameTitleVersionEntity(
-      id: e.id,
-      name: e.name,
-      info: e.info,
-      title: compactedTitle,
-    )).toList();
+    GameTitleCompactEntity compactedTitle =
+        GameTitleCompactEntity(id: gameTitle.id, name: gameTitle.name);
+    List<GameTitleVersionEntity> items = gameTitle.versions
+        .map((e) => GameTitleVersionEntity(
+              id: e.id,
+              name: e.name,
+              info: e.info,
+              title: compactedTitle,
+            ))
+        .toList();
 
     return DataSuccess(items);
   }
@@ -75,6 +80,14 @@ class MockSearchArcadeLocationsRepository
     }
 
     return DataSuccess(items);
+  }
+
+  @override
+  Future<DataState<List<ArcadeLocationCompactEntity>>> getArcadeLocations({
+    required int page,
+    required SearchQuery query,
+  }) async {
+    throw UnimplementedError();
   }
 
   Future<String> _loadAsset(String path) async {

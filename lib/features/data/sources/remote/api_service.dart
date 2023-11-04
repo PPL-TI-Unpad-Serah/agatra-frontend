@@ -1,4 +1,5 @@
 import 'package:agatra/core/resources/list_response.dart';
+import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
@@ -21,4 +22,15 @@ abstract class ApiService {
   Future<HttpResponse<ListResponse<GameTitleVersionModel>>> gameTitleVersionOf({
     @Path('game_title_id') required String id
   });
+
+  @GET('/arcade_locations')
+  Future<HttpResponse<ListResponse<ArcadeLocationCompactModel>>> getArcadeLocations(
+    @Query('page') int page,
+    @Query('search') String? search,
+    @Query('nearby') bool? nearby,
+    @Query('city') String? cityId,
+    @Query('game_title') String? gameTitleId,
+    @Query('game_title_version') String? gameTitleVersionId,
+    @Query('arcade_center') String? arcadeCenterId,
+  );
 }

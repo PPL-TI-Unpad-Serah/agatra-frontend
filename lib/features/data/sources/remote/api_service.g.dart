@@ -113,6 +113,57 @@ class _ApiService implements ApiService {
     return httpResponse;
   }
 
+  @override
+  Future<HttpResponse<ListResponse<ArcadeLocationCompactModel>>>
+      getArcadeLocations(
+    int page,
+    String? search,
+    bool? nearby,
+    String? cityId,
+    String? gameTitleId,
+    String? gameTitleVersionId,
+    String? arcadeCenterId,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'search': search,
+      r'nearby': nearby,
+      r'city': cityId,
+      r'game_title': gameTitleId,
+      r'game_title_version': gameTitleVersionId,
+      r'arcade_center': arcadeCenterId,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ListResponse<ArcadeLocationCompactModel>>>(
+            Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+                .compose(
+                  _dio.options,
+                  '/arcade_locations',
+                  queryParameters: queryParameters,
+                  data: _data,
+                )
+                .copyWith(
+                    baseUrl: _combineBaseUrls(
+                  _dio.options.baseUrl,
+                  baseUrl,
+                ))));
+    final value = ListResponse<ArcadeLocationCompactModel>.fromJson(
+      _result.data!,
+      (json) =>
+          ArcadeLocationCompactModel.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
