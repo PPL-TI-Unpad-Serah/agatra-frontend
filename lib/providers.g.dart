@@ -35,7 +35,7 @@ final apiServiceProvider = AutoDisposeProvider<ApiService>.internal(
 
 typedef ApiServiceRef = AutoDisposeProviderRef<ApiService>;
 String _$searchArcadeLocationsRepositoryHash() =>
-    r'60c3572152c46ff349cc115e5804ac3a09509c41';
+    r'271951c1e64f114c588de8cf24f12e9cbdcebe1f';
 
 /// See also [searchArcadeLocationsRepository].
 @ProviderFor(searchArcadeLocationsRepository)

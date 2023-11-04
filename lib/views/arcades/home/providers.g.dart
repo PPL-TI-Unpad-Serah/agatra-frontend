@@ -37,7 +37,7 @@ final getGameTitlesProvider =
 
 typedef GetGameTitlesRef = AutoDisposeFutureProviderRef<List<GameTitleEntity>>;
 String _$getGameTitleVersionsOfHash() =>
-    r'9c5faa81de3d0f3c3e7d991601850f710d9d4fec';
+    r'727bea19ceee99b44c8a81ea7c711bc09e6992c1';
 
 /// Copied from Dart SDK
 class _SystemHash {
