@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:agatra/features/data/models/arcade_center.dart';
+import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
@@ -87,7 +89,24 @@ class MockSearchArcadeLocationsRepository
     required int page,
     required SearchQuery query,
   }) async {
-    throw UnimplementedError();
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    final dataString = await _loadAsset('assets/arcade_locations.json');
+    final Map<String, dynamic> json = jsonDecode(dataString);
+
+    List<ArcadeLocationCompactEntity> items = [];
+    for (Map<String, dynamic> item in json["cities"]) {
+      items.add(ArcadeLocationCompactModel.fromJson(item).toEntity());
+    }
+
+    final totalItems = items.length;
+    const itemsPerPage = 10;
+
+    final start = (page - 1) * itemsPerPage;
+    final end = (page * itemsPerPage) - 1;
+
+    if (start > totalItems) return const DataSuccess([]);
+    return DataSuccess(items.sublist(start, min(end, totalItems)));
   }
 
   Future<String> _loadAsset(String path) async {
