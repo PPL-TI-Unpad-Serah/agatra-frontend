@@ -1,38 +1,44 @@
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
-import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
+import 'package:agatra/views/arcades/home/arcade_locations_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ArcadeLocationsListView extends ConsumerWidget {
+class ArcadeLocationsListView extends ConsumerStatefulWidget {
   const ArcadeLocationsListView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return ListView(
-      padding: const EdgeInsets.all(8.0),
-      children: [
-        for (int i = 0; i < 12; i++)
-          _ArcadeItemCard(
-            location: ArcadeLocationCompactEntity(
-              id: i,
-              name: "Arcade $i",
-              games: [
-                for (int j = 0; j < 5; j++)
-                  GameTitleVersionEntity(
-                    id: i,
-                    name: "Game $j",
-                    info: "Info $j",
-                    title: GameTitleCompactEntity(
-                      id: j,
-                      name: "Title $j",
-                    ),
-                  ),
-              ],
-            ),
-          )
-      ],
+  ConsumerState<ArcadeLocationsListView> createState() =>
+      _ArcadeLocationsListViewState();
+}
+
+class _ArcadeLocationsListViewState
+    extends ConsumerState<ArcadeLocationsListView> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final postsProvider = ref.watch(arcadeLocationsListStateProvider);
+
+    return postsProvider.when(
+      data: (state) {
+        return ListView.builder(
+          controller: _scrollController,
+          itemCount: state.posts.length,
+          itemBuilder: (context, index) {
+            final post = state.posts[index];
+            return _ArcadeItemCard(location: post);
+          },
+        );
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => Center(child: Text(err.toString())),
     );
   }
 }

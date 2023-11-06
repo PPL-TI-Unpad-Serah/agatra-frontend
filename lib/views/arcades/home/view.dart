@@ -1,3 +1,4 @@
+import 'package:agatra/views/arcades/home/arcade_locations_list_provider.dart';
 import 'package:agatra/views/arcades/home/list.dart';
 import 'package:agatra/views/arcades/home/search_bottom_sheet.dart';
 import 'package:agatra/views/arcades/home/search_query_provider.dart';
@@ -10,7 +11,8 @@ class ArcadesSearchView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // merely to have the state initialized and destroyed on the view rather than the bottom sheet widget that gets destroyed on every close
-    SearchQuery _ = ref.watch(searchQueryStateProvider);
+    final _searchQuery = ref.watch(searchQueryStateProvider);
+    final _list = ref.watch(arcadeLocationsListStateProvider);
 
     return Scaffold(
       appBar: AppBar(),

@@ -20,7 +20,6 @@ mixin _$ArcadeLocationsList {
   List<ArcadeLocationCompactEntity> get posts =>
       throw _privateConstructorUsedError;
   SearchQuery get searchQuery => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
   bool get isLoadMoreError => throw _privateConstructorUsedError;
   bool get isLoadMoreDone => throw _privateConstructorUsedError;
 
@@ -39,7 +38,6 @@ abstract class $ArcadeLocationsListCopyWith<$Res> {
       {int page,
       List<ArcadeLocationCompactEntity> posts,
       SearchQuery searchQuery,
-      bool isLoading,
       bool isLoadMoreError,
       bool isLoadMoreDone});
 
@@ -62,7 +60,6 @@ class _$ArcadeLocationsListCopyWithImpl<$Res, $Val extends ArcadeLocationsList>
     Object? page = null,
     Object? posts = null,
     Object? searchQuery = null,
-    Object? isLoading = null,
     Object? isLoadMoreError = null,
     Object? isLoadMoreDone = null,
   }) {
@@ -79,10 +76,6 @@ class _$ArcadeLocationsListCopyWithImpl<$Res, $Val extends ArcadeLocationsList>
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
               as SearchQuery,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoadMoreError: null == isLoadMoreError
           ? _value.isLoadMoreError
           : isLoadMoreError // ignore: cast_nullable_to_non_nullable
@@ -115,7 +108,6 @@ abstract class _$$ArcadeLocationsListImplCopyWith<$Res>
       {int page,
       List<ArcadeLocationCompactEntity> posts,
       SearchQuery searchQuery,
-      bool isLoading,
       bool isLoadMoreError,
       bool isLoadMoreDone});
 
@@ -137,7 +129,6 @@ class __$$ArcadeLocationsListImplCopyWithImpl<$Res>
     Object? page = null,
     Object? posts = null,
     Object? searchQuery = null,
-    Object? isLoading = null,
     Object? isLoadMoreError = null,
     Object? isLoadMoreDone = null,
   }) {
@@ -154,10 +145,6 @@ class __$$ArcadeLocationsListImplCopyWithImpl<$Res>
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
               as SearchQuery,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoadMoreError: null == isLoadMoreError
           ? _value.isLoadMoreError
           : isLoadMoreError // ignore: cast_nullable_to_non_nullable
@@ -177,7 +164,6 @@ class _$ArcadeLocationsListImpl implements _ArcadeLocationsList {
       {this.page = 1,
       required final List<ArcadeLocationCompactEntity> posts,
       required this.searchQuery,
-      this.isLoading = true,
       this.isLoadMoreError = false,
       this.isLoadMoreDone = false})
       : _posts = posts;
@@ -197,9 +183,6 @@ class _$ArcadeLocationsListImpl implements _ArcadeLocationsList {
   final SearchQuery searchQuery;
   @override
   @JsonKey()
-  final bool isLoading;
-  @override
-  @JsonKey()
   final bool isLoadMoreError;
   @override
   @JsonKey()
@@ -207,7 +190,7 @@ class _$ArcadeLocationsListImpl implements _ArcadeLocationsList {
 
   @override
   String toString() {
-    return 'ArcadeLocationsList(page: $page, posts: $posts, searchQuery: $searchQuery, isLoading: $isLoading, isLoadMoreError: $isLoadMoreError, isLoadMoreDone: $isLoadMoreDone)';
+    return 'ArcadeLocationsList(page: $page, posts: $posts, searchQuery: $searchQuery, isLoadMoreError: $isLoadMoreError, isLoadMoreDone: $isLoadMoreDone)';
   }
 
   @override
@@ -219,8 +202,6 @@ class _$ArcadeLocationsListImpl implements _ArcadeLocationsList {
             const DeepCollectionEquality().equals(other._posts, _posts) &&
             (identical(other.searchQuery, searchQuery) ||
                 other.searchQuery == searchQuery) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
             (identical(other.isLoadMoreError, isLoadMoreError) ||
                 other.isLoadMoreError == isLoadMoreError) &&
             (identical(other.isLoadMoreDone, isLoadMoreDone) ||
@@ -233,7 +214,6 @@ class _$ArcadeLocationsListImpl implements _ArcadeLocationsList {
       page,
       const DeepCollectionEquality().hash(_posts),
       searchQuery,
-      isLoading,
       isLoadMoreError,
       isLoadMoreDone);
 
@@ -250,7 +230,6 @@ abstract class _ArcadeLocationsList implements ArcadeLocationsList {
       {final int page,
       required final List<ArcadeLocationCompactEntity> posts,
       required final SearchQuery searchQuery,
-      final bool isLoading,
       final bool isLoadMoreError,
       final bool isLoadMoreDone}) = _$ArcadeLocationsListImpl;
 
@@ -260,8 +239,6 @@ abstract class _ArcadeLocationsList implements ArcadeLocationsList {
   List<ArcadeLocationCompactEntity> get posts;
   @override
   SearchQuery get searchQuery;
-  @override
-  bool get isLoading;
   @override
   bool get isLoadMoreError;
   @override

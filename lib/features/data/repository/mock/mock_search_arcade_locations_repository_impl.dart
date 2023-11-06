@@ -95,7 +95,7 @@ class MockSearchArcadeLocationsRepository
     final Map<String, dynamic> json = jsonDecode(dataString);
 
     List<ArcadeLocationCompactEntity> items = [];
-    for (Map<String, dynamic> item in json["cities"]) {
+    for (Map<String, dynamic> item in json["arcade_locations"]) {
       items.add(ArcadeLocationCompactModel.fromJson(item).toEntity());
     }
 

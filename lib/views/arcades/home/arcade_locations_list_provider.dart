@@ -22,8 +22,10 @@ abstract class ArcadeLocationsList with _$ArcadeLocationsList {
 @riverpod
 class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   @override
-  FutureOr<ArcadeLocationsList> build(SearchQuery searchQuery) async {
+  FutureOr<ArcadeLocationsList> build() async {
     final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    final searchQuery = SearchQuery(sortByNearest: false);
+
     final posts = await searchRepository.getArcadeLocations(
       page: 1,
       query: searchQuery,
@@ -46,24 +48,34 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
         query: state.value!.searchQuery,
       );
 
-      if (posts is DataFailure) {
-        return state.value!.copyWith(
-          isLoadMoreError: true,
-        );
-      }
-
       if (posts.data!.isEmpty) {
         return state.value!.copyWith(
           isLoadMoreDone: true,
         );
       }
 
-      return 
-        state.value!.copyWith(
-          page: state.value!.page + 1,
-          posts: [...state.value!.posts, ...posts.data!],
-        );
+      return state.value!.copyWith(
+        page: state.value!.page + 1,
+        posts: [...state.value!.posts, ...posts.data!],
+      );
     });
+  }
 
+  Future<void> setSearchQuery(SearchQuery searchQuery) async {
+    state = const AsyncValue.loading();
+
+    final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    state = await AsyncValue.guard(() async {
+      final posts = await searchRepository.getArcadeLocations(
+        page: 1,
+        query: searchQuery,
+      );
+
+      return state.value!.copyWith(
+        page: 1,
+        posts: posts.data!,
+        searchQuery: searchQuery,
+      );
+    });
   }
 }
