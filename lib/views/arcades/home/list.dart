@@ -23,7 +23,7 @@ class _ArcadeLocationsListViewState
     super.initState();
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >
-          _scrollController.position.maxScrollExtent - MediaQuery.of(context).size.height) {
+          _scrollController.position.maxScrollExtent - 100) {
         if (oldLength ==
             ref.read(arcadeLocationsListStateProvider).value!.posts.length) {
           // make sure ListView has newest data after previous loadMore
@@ -55,14 +55,22 @@ class _ArcadeLocationsListViewState
               if (index == state.posts.length) {
                 // load more but reached to the last element
                 if (postsProvider.value!.noMorePostsToFetch) {
-                  return const Center(
-                    child: Text(
-                      'Done!',
-                      style: TextStyle(color: Colors.green, fontSize: 20),
+                  return const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        'No more posts!',
+                        style: TextStyle(color: Colors.green, fontSize: 20),
+                      ),
                     ),
                   );
                 }
-                return const LinearProgressIndicator();
+                return const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
               }
               return _ArcadeItemCard(location: state.posts[index]);
             },
