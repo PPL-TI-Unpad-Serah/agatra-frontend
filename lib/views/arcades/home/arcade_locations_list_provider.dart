@@ -22,7 +22,7 @@ abstract class ArcadeLocationsList with _$ArcadeLocationsList {
 class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   @override
   FutureOr<ArcadeLocationsList> build() async {
-    final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    final searchRepository = ref.watch(searchArcadeLocationsRepositoryProvider);
     final searchQuery = SearchQuery(sortByNearest: false);
 
     final posts = await searchRepository.getArcadeLocations(
@@ -45,7 +45,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
       isLoadingMore: true,
     ));
 
-    final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    final searchRepository = ref.watch(searchArcadeLocationsRepositoryProvider);
 
     state = await AsyncValue.guard(() async {
       final posts = await searchRepository.getArcadeLocations(
@@ -71,7 +71,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   Future<void> setSearchQuery(SearchQuery searchQuery) async {
     state = const AsyncValue.loading();
 
-    final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    final searchRepository = ref.watch(searchArcadeLocationsRepositoryProvider);
     state = await AsyncValue.guard(() async {
       final posts = await searchRepository.getArcadeLocations(
         page: 1,
@@ -89,7 +89,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   Future<void> refresh() async {
     state = const AsyncValue.loading();
 
-    final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    final searchRepository = ref.watch(searchArcadeLocationsRepositoryProvider);
     state = await AsyncValue.guard(() async {
       final posts = await searchRepository.getArcadeLocations(
         page: 1,
