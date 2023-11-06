@@ -22,13 +22,8 @@ class _ArcadeLocationsListViewState
   void initState() {
     super.initState();
     _scrollController.addListener(() async {
-      // print('pixel is ${_scrollController.position.pixels}');
-      // print('max is ${_scrollController.position.maxScrollExtent}');
       if (_scrollController.position.pixels >
-          _scrollController.position.maxScrollExtent - 100) {
-        print(oldLength);
-        print(ref.read(arcadeLocationsListStateProvider).value!.posts.length);
-        print(ref.read(arcadeLocationsListStateProvider).value!.page);
+          _scrollController.position.maxScrollExtent - MediaQuery.of(context).size.height) {
         if (oldLength ==
             ref.read(arcadeLocationsListStateProvider).value!.posts.length) {
           // make sure ListView has newest data after previous loadMore
@@ -44,9 +39,7 @@ class _ArcadeLocationsListViewState
 
     oldLength = postsProvider.value?.posts.length ?? 0;
 
-    return 
-    
-    postsProvider.when(
+    return postsProvider.when(
       data: (state) {
         return RefreshIndicator(
           onRefresh: () {
@@ -60,14 +53,8 @@ class _ArcadeLocationsListViewState
             itemBuilder: (context, index) {
               // last element (progress bar, error or 'Done!' if reached to the last element)
               if (index == state.posts.length) {
-                // load more and get error
-                if (postsProvider.value!.isLoadMoreError) {
-                  return const Center(
-                    child: Text('Error'),
-                  );
-                }
                 // load more but reached to the last element
-                if (postsProvider.value!.isLoadMoreDone) {
+                if (postsProvider.value!.noMorePostsToFetch) {
                   return const Center(
                     child: Text(
                       'Done!',

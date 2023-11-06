@@ -13,8 +13,8 @@ abstract class ArcadeLocationsList with _$ArcadeLocationsList {
     @Default(1) int page,
     required List<ArcadeLocationCompactEntity> posts,
     required SearchQuery searchQuery,
-    @Default(false) bool isLoadMoreError,
-    @Default(false) bool isLoadMoreDone,
+    @Default(false) bool isLoadingMore,
+    @Default(false) bool noMorePostsToFetch,
   }) = _ArcadeLocationsList;
 }
 
@@ -37,6 +37,14 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   }
 
   Future<void> loadMoreEntries() async {
+    if (state.value!.isLoadingMore) {
+      return;
+    }
+
+    state = AsyncData(state.value!.copyWith(
+      isLoadingMore: true,
+    ));
+
     final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
 
     state = await AsyncValue.guard(() async {
@@ -47,11 +55,13 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
 
       if (posts.data!.isEmpty) {
         return state.value!.copyWith(
-          isLoadMoreDone: true,
+          isLoadingMore: false,
+          noMorePostsToFetch: true,
         );
       }
 
       return state.value!.copyWith(
+        isLoadingMore: false,
         page: state.value!.page + 1,
         posts: [...state.value!.posts, ...posts.data!],
       );
