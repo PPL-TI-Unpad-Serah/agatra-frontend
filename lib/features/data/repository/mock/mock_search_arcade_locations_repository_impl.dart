@@ -103,7 +103,7 @@ class MockSearchArcadeLocationsRepository
     const itemsPerPage = 10;
 
     final start = (page - 1) * itemsPerPage;
-    final end = (page * itemsPerPage) - 1;
+    final end = (page * itemsPerPage);
 
     if (start > totalItems) return const DataSuccess([]);
     return DataSuccess(items.sublist(start, min(end, totalItems)));
