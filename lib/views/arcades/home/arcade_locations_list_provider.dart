@@ -1,4 +1,3 @@
-import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/providers.dart';
 import 'package:agatra/views/arcades/home/search_query_provider.dart';
@@ -38,8 +37,6 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   }
 
   Future<void> loadMoreEntries() async {
-    state = const AsyncValue.loading();
-
     final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
 
     state = await AsyncValue.guard(() async {
@@ -75,6 +72,23 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
         page: 1,
         posts: posts.data!,
         searchQuery: searchQuery,
+      );
+    });
+  }
+
+  Future<void> refresh() async {
+    state = const AsyncValue.loading();
+
+    final searchRepository = ref.read(searchArcadeLocationsRepositoryProvider);
+    state = await AsyncValue.guard(() async {
+      final posts = await searchRepository.getArcadeLocations(
+        page: 1,
+        query: state.value!.searchQuery,
+      );
+
+      return state.value!.copyWith(
+        page: 1,
+        posts: posts.data!,
       );
     });
   }

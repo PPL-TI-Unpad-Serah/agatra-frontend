@@ -7,7 +7,7 @@ part of 'arcade_locations_list_provider.dart';
 // **************************************************************************
 
 String _$arcadeLocationsListStateHash() =>
-    r'8c2545ab16570a1cc28d3fb94ac0dc35798a9ae4';
+    r'c1be99eaf6801504045971196a090a24c1c3311c';
 
 /// See also [ArcadeLocationsListState].
 @ProviderFor(ArcadeLocationsListState)

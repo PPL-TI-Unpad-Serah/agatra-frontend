@@ -16,25 +16,70 @@ class ArcadeLocationsListView extends ConsumerStatefulWidget {
 class _ArcadeLocationsListViewState
     extends ConsumerState<ArcadeLocationsListView> {
   final ScrollController _scrollController = ScrollController();
+  int oldLength = 0;
 
   @override
   void initState() {
     super.initState();
+    _scrollController.addListener(() async {
+      // print('pixel is ${_scrollController.position.pixels}');
+      // print('max is ${_scrollController.position.maxScrollExtent}');
+      if (_scrollController.position.pixels >
+          _scrollController.position.maxScrollExtent - 100) {
+        print(oldLength);
+        print(ref.read(arcadeLocationsListStateProvider).value!.posts.length);
+        print(ref.read(arcadeLocationsListStateProvider).value!.page);
+        if (oldLength ==
+            ref.read(arcadeLocationsListStateProvider).value!.posts.length) {
+          // make sure ListView has newest data after previous loadMore
+          ref.read(arcadeLocationsListStateProvider.notifier).loadMoreEntries();
+        }
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final postsProvider = ref.watch(arcadeLocationsListStateProvider);
 
-    return postsProvider.when(
+    oldLength = postsProvider.value?.posts.length ?? 0;
+
+    return 
+    
+    postsProvider.when(
       data: (state) {
-        return ListView.builder(
-          controller: _scrollController,
-          itemCount: state.posts.length,
-          itemBuilder: (context, index) {
-            final post = state.posts[index];
-            return _ArcadeItemCard(location: post);
+        return RefreshIndicator(
+          onRefresh: () {
+            return ref
+                .read(arcadeLocationsListStateProvider.notifier)
+                .refresh();
           },
+          child: ListView.builder(
+            controller: _scrollController,
+            itemCount: state.posts.length + 1,
+            itemBuilder: (context, index) {
+              // last element (progress bar, error or 'Done!' if reached to the last element)
+              if (index == state.posts.length) {
+                // load more and get error
+                if (postsProvider.value!.isLoadMoreError) {
+                  return const Center(
+                    child: Text('Error'),
+                  );
+                }
+                // load more but reached to the last element
+                if (postsProvider.value!.isLoadMoreDone) {
+                  return const Center(
+                    child: Text(
+                      'Done!',
+                      style: TextStyle(color: Colors.green, fontSize: 20),
+                    ),
+                  );
+                }
+                return const LinearProgressIndicator();
+              }
+              return _ArcadeItemCard(location: state.posts[index]);
+            },
+          ),
         );
       },
       loading: () => const Center(child: CircularProgressIndicator()),
