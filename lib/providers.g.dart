@@ -34,6 +34,21 @@ final apiServiceProvider = AutoDisposeProvider<ApiService>.internal(
 );
 
 typedef ApiServiceRef = AutoDisposeProviderRef<ApiService>;
+String _$storageServiceHash() => r'9055bca57a897cf6f4c9048fad0395fd049836fe';
+
+/// See also [storageService].
+@ProviderFor(storageService)
+final storageServiceProvider = AutoDisposeProvider<StorageService>.internal(
+  storageService,
+  name: r'storageServiceProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$storageServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef StorageServiceRef = AutoDisposeProviderRef<StorageService>;
 String _$searchArcadeLocationsRepositoryHash() =>
     r'271951c1e64f114c588de8cf24f12e9cbdcebe1f';
 
