@@ -1,10 +1,21 @@
 import 'package:agatra/app_router.dart';
 import 'package:agatra/app_theme.dart';
+import 'package:agatra/managers/session_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  runApp(const ProviderScope(child: Agatra()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final container = ProviderContainer();
+  await container.read(sessionManagerProvider.future);
+
+  runApp(
+    ProviderScope(
+      parent: container,
+      child: const Agatra(),
+    ),
+  );
 }
 
 class Agatra extends ConsumerWidget {

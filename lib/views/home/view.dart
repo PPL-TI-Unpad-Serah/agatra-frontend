@@ -1,11 +1,19 @@
+import 'package:agatra/managers/session_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // error: this returns AsyncLoading first then AsyncData, even after warm up on main
+    final sessionManager = ref.watch(sessionManagerProvider);
+
+    print(sessionManager is AsyncData);
+    print(sessionManager.hasValue);
+
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
@@ -54,7 +62,7 @@ class HomeView extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               Text(
-                "Guest!",
+                sessionManager.value?.user.name ?? "Guest" ,
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
