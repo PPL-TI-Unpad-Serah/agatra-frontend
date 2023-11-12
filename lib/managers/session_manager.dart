@@ -1,3 +1,4 @@
+import 'package:agatra/features/data/models/storage_item.dart';
 import 'package:agatra/features/domain/entities/form/auth_login.dart';
 import 'package:agatra/features/domain/entities/session.dart';
 import 'package:agatra/features/domain/entities/user.dart';
@@ -10,7 +11,7 @@ part 'session_manager.g.dart';
 class SessionManager extends _$SessionManager {
   @override
   FutureOr<SessionEntity?> build() async {
-    final storageService = ref.watch(storageServiceProvider); 
+    final storageService = ref.watch(storageServiceProvider);
 
     if (await storageService.containsKey('token')) {
       final token = await storageService.read('token');
@@ -27,16 +28,16 @@ class SessionManager extends _$SessionManager {
     return null;
   }
 
-  Future<void> login(AuthLogin data) async {
-    state = const AsyncData(
-      SessionEntity(
-        token: 'test',
-        user: UserEntity(
-          id: '0',
-          name: 'John Doe',
-        ),
+  Future<void> login(SessionEntity session) async {
+    final storageService = ref.watch(storageServiceProvider);
+    await storageService.write(
+      StorageItemModel(
+        'token',
+        session.token,
       ),
     );
+
+    state = AsyncData(session);
   }
 
   Future<void> logout() async {

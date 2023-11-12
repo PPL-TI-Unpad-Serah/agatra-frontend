@@ -1,11 +1,29 @@
+import 'package:agatra/features/domain/entities/session.dart';
+import 'package:agatra/managers/session_manager.dart';
 import 'package:agatra/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-final routerProvider = Provider<AgatraRouter>((ref) => AgatraRouter());
+// TODO use code generation syntax for these two providers
+final sessionRefreshListener = Provider<ValueNotifier<SessionEntity?>>((ref) {
+  final notifier = ValueNotifier<SessionEntity?>(null);
+  ref.listen(sessionManagerProvider, (_, next) async { 
+    if (next is AsyncData) {
+      notifier.value = next.value;
+    }
+  });
+  return notifier;
+});
+
+
+final routerProvider = Provider<AgatraRouter>((ref) => AgatraRouter(ref.watch(sessionRefreshListener)));
 
 class AgatraRouter {
+  final ValueNotifier<SessionEntity?> refreshListener;
+
+  AgatraRouter(this.refreshListener);
+
   late final router = GoRouter(
     routes: [
       GoRoute(
@@ -54,5 +72,13 @@ class AgatraRouter {
         ],
       ),
     ],
+    redirect: (BuildContext context, GoRouterState state) async {
+      final loggingIn = state.matchedLocation == '/login' || state.matchedLocation == '/register';
+      final loggedIn = refreshListener.value != null;
+
+      if (loggedIn && loggingIn) return '/';
+
+      return null;
+    },
   );
 }
