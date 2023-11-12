@@ -6,11 +6,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'session_manager.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class SessionManager extends _$SessionManager {
   @override
   FutureOr<SessionEntity?> build() async {
-    final storageService = ref.watch(storageServiceProvider);
+    final storageService = ref.watch(storageServiceProvider); 
 
     if (await storageService.containsKey('token')) {
       final token = await storageService.read('token');

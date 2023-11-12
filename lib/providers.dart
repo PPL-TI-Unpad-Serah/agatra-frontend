@@ -8,17 +8,17 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'providers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 Dio dio(DioRef ref) {
   return Dio();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 ApiService apiService(ApiServiceRef ref) {
   return ApiService(ref.watch(dioProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 StorageService storageService(StorageServiceRef ref) {
   return StorageService(
     const FlutterSecureStorage(

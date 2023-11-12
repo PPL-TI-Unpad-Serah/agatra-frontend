@@ -6,12 +6,12 @@ part of 'session_manager.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$sessionManagerHash() => r'7e1c9fa9b70e4d19f96bcee00c7352a8d6ccb69e';
+String _$sessionManagerHash() => r'ff553e37ff63703391233798800672c21b826b30';
 
 /// See also [SessionManager].
 @ProviderFor(SessionManager)
 final sessionManagerProvider =
-    AutoDisposeAsyncNotifierProvider<SessionManager, SessionEntity?>.internal(
+    AsyncNotifierProvider<SessionManager, SessionEntity?>.internal(
   SessionManager.new,
   name: r'sessionManagerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +21,6 @@ final sessionManagerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$SessionManager = AutoDisposeAsyncNotifier<SessionEntity?>;
+typedef _$SessionManager = AsyncNotifier<SessionEntity?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
