@@ -11,9 +11,6 @@ class HomeView extends ConsumerWidget {
     // error: this returns AsyncLoading first then AsyncData, even after warm up on main
     final sessionManager = ref.watch(sessionManagerProvider);
 
-    print(sessionManager is AsyncData);
-    print(sessionManager.hasValue);
-
     return Scaffold(
       appBar: AppBar(),
       drawer: Drawer(
@@ -26,14 +23,16 @@ class HomeView extends ConsumerWidget {
               ),
               child: const Text('Agatra'),
             ),
-            ListTile(
-              title: const Text('Login'),
-              onTap: () {
-                Navigator.pop(context);
-                context.go('/login');
-              },
-            ),
-            const Divider(),
+            if (sessionManager.value == null) ...[
+              ListTile(
+                title: const Text('Login'),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.go('/login');
+                },
+              ),
+              const Divider(),
+            ],
             ListTile(
               title: const Text('Manage Users'),
               onTap: () {
@@ -48,6 +47,16 @@ class HomeView extends ConsumerWidget {
                 context.go('/admin/games');
               },
             ),
+            if (sessionManager.value != null) ...[
+              const Divider(),
+              ListTile(
+                title: const Text('Logout'),
+                onTap: () {
+                  ref.read(sessionManagerProvider.notifier).logout();
+                  Navigator.pop(context);
+                },
+              ),
+            ]
           ],
         ),
       ),
@@ -62,7 +71,7 @@ class HomeView extends ConsumerWidget {
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               Text(
-                sessionManager.value?.user.name ?? "Guest" ,
+                sessionManager.value?.user.name ?? "Guest",
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
