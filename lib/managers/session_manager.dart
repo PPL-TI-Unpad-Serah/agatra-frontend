@@ -1,5 +1,4 @@
 import 'package:agatra/features/data/models/storage_item.dart';
-import 'package:agatra/features/domain/entities/form/auth_login.dart';
 import 'package:agatra/features/domain/entities/session.dart';
 import 'package:agatra/features/domain/entities/user.dart';
 import 'package:agatra/providers.dart';
@@ -18,9 +17,10 @@ class SessionManager extends _$SessionManager {
 
       return SessionEntity(
         token: token!.value,
-        user: const UserEntity(
+        user: UserEntity(
           id: '0',
           name: 'John Doe',
+          role: UserRole.fromName(token.value),
         ),
       );
     }
