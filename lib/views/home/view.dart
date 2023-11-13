@@ -1,3 +1,4 @@
+import 'package:agatra/features/domain/entities/user.dart';
 import 'package:agatra/managers/session_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

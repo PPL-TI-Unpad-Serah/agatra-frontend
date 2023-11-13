@@ -25,23 +25,46 @@ class _HomeDrawer extends ConsumerWidget {
                 context.go('/login');
               },
             ),
-            const Divider(),
           ],
-          ListTile(
-            title: const Text('Manage Users'),
-            onTap: () {
-              Navigator.pop(context);
-              context.go('/admin/users');
-            },
-          ),
-          ListTile(
-            title: const Text('Manage Supported Games'),
-            onTap: () {
-              Navigator.pop(context);
-              context.go('/admin/games');
-            },
-          ),
           if (sessionManager.value != null) ...[
+            if (sessionManager.value!.user.role == UserRole.maintainer) ...[
+              const Divider(),
+              ListTile(
+                title: const Text('Manage Arcade Locations'),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.go('/admin/users');
+                },
+              ),
+            ],
+            if (sessionManager.value!.user.role == UserRole.admin) ...[
+              const Divider(),
+              ListTile(
+                title: const Text('Manage Users'),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.go('/admin/users');
+                },
+              ),
+              ListTile(
+                title: const Text('Manage Supported Games'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Manage Supported Cities'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Manage Supported Arcade Centers'),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
             const Divider(),
             ListTile(
               title: const Text('Logout'),
