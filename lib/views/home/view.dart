@@ -67,16 +67,10 @@ class HomeView extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Selamat pagi,",
+                "Selamat ${getTimeOfDayStatus(TimeOfDay.now())},",
                 style: Theme.of(context).textTheme.titleSmall,
               ),
-              Text(
-                sessionManager.value?.user.name ?? "Guest",
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
+              const _UserLine(),
             ],
           ),
           const SizedBox(height: 24.0),
@@ -138,5 +132,59 @@ class HomeView extends ConsumerWidget {
         ],
       ),
     );
+  }
+}
+
+class _UserLine extends ConsumerWidget {
+  const _UserLine();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sessionManager = ref.watch(sessionManagerProvider);
+
+    return Row(
+      children: [
+        if (sessionManager.value != null) ...[
+          Text(
+            sessionManager.value!.user.name,
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(width: 8.0),
+          Transform(
+            transform: Transform.scale(
+              scale: Theme.of(context).textTheme.bodyLarge!.fontSize! /
+                  Theme.of(context).textTheme.bodyMedium!.fontSize!,
+            ).transform,
+            child: sessionManager.value!.user.role.chipWidget,
+          ),
+        ] else ...[
+          Text(
+            "Guest",
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+          ),
+        ],
+        const SizedBox(width: 8.0),
+      ],
+    );
+  }
+}
+
+String getTimeOfDayStatus(TimeOfDay timeOfDay) {
+  final hour = timeOfDay.hour;
+
+  if (hour >= 5 && hour < 12) {
+    return "pagi";
+  } else if (hour >= 12 && hour < 15) {
+    return "siang";
+  } else if (hour >= 14 && hour < 18) {
+    return "sore";
+  } else {
+    return "malam";
   }
 }
