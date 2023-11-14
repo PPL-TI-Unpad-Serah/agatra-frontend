@@ -27,18 +27,17 @@ class _HomeDrawer extends ConsumerWidget {
             ),
           ],
           if (sessionManager.value != null) ...[
-            if (sessionManager.value!.user.role == UserRole.maintainer) ...[
-              const Divider(),
+            if (sessionManager.value!.user.role == UserRole.maintainer ||
+                sessionManager.value!.user.role == UserRole.admin) ...[
               ListTile(
                 title: const Text('Manage Arcade Locations'),
                 onTap: () {
                   Navigator.pop(context);
-                  context.go('/admin/users');
                 },
               ),
+              const Divider(),
             ],
             if (sessionManager.value!.user.role == UserRole.admin) ...[
-              const Divider(),
               ListTile(
                 title: const Text('Manage Users'),
                 onTap: () {
@@ -50,6 +49,7 @@ class _HomeDrawer extends ConsumerWidget {
                 title: const Text('Manage Supported Games'),
                 onTap: () {
                   Navigator.pop(context);
+                  context.go('/admin/games');
                 },
               ),
               ListTile(
@@ -64,8 +64,8 @@ class _HomeDrawer extends ConsumerWidget {
                   Navigator.pop(context);
                 },
               ),
+              const Divider(),
             ],
-            const Divider(),
             ListTile(
               title: const Text('Logout'),
               onTap: () {
