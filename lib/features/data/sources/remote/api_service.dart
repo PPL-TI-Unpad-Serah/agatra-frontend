@@ -1,8 +1,10 @@
 import 'package:agatra/core/resources/list_response.dart';
 import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
+import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
+import 'package:agatra/features/data/models/session.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 
@@ -33,4 +35,14 @@ abstract class ApiService {
     @Query('game_title_version') String? gameTitleVersionId,
     @Query('arcade_center') String? arcadeCenterId,
   );
+
+  @POST('/login')
+  Future<HttpResponse<SessionModel>> login({
+    @Body() required LoginBodyModel body,
+  });
+
+  @POST('/logout')
+  Future<HttpResponse<void>> logout({
+    @Header('Authorization') required String token,
+  });
 }

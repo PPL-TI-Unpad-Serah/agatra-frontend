@@ -1,8 +1,12 @@
+import 'package:agatra/features/domain/entities/form/auth_login.dart';
+import 'package:agatra/managers/session_manager.dart';
+import 'package:agatra/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends ConsumerWidget {
   LoginView({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -11,7 +15,7 @@ class LoginView extends StatelessWidget {
   final password = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -65,10 +69,21 @@ class LoginView extends StatelessWidget {
                     ),
                     child: FilledButton(
                       child: const Text('Login'),
-                      onPressed: () {
+                      onPressed: () async {
                         if (!_formKey.currentState!.validate()) {
                           return;
                         }
+
+                        final res = await ref.read(authRepositoryProvider).login(
+                              AuthLogin(
+                                email: email.text,
+                                password: password.text,
+                              ),
+                            );
+
+                        ref.read(sessionManagerProvider.notifier).login(
+                              res
+                            );
                         context.pop();
                       },
                     ),
