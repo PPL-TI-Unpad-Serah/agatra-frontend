@@ -43,31 +43,31 @@ class AgatraRouter {
           GoRoute(
             path: 'arcades',
             builder: (BuildContext context, GoRouterState state) =>
-                ArcadesSearchView(),
+                const ArcadesSearchView(),
             routes: [
               GoRoute(
                 path: ':id',
                 builder: (BuildContext context, GoRouterState state) =>
-                    ArcadesDetailsView(),
+                    const ArcadesDetailsView(),
               ),
             ],
           ),
           GoRoute(
             path: 'admin/users',
             builder: (BuildContext context, GoRouterState state) =>
-                AdminUsersHomeView(),
+                const AdminUsersHomeView(),
             routes: [
               GoRoute(
                 path: ':id',
                 builder: (BuildContext context, GoRouterState state) =>
-                    AdminUsersDetailsView(),
+                    const AdminUsersDetailsView(),
               ),
             ],
           ),
           GoRoute(
             path: 'admin/games',
             builder: (BuildContext context, GoRouterState state) =>
-                AdminGamesView(),
+                const AdminGamesView(),
           )
         ],
       ),
