@@ -6,7 +6,7 @@ import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
-import 'package:agatra/views/arcades/home/search_query_provider.dart';
+import 'package:agatra/views/arcades/home/applied_search_query.dart';
 import 'package:flutter/services.dart';
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/data/data_mapper.dart';
@@ -87,7 +87,7 @@ class MockSearchArcadeLocationsRepository
   @override
   Future<DataState<List<ArcadeLocationCompactEntity>>> getArcadeLocations({
     required int page,
-    required SearchQuery query,
+    required AppliedSearchQuery query,
   }) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 

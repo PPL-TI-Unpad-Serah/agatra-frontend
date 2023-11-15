@@ -19,7 +19,7 @@ mixin _$ArcadeLocationsList {
   int get page => throw _privateConstructorUsedError;
   List<ArcadeLocationCompactEntity> get posts =>
       throw _privateConstructorUsedError;
-  SearchQuery get searchQuery => throw _privateConstructorUsedError;
+  AppliedSearchQuery get searchQuery => throw _privateConstructorUsedError;
   bool get isLoadingMore => throw _privateConstructorUsedError;
   bool get noMorePostsToFetch => throw _privateConstructorUsedError;
 
@@ -37,11 +37,11 @@ abstract class $ArcadeLocationsListCopyWith<$Res> {
   $Res call(
       {int page,
       List<ArcadeLocationCompactEntity> posts,
-      SearchQuery searchQuery,
+      AppliedSearchQuery searchQuery,
       bool isLoadingMore,
       bool noMorePostsToFetch});
 
-  $SearchQueryCopyWith<$Res> get searchQuery;
+  $AppliedSearchQueryCopyWith<$Res> get searchQuery;
 }
 
 /// @nodoc
@@ -75,7 +75,7 @@ class _$ArcadeLocationsListCopyWithImpl<$Res, $Val extends ArcadeLocationsList>
       searchQuery: null == searchQuery
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
-              as SearchQuery,
+              as AppliedSearchQuery,
       isLoadingMore: null == isLoadingMore
           ? _value.isLoadingMore
           : isLoadingMore // ignore: cast_nullable_to_non_nullable
@@ -89,8 +89,8 @@ class _$ArcadeLocationsListCopyWithImpl<$Res, $Val extends ArcadeLocationsList>
 
   @override
   @pragma('vm:prefer-inline')
-  $SearchQueryCopyWith<$Res> get searchQuery {
-    return $SearchQueryCopyWith<$Res>(_value.searchQuery, (value) {
+  $AppliedSearchQueryCopyWith<$Res> get searchQuery {
+    return $AppliedSearchQueryCopyWith<$Res>(_value.searchQuery, (value) {
       return _then(_value.copyWith(searchQuery: value) as $Val);
     });
   }
@@ -107,12 +107,12 @@ abstract class _$$ArcadeLocationsListImplCopyWith<$Res>
   $Res call(
       {int page,
       List<ArcadeLocationCompactEntity> posts,
-      SearchQuery searchQuery,
+      AppliedSearchQuery searchQuery,
       bool isLoadingMore,
       bool noMorePostsToFetch});
 
   @override
-  $SearchQueryCopyWith<$Res> get searchQuery;
+  $AppliedSearchQueryCopyWith<$Res> get searchQuery;
 }
 
 /// @nodoc
@@ -144,7 +144,7 @@ class __$$ArcadeLocationsListImplCopyWithImpl<$Res>
       searchQuery: null == searchQuery
           ? _value.searchQuery
           : searchQuery // ignore: cast_nullable_to_non_nullable
-              as SearchQuery,
+              as AppliedSearchQuery,
       isLoadingMore: null == isLoadingMore
           ? _value.isLoadingMore
           : isLoadingMore // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ class _$ArcadeLocationsListImpl implements _ArcadeLocationsList {
   }
 
   @override
-  final SearchQuery searchQuery;
+  final AppliedSearchQuery searchQuery;
   @override
   @JsonKey()
   final bool isLoadingMore;
@@ -229,7 +229,7 @@ abstract class _ArcadeLocationsList implements ArcadeLocationsList {
   const factory _ArcadeLocationsList(
       {final int page,
       required final List<ArcadeLocationCompactEntity> posts,
-      required final SearchQuery searchQuery,
+      required final AppliedSearchQuery searchQuery,
       final bool isLoadingMore,
       final bool noMorePostsToFetch}) = _$ArcadeLocationsListImpl;
 
@@ -238,7 +238,7 @@ abstract class _ArcadeLocationsList implements ArcadeLocationsList {
   @override
   List<ArcadeLocationCompactEntity> get posts;
   @override
-  SearchQuery get searchQuery;
+  AppliedSearchQuery get searchQuery;
   @override
   bool get isLoadingMore;
   @override
