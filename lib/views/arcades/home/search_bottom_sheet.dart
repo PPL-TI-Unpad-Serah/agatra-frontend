@@ -2,6 +2,7 @@ import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
+import 'package:agatra/views/arcades/home/applied_search_query.dart';
 import 'package:agatra/views/arcades/home/arcade_centers_list.dart';
 import 'package:agatra/views/arcades/home/arcade_locations_list_provider.dart';
 import 'package:agatra/views/arcades/home/cities_list.dart';
@@ -10,6 +11,7 @@ import 'package:agatra/views/arcades/home/game_titles_list.dart';
 import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 
 class SearchBottomSheetList extends ConsumerWidget {
   const SearchBottomSheetList({super.key});
@@ -32,9 +34,37 @@ class SearchBottomSheetList extends ConsumerWidget {
                 child: const Text("Reset"),
               ),
               FilledButton(
-                onPressed: () {
-                  ref.read(arcadeLocationsListStateProvider.notifier).setSearchQuery(searchQuery);
-                  Navigator.pop(context);
+                onPressed: () async {
+                  if (searchQuery.sortByNearest) {
+                    await Geolocator.checkPermission();
+                    await Geolocator.requestPermission();
+
+                    final position = await Geolocator.getCurrentPosition(
+                      desiredAccuracy: LocationAccuracy.low,
+                    );
+
+                    ref
+                        .read(arcadeLocationsListStateProvider.notifier,)
+                        .applySearchQuery(
+                          AppliedSearchQuery.fromSearchQuery(
+                            searchQuery,
+                            position: position,
+                          ),
+                        );
+                  } 
+                  else {
+                    ref
+                        .read(arcadeLocationsListStateProvider.notifier)
+                        .applySearchQuery(
+                          AppliedSearchQuery.fromSearchQuery(
+                            searchQuery,
+                          ),
+                        );
+                  }
+
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
                 },
                 child: const Text('Filter'),
               ),

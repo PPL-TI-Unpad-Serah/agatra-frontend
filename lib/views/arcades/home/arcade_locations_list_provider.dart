@@ -1,6 +1,6 @@
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/providers.dart';
-import 'package:agatra/views/arcades/home/search_query_provider.dart';
+import 'package:agatra/views/arcades/home/applied_search_query.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,7 +12,7 @@ abstract class ArcadeLocationsList with _$ArcadeLocationsList {
   const factory ArcadeLocationsList({
     @Default(1) int page,
     required List<ArcadeLocationCompactEntity> posts,
-    required SearchQuery searchQuery,
+    required AppliedSearchQuery searchQuery,
     @Default(false) bool isLoadingMore,
     @Default(false) bool noMorePostsToFetch,
   }) = _ArcadeLocationsList;
@@ -23,7 +23,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
   @override
   FutureOr<ArcadeLocationsList> build() async {
     final searchRepository = ref.watch(searchArcadeLocationsRepositoryProvider);
-    final searchQuery = SearchQuery(sortByNearest: false);
+    final searchQuery = AppliedSearchQuery();
 
     final posts = await searchRepository.getArcadeLocations(
       page: 1,
@@ -68,7 +68,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
     });
   }
 
-  Future<void> setSearchQuery(SearchQuery searchQuery) async {
+  Future<void> applySearchQuery(AppliedSearchQuery searchQuery) async {
     state = const AsyncValue.loading();
 
     final searchRepository = ref.watch(searchArcadeLocationsRepositoryProvider);

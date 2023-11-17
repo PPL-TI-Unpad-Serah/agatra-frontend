@@ -4,7 +4,7 @@ import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
-import 'package:agatra/views/arcades/home/search_query_provider.dart';
+import 'package:agatra/views/arcades/home/applied_search_query.dart';
 
 abstract class SearchArcadeLocationsRepository {
   Future<DataState<List<GameTitleEntity>>> getGameTitles();
@@ -13,6 +13,6 @@ abstract class SearchArcadeLocationsRepository {
   Future<DataState<List<CityEntity>>> getCities();
   Future<DataState<List<ArcadeLocationCompactEntity>>> getArcadeLocations({
     required int page,
-    required SearchQuery query,
+    required AppliedSearchQuery query,
   });
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ArcadesDetailsView extends StatelessWidget {
   const ArcadesDetailsView({super.key});
@@ -17,20 +18,19 @@ class ArcadesDetailsView extends StatelessWidget {
           const SizedBox(height: 16.0),
           SizedBox(
             height: 250,
-            child: Card(
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: Theme.of(context).colorScheme.outline,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              child: GoogleMap(
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(-6.9551437, 107.6967938),
+                  zoom: 14,
                 ),
-                borderRadius: const BorderRadius.all(Radius.circular(24)),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                child: const Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text('Maps here'),
-                ),
+                markers: {
+                  const Marker(
+                    markerId: MarkerId('Timezone Summarecon Mall Bandung'),
+                    position: LatLng(-6.9551437, 107.6967938),
+                  ),
+                },
               ),
             ),
           ),
