@@ -67,7 +67,7 @@ class AgatraRouter {
           GoRoute(
             path: 'admin/games',
             builder: (BuildContext context, GoRouterState state) =>
-                const AdminGamesView(),
+                const AdminGamesHomeView(),
           ),
           GoRoute(
             path: 'admin/arcade-centers',

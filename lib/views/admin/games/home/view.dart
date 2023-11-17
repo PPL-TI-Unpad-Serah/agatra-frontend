@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AdminGamesView extends StatelessWidget {
-  const AdminGamesView({Key? key}) : super(key: key);
+class AdminGamesHomeView extends StatelessWidget {
+  const AdminGamesHomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
