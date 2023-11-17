@@ -1,7 +1,10 @@
 import 'package:agatra/core/resources/list_response.dart';
+import 'package:agatra/core/resources/single_response.dart';
+import 'package:agatra/features/data/models/arcade_center.dart';
 import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/data/models/form/login_body.dart';
+import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
 import 'package:agatra/features/data/models/session.dart';
@@ -44,5 +47,26 @@ abstract class ApiService {
   @POST('/logout')
   Future<HttpResponse<void>> logout({
     @Header('Authorization') required String token,
+  });
+
+  @GET('/arcade_centers')
+  Future<HttpResponse<ListResponse<ArcadeCenterModel>>> getArcadeCenters();
+
+  @GET('/arcade_centers/{id}')
+  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> getArcadeCenter({
+    @Path('id') required String id,
+  });
+
+  @POST('/arcade_centers')
+  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> createArcadeCenter({
+    @Header('Authorization') required String token,
+    @Body() required NewArcadeCenterBody body,
+  });
+
+  @PUT('/arcade_centers/{id}')
+  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> updateArcadeCenter({
+    @Header('Authorization') required String token,
+    @Path('id') required String id,
+    @Body() required NewArcadeCenterBody body,
   });
 }

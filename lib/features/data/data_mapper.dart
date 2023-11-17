@@ -1,6 +1,7 @@
 import 'package:agatra/features/data/models/arcade_center.dart';
 import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
+import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_compact.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
@@ -8,6 +9,7 @@ import 'package:agatra/features/data/models/game_title_version_compact.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/city.dart';
+import 'package:agatra/features/domain/entities/form/new_arcade_center.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
@@ -78,6 +80,15 @@ extension ArcadeLocationCompactModelToEntity on ArcadeLocationCompactModel {
       id: id,
       name: name,
       games: versions.map((e) => e.toEntity()).toList(),
+    );
+  }
+}
+
+extension NewArcadeCenterEntityToModel on NewArcadeCenterEntity {
+  NewArcadeCenterBody toModel() {
+    return NewArcadeCenterBody(
+      name: name,
+      info: info,
     );
   }
 }

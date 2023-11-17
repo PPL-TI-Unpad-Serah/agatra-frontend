@@ -1,20 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ArcadeCenterEntity extends Equatable {
-  final int id;
-  final String name;
-  final String info;
+part 'arcade_center.freezed.dart';
 
-  const ArcadeCenterEntity({
-    required this.id,
-    required this.name,
-    required this.info,
-  });
-
-  @override
-  List<Object?> get props => [
-    id,
-    name,
-    info,
-  ];
+@freezed
+class ArcadeCenterEntity with _$ArcadeCenterEntity {
+  factory ArcadeCenterEntity({
+  required int id,
+  required String name,
+  required String info,
+  }) = _ArcadeCenterEntity;
 }

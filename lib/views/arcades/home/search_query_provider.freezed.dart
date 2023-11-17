@@ -40,6 +40,8 @@ abstract class $SearchQueryCopyWith<$Res> {
       GameTitleVersionEntity? gameTitleVersion,
       ArcadeCenterEntity? arcadeCenter,
       bool sortByNearest});
+
+  $ArcadeCenterEntityCopyWith<$Res>? get arcadeCenter;
 }
 
 /// @nodoc
@@ -84,6 +86,18 @@ class _$SearchQueryCopyWithImpl<$Res, $Val extends SearchQuery>
               as bool,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ArcadeCenterEntityCopyWith<$Res>? get arcadeCenter {
+    if (_value.arcadeCenter == null) {
+      return null;
+    }
+
+    return $ArcadeCenterEntityCopyWith<$Res>(_value.arcadeCenter!, (value) {
+      return _then(_value.copyWith(arcadeCenter: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -100,6 +114,9 @@ abstract class _$$SearchQueryImplCopyWith<$Res>
       GameTitleVersionEntity? gameTitleVersion,
       ArcadeCenterEntity? arcadeCenter,
       bool sortByNearest});
+
+  @override
+  $ArcadeCenterEntityCopyWith<$Res>? get arcadeCenter;
 }
 
 /// @nodoc

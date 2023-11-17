@@ -68,6 +68,23 @@ class AgatraRouter {
             path: 'admin/games',
             builder: (BuildContext context, GoRouterState state) =>
                 const AdminGamesView(),
+          ),
+          GoRoute(
+            path: 'admin/arcade-centers',
+            builder: (BuildContext context, GoRouterState state) =>
+                const AdminArcadeCentersHomeView(),
+            routes: [
+              GoRoute(
+                path: 'new',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminArcadeCentersNewView(),
+              ),
+              GoRoute(
+                path: 'edit/:id',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminArcadeCentersEditView(id: int.parse(state.pathParameters['id']!)),
+              ),
+            ],
           )
         ],
       ),

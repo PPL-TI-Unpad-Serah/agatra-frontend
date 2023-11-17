@@ -62,6 +62,7 @@ class _HomeDrawer extends ConsumerWidget {
                 title: const Text('Manage Supported Arcade Centers'),
                 onTap: () {
                   Navigator.pop(context);
+                  context.go('/admin/arcade-centers');
                 },
               ),
               const Divider(),
