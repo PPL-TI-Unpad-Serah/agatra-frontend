@@ -1,3 +1,5 @@
+import 'package:agatra/core/resources/data_state.dart';
+import 'package:agatra/providers.dart';
 import 'package:agatra/views/admin/arcade_centers/edit/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,7 +114,28 @@ class AdminArcadeCentersEditView extends ConsumerWidget {
                         return;
                       }
 
-                      context.pop();
+                      final res = await ref
+                          .read(arcadeCentersRepositoryProvider)
+                          .updateArcadeCenter(value.item);
+
+                      if (context.mounted) {
+                        if (res is DataSuccess) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Successfully edited arcade center'),
+                            ),
+                          );
+                          context.pop();
+                        }
+
+                        else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Failed to edit arcade center'),
+                            ),
+                          );
+                        }
+                      }
                     },
                   ),
                 ),

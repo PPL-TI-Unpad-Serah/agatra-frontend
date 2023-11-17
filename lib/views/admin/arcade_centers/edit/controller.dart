@@ -1,4 +1,5 @@
 import 'package:agatra/features/domain/entities/arcade_center.dart';
+import 'package:agatra/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -18,17 +19,11 @@ class AdminArcadeCentersEditController
     extends _$AdminArcadeCentersEditController {
   @override
   FutureOr<AdminArcadeCentersEdit> build(int id) async {
+    final item = await ref.watch(arcadeCentersRepositoryProvider).getArcadeCenter(id);
+
     return AdminArcadeCentersEdit(
-      originalItemHash: ArcadeCenterEntity(
-        id: id,
-        name: "Test",
-        info: "Testtttttttt",
-      ).hashCode,
-      item: ArcadeCenterEntity(
-        id: id,
-        name: "Test",
-        info: "Testtttttttt",
-      ),
+      originalItemHash: item.data!.hashCode,
+      item: item.data!
     );
   }
 

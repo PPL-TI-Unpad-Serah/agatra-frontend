@@ -1,3 +1,6 @@
+import 'package:agatra/core/resources/data_state.dart';
+import 'package:agatra/features/domain/entities/form/new_arcade_center.dart';
+import 'package:agatra/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -8,8 +11,8 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final email = TextEditingController();
-  final password = TextEditingController();
+  final name = TextEditingController();
+  final info = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,6 +26,7 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
           padding: const EdgeInsets.all(16.0),
           children: [
             TextFormField(
+              controller: name,
               decoration: const InputDecoration(
                 labelText: 'Name',
                 helperText: '',
@@ -36,6 +40,7 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
             ),
             const SizedBox(height: 16.0),
             TextFormField(
+              controller: info,
               decoration: const InputDecoration(
                 labelText: 'Info',
                 helperText: '',
@@ -46,7 +51,7 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
                   errorText: 'Required',
                 ),
               ]),
-                          ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(
                 top: 16.0,
@@ -58,7 +63,33 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
                     return;
                   }
 
-                  context.pop();
+                  final res = await ref
+                      .read(arcadeCentersRepositoryProvider)
+                      .createArcadeCenter(
+                        NewArcadeCenterEntity(
+                          name: name.text,
+                          info: info.text,
+                        ),
+                      );
+
+                  if (context.mounted) {
+                    if (res is DataSuccess) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Successfully added arcade center'),
+                        ),
+                      );
+                      context.pop();
+                    } 
+
+                    else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Failed to add arcade center'),
+                        ),
+                      );
+                    }
+                  }
                 },
               ),
             ),
