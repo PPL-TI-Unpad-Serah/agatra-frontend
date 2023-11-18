@@ -19,7 +19,7 @@ class AdminGamesEditTitleView extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Game Title'),
+        title: const Text('Edit Game Title'),
       ),
       body: switch (form) {
         AsyncData(:final value) => Form(
@@ -54,7 +54,7 @@ class AdminGamesEditTitleView extends ConsumerWidget {
                     top: 16.0,
                   ),
                   child: FilledButton(
-                    child: const Text('Create'),
+                    child: const Text('Edit'),
                     onPressed: () async {
                       if (!_formKey.currentState!.validate()) {
                         return;
@@ -68,7 +68,7 @@ class AdminGamesEditTitleView extends ConsumerWidget {
                         if (res is DataSuccess) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Successfully added game title'),
+                              content: Text('Successfully edited game title'),
                             ),
                           );
                           context.pop();
@@ -77,7 +77,7 @@ class AdminGamesEditTitleView extends ConsumerWidget {
                         else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Failed to add game title'),
+                              content: Text('Failed to edit game title'),
                             ),
                           );
                         }
