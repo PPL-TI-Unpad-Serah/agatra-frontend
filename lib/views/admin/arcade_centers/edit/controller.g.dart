@@ -7,7 +7,7 @@ part of 'controller.dart';
 // **************************************************************************
 
 String _$adminArcadeCentersEditControllerHash() =>
-    r'0b1e232879e2999149e774d026bc1c556b45cbd5';
+    r'ee3de46936b0cce0c55b5ca792a4fbb1997074ea';
 
 /// Copied from Dart SDK
 class _SystemHash {
