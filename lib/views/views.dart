@@ -9,10 +9,10 @@ export 'admin/users/home/view.dart';
 export 'admin/users/details/view.dart';
 
 export 'admin/games/home/view.dart';
-export 'admin/games/new-title/view.dart';
-export 'admin/games/new-version/view.dart';
-export 'admin/games/edit-title/view.dart';
-export 'admin/games/edit-version/view.dart';
+export 'admin/games/new_title/view.dart';
+export 'admin/games/new_version/view.dart';
+export 'admin/games/edit_title/view.dart';
+export 'admin/games/edit_version/view.dart';
 
 export 'admin/arcade_centers/home/view.dart';
 export 'admin/arcade_centers/edit/view.dart';
