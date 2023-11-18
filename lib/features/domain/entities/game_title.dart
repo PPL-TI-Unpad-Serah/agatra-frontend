@@ -1,21 +1,13 @@
 import 'package:agatra/features/domain/entities/game_title_version_compact.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class GameTitleEntity extends Equatable {
-  final int id;
-  final String name;
-  final List<GameTitleVersionCompactEntity> versions;
+part 'game_title.freezed.dart';
 
-  const GameTitleEntity({
-    required this.id,
-    required this.name,
-    required this.versions,
-  });
-
-  @override
-  List<Object?> get props => [
-    id,
-    name,
-    versions,
-  ];
+@freezed
+class GameTitleEntity with _$GameTitleEntity {
+  factory GameTitleEntity({
+    required int id,
+    required String name,
+    required List<GameTitleVersionCompactEntity> versions,
+  }) = _GameTitleEntity;
 }

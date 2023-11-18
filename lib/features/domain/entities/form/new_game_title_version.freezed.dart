@@ -31,6 +31,8 @@ abstract class $NewGameTitleVersionEntityCopyWith<$Res> {
       _$NewGameTitleVersionEntityCopyWithImpl<$Res, NewGameTitleVersionEntity>;
   @useResult
   $Res call({String title, GameTitleCompactEntity version});
+
+  $GameTitleCompactEntityCopyWith<$Res> get version;
 }
 
 /// @nodoc
@@ -61,6 +63,14 @@ class _$NewGameTitleVersionEntityCopyWithImpl<$Res,
               as GameTitleCompactEntity,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GameTitleCompactEntityCopyWith<$Res> get version {
+    return $GameTitleCompactEntityCopyWith<$Res>(_value.version, (value) {
+      return _then(_value.copyWith(version: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -73,6 +83,9 @@ abstract class _$$NewGameTitleVersionEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call({String title, GameTitleCompactEntity version});
+
+  @override
+  $GameTitleCompactEntityCopyWith<$Res> get version;
 }
 
 /// @nodoc
