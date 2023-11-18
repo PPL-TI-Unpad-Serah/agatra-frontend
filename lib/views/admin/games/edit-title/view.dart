@@ -20,6 +20,39 @@ class AdminGamesEditTitleView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Game Title'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            if (form.value!.item.hashCode != form.value!.originalItemHash) {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Discard changes?'),
+                  content: const Text(
+                    'You have unsaved changes. Are you sure you want to discard them?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                        context.pop();
+                      },
+                      child: const Text('Discard'),
+                    ),
+                  ],
+                ),
+              );
+              return;
+            }
+            context.pop();
+          },
+        ),
       ),
       body: switch (form) {
         AsyncData(:final value) => Form(
