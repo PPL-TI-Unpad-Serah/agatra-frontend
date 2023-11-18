@@ -76,16 +76,13 @@ class AdminGamesNewVersionView extends ConsumerWidget {
             const SizedBox(height: 16.0),
             TextFormField(
               controller: priceInfo,
+              minLines: 6,
+              maxLines: 6,
               decoration: const InputDecoration(
                 labelText: 'Price Information',
                 helperText: '',
                 border: OutlineInputBorder(),
               ),
-              validator: MultiValidator([
-                RequiredValidator(
-                  errorText: 'Required',
-                ),
-              ]),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0).copyWith(

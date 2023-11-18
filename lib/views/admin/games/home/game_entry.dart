@@ -11,6 +11,7 @@ class _GameEntry extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpansionTile(
       title: Text(title.name),
+      initiallyExpanded: true,
       trailing: IconButton(
         icon: const Icon(Icons.edit),
         onPressed: () {
