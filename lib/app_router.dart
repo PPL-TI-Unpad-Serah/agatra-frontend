@@ -81,6 +81,20 @@ class AgatraRouter {
                   gameTitleId: int.parse(state.pathParameters['gameTitleId']!),
                 ),
               ),
+              GoRoute(
+                path: 'edit-title/:id',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminGamesEditTitleView(
+                  id: int.parse(state.pathParameters['id']!),
+                ),
+              ),
+              GoRoute(
+                path: 'edit-version/:id',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminGamesEditVersionView(
+                  id: int.parse(state.pathParameters['id']!),
+                ),
+              ),
             ],
           ),
           GoRoute(

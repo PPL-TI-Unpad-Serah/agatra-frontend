@@ -13,7 +13,9 @@ class _GameEntry extends StatelessWidget {
       title: Text(title.name),
       trailing: IconButton(
         icon: const Icon(Icons.edit),
-        onPressed: () {},
+        onPressed: () {
+          context.go('/admin/games/edit-title/${title.id}');
+        },
       ),
       children: [
         for (final version in title.versions)
@@ -29,6 +31,7 @@ class _GameEntry extends StatelessWidget {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             onTap: () {
+              context.go('/admin/games/edit-version/${version.id}');
             }
           ),
         ListTile(
