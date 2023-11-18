@@ -16,8 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NewGameTitleVersionEntity {
-  String get title => throw _privateConstructorUsedError;
-  GameTitleCompactEntity get version => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get priceInfo => throw _privateConstructorUsedError;
+  int get gameTitleId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewGameTitleVersionEntityCopyWith<NewGameTitleVersionEntity> get copyWith =>
@@ -30,9 +31,7 @@ abstract class $NewGameTitleVersionEntityCopyWith<$Res> {
           $Res Function(NewGameTitleVersionEntity) then) =
       _$NewGameTitleVersionEntityCopyWithImpl<$Res, NewGameTitleVersionEntity>;
   @useResult
-  $Res call({String title, GameTitleCompactEntity version});
-
-  $GameTitleCompactEntityCopyWith<$Res> get version;
+  $Res call({String name, String priceInfo, int gameTitleId});
 }
 
 /// @nodoc
@@ -49,27 +48,24 @@ class _$NewGameTitleVersionEntityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? version = null,
+    Object? name = null,
+    Object? priceInfo = null,
+    Object? gameTitleId = null,
   }) {
     return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      version: null == version
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as GameTitleCompactEntity,
+      priceInfo: null == priceInfo
+          ? _value.priceInfo
+          : priceInfo // ignore: cast_nullable_to_non_nullable
+              as String,
+      gameTitleId: null == gameTitleId
+          ? _value.gameTitleId
+          : gameTitleId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $GameTitleCompactEntityCopyWith<$Res> get version {
-    return $GameTitleCompactEntityCopyWith<$Res>(_value.version, (value) {
-      return _then(_value.copyWith(version: value) as $Val);
-    });
   }
 }
 
@@ -82,10 +78,7 @@ abstract class _$$NewGameTitleVersionEntityImplCopyWith<$Res>
       __$$NewGameTitleVersionEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, GameTitleCompactEntity version});
-
-  @override
-  $GameTitleCompactEntityCopyWith<$Res> get version;
+  $Res call({String name, String priceInfo, int gameTitleId});
 }
 
 /// @nodoc
@@ -101,18 +94,23 @@ class __$$NewGameTitleVersionEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
-    Object? version = null,
+    Object? name = null,
+    Object? priceInfo = null,
+    Object? gameTitleId = null,
   }) {
     return _then(_$NewGameTitleVersionEntityImpl(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
-      version: null == version
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as GameTitleCompactEntity,
+      priceInfo: null == priceInfo
+          ? _value.priceInfo
+          : priceInfo // ignore: cast_nullable_to_non_nullable
+              as String,
+      gameTitleId: null == gameTitleId
+          ? _value.gameTitleId
+          : gameTitleId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -120,16 +118,19 @@ class __$$NewGameTitleVersionEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NewGameTitleVersionEntityImpl implements _NewGameTitleVersionEntity {
-  _$NewGameTitleVersionEntityImpl({required this.title, required this.version});
+  _$NewGameTitleVersionEntityImpl(
+      {required this.name, required this.priceInfo, required this.gameTitleId});
 
   @override
-  final String title;
+  final String name;
   @override
-  final GameTitleCompactEntity version;
+  final String priceInfo;
+  @override
+  final int gameTitleId;
 
   @override
   String toString() {
-    return 'NewGameTitleVersionEntity(title: $title, version: $version)';
+    return 'NewGameTitleVersionEntity(name: $name, priceInfo: $priceInfo, gameTitleId: $gameTitleId)';
   }
 
   @override
@@ -137,12 +138,15 @@ class _$NewGameTitleVersionEntityImpl implements _NewGameTitleVersionEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewGameTitleVersionEntityImpl &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.version, version) || other.version == version));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.priceInfo, priceInfo) ||
+                other.priceInfo == priceInfo) &&
+            (identical(other.gameTitleId, gameTitleId) ||
+                other.gameTitleId == gameTitleId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, version);
+  int get hashCode => Object.hash(runtimeType, name, priceInfo, gameTitleId);
 
   @JsonKey(ignore: true)
   @override
@@ -154,14 +158,16 @@ class _$NewGameTitleVersionEntityImpl implements _NewGameTitleVersionEntity {
 
 abstract class _NewGameTitleVersionEntity implements NewGameTitleVersionEntity {
   factory _NewGameTitleVersionEntity(
-          {required final String title,
-          required final GameTitleCompactEntity version}) =
-      _$NewGameTitleVersionEntityImpl;
+      {required final String name,
+      required final String priceInfo,
+      required final int gameTitleId}) = _$NewGameTitleVersionEntityImpl;
 
   @override
-  String get title;
+  String get name;
   @override
-  GameTitleCompactEntity get version;
+  String get priceInfo;
+  @override
+  int get gameTitleId;
   @override
   @JsonKey(ignore: true)
   _$$NewGameTitleVersionEntityImplCopyWith<_$NewGameTitleVersionEntityImpl>

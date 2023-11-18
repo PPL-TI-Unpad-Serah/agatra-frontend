@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NewGameTitleEntity {
-  String get title => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NewGameTitleEntityCopyWith<NewGameTitleEntity> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $NewGameTitleEntityCopyWith<$Res> {
           NewGameTitleEntity value, $Res Function(NewGameTitleEntity) then) =
       _$NewGameTitleEntityCopyWithImpl<$Res, NewGameTitleEntity>;
   @useResult
-  $Res call({String title});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -45,12 +45,12 @@ class _$NewGameTitleEntityCopyWithImpl<$Res, $Val extends NewGameTitleEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -64,7 +64,7 @@ abstract class _$$NewGameTitleEntityImplCopyWith<$Res>
       __$$NewGameTitleEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -78,12 +78,12 @@ class __$$NewGameTitleEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? title = null,
+    Object? name = null,
   }) {
     return _then(_$NewGameTitleEntityImpl(
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -92,14 +92,14 @@ class __$$NewGameTitleEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NewGameTitleEntityImpl implements _NewGameTitleEntity {
-  _$NewGameTitleEntityImpl({required this.title});
+  _$NewGameTitleEntityImpl({required this.name});
 
   @override
-  final String title;
+  final String name;
 
   @override
   String toString() {
-    return 'NewGameTitleEntity(title: $title)';
+    return 'NewGameTitleEntity(name: $name)';
   }
 
   @override
@@ -107,11 +107,11 @@ class _$NewGameTitleEntityImpl implements _NewGameTitleEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewGameTitleEntityImpl &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
@@ -122,11 +122,11 @@ class _$NewGameTitleEntityImpl implements _NewGameTitleEntity {
 }
 
 abstract class _NewGameTitleEntity implements NewGameTitleEntity {
-  factory _NewGameTitleEntity({required final String title}) =
+  factory _NewGameTitleEntity({required final String name}) =
       _$NewGameTitleEntityImpl;
 
   @override
-  String get title;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$NewGameTitleEntityImplCopyWith<_$NewGameTitleEntityImpl> get copyWith =>

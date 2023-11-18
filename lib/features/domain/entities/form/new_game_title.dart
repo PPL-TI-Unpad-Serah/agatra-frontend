@@ -5,6 +5,6 @@ part 'new_game_title.freezed.dart';
 @freezed
 class NewGameTitleEntity with _$NewGameTitleEntity {
   factory NewGameTitleEntity({
-    required String title,
+    required String name,
   }) = _NewGameTitleEntity;
 }
