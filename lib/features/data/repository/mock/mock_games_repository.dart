@@ -4,15 +4,16 @@ import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/data/data_mapper.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_compact.dart';
+import 'package:agatra/features/domain/entities/form/new_game_title.dart';
 import 'package:agatra/features/domain/entities/form/new_game_title_version.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
-import 'package:agatra/features/domain/entities/game_title_version_compact.dart';
+import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/features/domain/repository/games_repository.dart';
 import 'package:flutter/services.dart';
 
 class MockGamesRepository implements GamesRepository {
   @override
-  Future<DataState> createGameTitle(NewGameTitleVersionEntity body) async {
+  Future<DataState> createGameTitle(NewGameTitleEntity body) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
     return const DataSuccess(null);
@@ -43,7 +44,7 @@ class MockGamesRepository implements GamesRepository {
   }
 
   @override
-  Future<DataState<GameTitleVersionCompactEntity>> getGameTitleVersion(int id) async {
+  Future<DataState<GameTitleVersionEntity>> getGameTitleVersion(int id) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
     final dataString = await _loadAsset('assets/game_titles.json');
@@ -53,7 +54,14 @@ class MockGamesRepository implements GamesRepository {
       final convertedParent = GameTitleModel.fromJson(item).toEntity();
       for (final version in convertedParent.versions) {
         if (version.id == id) {
-          return DataSuccess(version);
+          return DataSuccess(
+            GameTitleVersionEntity(
+              id: version.id,
+              name: version.name,
+              info: version.info,
+              title: GameTitleCompactModel.fromJson(item).toEntity(),
+            ),
+          );
         }
       }
     }
@@ -83,7 +91,7 @@ class MockGamesRepository implements GamesRepository {
   }
 
   @override
-  Future<DataState> updateGameTitleVersion(GameTitleVersionCompactEntity body) async {
+  Future<DataState> updateGameTitleVersion(GameTitleVersionEntity body) async {
     await Future.delayed(const Duration(milliseconds: 1000));
     
     return const DataSuccess(null);
