@@ -1,24 +1,25 @@
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/providers.dart';
-import 'package:agatra/views/admin/arcade_centers/edit/controller.dart';
+
+import 'controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:go_router/go_router.dart';
 
-class AdminArcadeCentersEditView extends ConsumerWidget {
+class AdminGamesEditVersionView extends ConsumerWidget {
   final int id;
-  AdminArcadeCentersEditView({super.key, required this.id});
+  AdminGamesEditVersionView({super.key, required this.id});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final form = ref.watch(adminArcadeCentersEditControllerProvider(id));
+    final form = ref.watch(adminGamesEditVersionControllerProvider(id));
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Arcade Center $id'),
+        title: const Text('Edit Game Version'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -60,6 +61,29 @@ class AdminArcadeCentersEditView extends ConsumerWidget {
               padding: const EdgeInsets.all(16.0),
               children: [
                 TextFormField(
+                  initialValue: value.item.title.name,
+                  enabled: false,
+                  decoration: const InputDecoration(
+                    labelText: 'Game Title',
+                    helperText: '',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: MultiValidator([
+                    RequiredValidator(
+                      errorText: 'Required',
+                    ),
+                  ]),
+                  onChanged: (newVal) {
+                    ref
+                        .read(adminGamesEditVersionControllerProvider(id)
+                            .notifier)
+                        .setItem(
+                          value.item.copyWith(name: newVal),
+                        );
+                  },
+                ),
+                const SizedBox(height: 16.0),
+                TextFormField(
                   initialValue: value.item.name,
                   decoration: const InputDecoration(
                     labelText: 'Name',
@@ -73,7 +97,7 @@ class AdminArcadeCentersEditView extends ConsumerWidget {
                   ]),
                   onChanged: (newVal) {
                     ref
-                        .read(adminArcadeCentersEditControllerProvider(id)
+                        .read(adminGamesEditVersionControllerProvider(id)
                             .notifier)
                         .setItem(
                           value.item.copyWith(name: newVal),
@@ -86,45 +110,41 @@ class AdminArcadeCentersEditView extends ConsumerWidget {
                   minLines: 6,
                   maxLines: 6,
                   decoration: const InputDecoration(
-                    labelText: 'Info',
+                    labelText: 'Price Information',
                     helperText: '',
                     border: OutlineInputBorder(),
                   ),
-                  validator: MultiValidator([
-                    RequiredValidator(
-                      errorText: 'Required',
-                    ),
-                  ]),
                   onChanged: (newVal) {
                     ref
-                        .read(adminArcadeCentersEditControllerProvider(id)
+                        .read(adminGamesEditVersionControllerProvider(id)
                             .notifier)
                         .setItem(
                           value.item.copyWith(info: newVal),
                         );
                   },
                 ),
+
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16.0).copyWith(
                     top: 16.0,
                   ),
                   child: FilledButton(
-                    child: const Text('Save'),
+                    child: const Text('Edit'),
                     onPressed: () async {
                       if (!_formKey.currentState!.validate()) {
                         return;
                       }
 
                       final res = await ref
-                          .read(arcadeCentersRepositoryProvider)
-                          .updateArcadeCenter(value.item);
+                          .read(gamesRepositoryProvider)
+                          .updateGameTitleVersion(value.item);
 
                       if (context.mounted) {
                         if (res is DataSuccess) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Successfully edited arcade center'),
+                              content: Text('Successfully edited game version'),
                             ),
                           );
                           context.pop();
@@ -133,7 +153,7 @@ class AdminArcadeCentersEditView extends ConsumerWidget {
                         else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Failed to edit arcade center'),
+                              content: Text('Failed to edit game version'),
                             ),
                           );
                         }

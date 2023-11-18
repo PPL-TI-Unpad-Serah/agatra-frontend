@@ -6,8 +6,8 @@ part of 'controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adminArcadeCentersEditControllerHash() =>
-    r'ee3de46936b0cce0c55b5ca792a4fbb1997074ea';
+String _$adminGamesEditVersionControllerHash() =>
+    r'09d661291f8b5e5ebf251c05f7e7de7e0b1ec6ff';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,38 +30,38 @@ class _SystemHash {
   }
 }
 
-abstract class _$AdminArcadeCentersEditController
-    extends BuildlessAutoDisposeAsyncNotifier<AdminArcadeCentersEdit> {
+abstract class _$AdminGamesEditVersionController
+    extends BuildlessAutoDisposeAsyncNotifier<AdminGamesEditVersion> {
   late final int id;
 
-  FutureOr<AdminArcadeCentersEdit> build(
+  FutureOr<AdminGamesEditVersion> build(
     int id,
   );
 }
 
-/// See also [AdminArcadeCentersEditController].
-@ProviderFor(AdminArcadeCentersEditController)
-const adminArcadeCentersEditControllerProvider =
-    AdminArcadeCentersEditControllerFamily();
+/// See also [AdminGamesEditVersionController].
+@ProviderFor(AdminGamesEditVersionController)
+const adminGamesEditVersionControllerProvider =
+    AdminGamesEditVersionControllerFamily();
 
-/// See also [AdminArcadeCentersEditController].
-class AdminArcadeCentersEditControllerFamily
-    extends Family<AsyncValue<AdminArcadeCentersEdit>> {
-  /// See also [AdminArcadeCentersEditController].
-  const AdminArcadeCentersEditControllerFamily();
+/// See also [AdminGamesEditVersionController].
+class AdminGamesEditVersionControllerFamily
+    extends Family<AsyncValue<AdminGamesEditVersion>> {
+  /// See also [AdminGamesEditVersionController].
+  const AdminGamesEditVersionControllerFamily();
 
-  /// See also [AdminArcadeCentersEditController].
-  AdminArcadeCentersEditControllerProvider call(
+  /// See also [AdminGamesEditVersionController].
+  AdminGamesEditVersionControllerProvider call(
     int id,
   ) {
-    return AdminArcadeCentersEditControllerProvider(
+    return AdminGamesEditVersionControllerProvider(
       id,
     );
   }
 
   @override
-  AdminArcadeCentersEditControllerProvider getProviderOverride(
-    covariant AdminArcadeCentersEditControllerProvider provider,
+  AdminGamesEditVersionControllerProvider getProviderOverride(
+    covariant AdminGamesEditVersionControllerProvider provider,
   ) {
     return call(
       provider.id,
@@ -80,31 +80,31 @@ class AdminArcadeCentersEditControllerFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'adminArcadeCentersEditControllerProvider';
+  String? get name => r'adminGamesEditVersionControllerProvider';
 }
 
-/// See also [AdminArcadeCentersEditController].
-class AdminArcadeCentersEditControllerProvider
+/// See also [AdminGamesEditVersionController].
+class AdminGamesEditVersionControllerProvider
     extends AutoDisposeAsyncNotifierProviderImpl<
-        AdminArcadeCentersEditController, AdminArcadeCentersEdit> {
-  /// See also [AdminArcadeCentersEditController].
-  AdminArcadeCentersEditControllerProvider(
+        AdminGamesEditVersionController, AdminGamesEditVersion> {
+  /// See also [AdminGamesEditVersionController].
+  AdminGamesEditVersionControllerProvider(
     int id,
   ) : this._internal(
-          () => AdminArcadeCentersEditController()..id = id,
-          from: adminArcadeCentersEditControllerProvider,
-          name: r'adminArcadeCentersEditControllerProvider',
+          () => AdminGamesEditVersionController()..id = id,
+          from: adminGamesEditVersionControllerProvider,
+          name: r'adminGamesEditVersionControllerProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$adminArcadeCentersEditControllerHash,
-          dependencies: AdminArcadeCentersEditControllerFamily._dependencies,
+                  : _$adminGamesEditVersionControllerHash,
+          dependencies: AdminGamesEditVersionControllerFamily._dependencies,
           allTransitiveDependencies:
-              AdminArcadeCentersEditControllerFamily._allTransitiveDependencies,
+              AdminGamesEditVersionControllerFamily._allTransitiveDependencies,
           id: id,
         );
 
-  AdminArcadeCentersEditControllerProvider._internal(
+  AdminGamesEditVersionControllerProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -117,8 +117,8 @@ class AdminArcadeCentersEditControllerProvider
   final int id;
 
   @override
-  FutureOr<AdminArcadeCentersEdit> runNotifierBuild(
-    covariant AdminArcadeCentersEditController notifier,
+  FutureOr<AdminGamesEditVersion> runNotifierBuild(
+    covariant AdminGamesEditVersionController notifier,
   ) {
     return notifier.build(
       id,
@@ -126,10 +126,10 @@ class AdminArcadeCentersEditControllerProvider
   }
 
   @override
-  Override overrideWith(AdminArcadeCentersEditController Function() create) {
+  Override overrideWith(AdminGamesEditVersionController Function() create) {
     return ProviderOverride(
       origin: this,
-      override: AdminArcadeCentersEditControllerProvider._internal(
+      override: AdminGamesEditVersionControllerProvider._internal(
         () => create()..id = id,
         from: from,
         name: null,
@@ -142,14 +142,14 @@ class AdminArcadeCentersEditControllerProvider
   }
 
   @override
-  AutoDisposeAsyncNotifierProviderElement<AdminArcadeCentersEditController,
-      AdminArcadeCentersEdit> createElement() {
-    return _AdminArcadeCentersEditControllerProviderElement(this);
+  AutoDisposeAsyncNotifierProviderElement<AdminGamesEditVersionController,
+      AdminGamesEditVersion> createElement() {
+    return _AdminGamesEditVersionControllerProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is AdminArcadeCentersEditControllerProvider && other.id == id;
+    return other is AdminGamesEditVersionControllerProvider && other.id == id;
   }
 
   @override
@@ -161,20 +161,20 @@ class AdminArcadeCentersEditControllerProvider
   }
 }
 
-mixin AdminArcadeCentersEditControllerRef
-    on AutoDisposeAsyncNotifierProviderRef<AdminArcadeCentersEdit> {
+mixin AdminGamesEditVersionControllerRef
+    on AutoDisposeAsyncNotifierProviderRef<AdminGamesEditVersion> {
   /// The parameter `id` of this provider.
   int get id;
 }
 
-class _AdminArcadeCentersEditControllerProviderElement
+class _AdminGamesEditVersionControllerProviderElement
     extends AutoDisposeAsyncNotifierProviderElement<
-        AdminArcadeCentersEditController,
-        AdminArcadeCentersEdit> with AdminArcadeCentersEditControllerRef {
-  _AdminArcadeCentersEditControllerProviderElement(super.provider);
+        AdminGamesEditVersionController,
+        AdminGamesEditVersion> with AdminGamesEditVersionControllerRef {
+  _AdminGamesEditVersionControllerProviderElement(super.provider);
 
   @override
-  int get id => (origin as AdminArcadeCentersEditControllerProvider).id;
+  int get id => (origin as AdminGamesEditVersionControllerProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

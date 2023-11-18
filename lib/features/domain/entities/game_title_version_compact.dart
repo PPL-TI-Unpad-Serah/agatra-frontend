@@ -1,20 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class GameTitleVersionCompactEntity extends Equatable {
-  final int id;
-  final String name;
-  final String info;
+part 'game_title_version_compact.freezed.dart';
 
-  const GameTitleVersionCompactEntity({
-    required this.id,
-    required this.name,
-    required this.info,
-  });
-  
-  @override
-  List<Object?> get props => [
-    id,
-    name,
-    info,
-  ];
+@freezed
+class GameTitleVersionCompactEntity with _$GameTitleVersionCompactEntity {
+  factory GameTitleVersionCompactEntity({
+    required int id,
+    required String name,
+    required String info,
+  }) = _GameTitleVersionCompactEntity;
 }
