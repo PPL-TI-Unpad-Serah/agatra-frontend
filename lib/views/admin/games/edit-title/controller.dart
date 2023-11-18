@@ -1,4 +1,3 @@
-import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
