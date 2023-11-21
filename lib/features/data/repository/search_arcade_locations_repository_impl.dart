@@ -5,6 +5,7 @@ import 'package:agatra/features/data/data_mapper.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/sources/remote/api_service.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
+import 'package:agatra/features/domain/entities/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
@@ -69,6 +70,11 @@ class SearchArcadeLocationsRepositoryImpl
     required int page,
     required AppliedSearchQuery query,
   }) async {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<DataState<ArcadeLocationEntity>> getArcadeLocation(int id) async {
     throw UnimplementedError();
   }
 }
