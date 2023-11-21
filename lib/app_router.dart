@@ -48,7 +48,7 @@ class AgatraRouter {
               GoRoute(
                 path: ':id',
                 builder: (BuildContext context, GoRouterState state) =>
-                    const ArcadesDetailsView(),
+                    ArcadesDetailsView(id: int.parse(state.pathParameters['id']!)),
               ),
             ],
           ),
