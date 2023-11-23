@@ -113,6 +113,15 @@ class AgatraRouter {
                     AdminArcadeCentersEditView(id: int.parse(state.pathParameters['id']!)),
               ),
             ],
+          ),
+          GoRoute(
+              path: 'maintainer/edit-location/:id',
+              builder: (BuildContext context, GoRouterState state) =>
+                  MaintainerEditLocationView(
+                      id: int.parse(
+                    state.pathParameters['id']!,
+              ),
+            ),
           )
         ],
       ),
