@@ -1,11 +1,14 @@
+import 'package:agatra/features/data/sources/location/location_service.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
-import 'package:agatra/providers.dart';
 import 'package:agatra/views/maintainer/edit_location/controller.dart';
+import 'package:agatra/views/maintainer/map_picker/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:agatra/helpers/format_decimal.dart';
 
 class MaintainerEditLocationView extends ConsumerWidget {
   final int id;
@@ -17,6 +20,7 @@ class MaintainerEditLocationView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final form = ref.watch(maintainerLocationEditControllerProvider(id));
+    final mapPickerController = ref.watch(mapPickerControllerProvider);
 
     return Scaffold(
         appBar: AppBar(
@@ -112,6 +116,46 @@ class MaintainerEditLocationView extends ConsumerWidget {
                     },
                   ),
                   const SizedBox(height: 16.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                        child: TextFormField(
+                          initialValue: "${formatDecimal(
+                            form.value.item.latitude,
+                            decimals: 5,
+                          )}, ${formatDecimal(
+                            form.value.item.longitude,
+                            decimals: 5,
+                          )}",
+                          enabled: false,
+                          decoration: const InputDecoration(
+                            labelText: 'Position',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16.0),
+                      IconButton.filledTonal(
+                        onPressed: () async {
+                          if (mapPickerController.value == null) {
+                            ref
+                                .read(mapPickerControllerProvider.notifier)
+                                .setValue(
+                                    LatLng(form.value.item.latitude,
+                                        form.value.item.longitude),
+                                    previouslyNull: false);
+                          }
+
+                          if (context.mounted) {
+                            context.push('/map-picker');
+                          }
+                        },
+                        icon: const Icon(Icons.map),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32.0),
                   DropdownButtonFormField<CityEntity>(
                     value: value.item.city,
                     decoration: const InputDecoration(
