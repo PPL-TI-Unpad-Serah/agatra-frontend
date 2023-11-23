@@ -3,7 +3,7 @@
         {
             "id": 1,
             "name": "Timezone",
-            "info": "Currency in tizo"
+            "info": "Rp1000 is implied to mean 1 TIZO. In reality, there are discounts that can get you to Rp500/TIZO. "
         },
         {
             "id": 2,
