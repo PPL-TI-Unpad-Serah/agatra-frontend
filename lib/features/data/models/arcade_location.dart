@@ -1,5 +1,6 @@
 import 'package:agatra/features/data/models/arcade_center.dart';
 import 'package:agatra/features/data/models/arcade_machine.dart';
+import 'package:agatra/features/data/models/city.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'arcade_location.g.dart';
@@ -13,6 +14,7 @@ class ArcadeLocationModel {
   final double lat;
   final double long;
   final List<ArcadeMachineModel> arcadeMachines;
+  final CityModel city;
 
   const ArcadeLocationModel({
     required this.id,
@@ -22,6 +24,7 @@ class ArcadeLocationModel {
     required this.lat,
     required this.long,
     required this.arcadeMachines,
+    required this.city,
   });
 
   factory ArcadeLocationModel.fromJson(Map<String, dynamic> json) => _$ArcadeLocationModelFromJson(json);

@@ -107,6 +107,7 @@ extension ArcadeLocationModelToEntity on ArcadeLocationModel {
       latitude: lat,
       longitude: long,
       machines: arcadeMachines.map((e) => e.toEntity()).toList(),
+      city: city.toEntity(),
     );
   }
 
