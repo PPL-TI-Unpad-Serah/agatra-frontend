@@ -122,7 +122,19 @@ class AgatraRouter {
                     state.pathParameters['id']!,
               ),
             ),
-          )
+          ),
+          GoRoute(
+            path: 'maintainer/edit-machine/:id',
+            builder: (BuildContext context, GoRouterState state) =>
+                MaintainerEditMachineView(
+              id: int.parse(state.pathParameters['id']!),
+            ),
+          ),
+          GoRoute(
+            path: 'map-picker',
+            builder: (BuildContext context, GoRouterState state) =>
+                MapPicker(),
+          ),
         ],
       ),
     ],
