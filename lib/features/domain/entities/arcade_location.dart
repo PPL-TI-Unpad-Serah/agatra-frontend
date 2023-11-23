@@ -1,34 +1,20 @@
 import 'package:agatra/features/domain/entities/arcade_machine.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
-import 'package:equatable/equatable.dart';
+import 'package:agatra/features/domain/entities/city.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class ArcadeLocationEntity extends Equatable {
-  final int id;
-  final String name;
-  final ArcadeCenterEntity gameCenter;
-  final String description;
-  final double latitude;
-  final double longitude;
-  final List<ArcadeMachineEntity> machines;
+part 'arcade_location.freezed.dart';
 
-  const ArcadeLocationEntity({
-    required this.id,
-    required this.name,
-    required this.gameCenter,
-    required this.description,
-    required this.latitude,
-    required this.longitude,
-    required this.machines,
-  });
-
-  @override
-  List<Object?> get props => [
-    id,
-    name,
-    gameCenter,
-    description,
-    latitude,
-    longitude,
-    machines,
-  ];
+@freezed
+class ArcadeLocationEntity with _$ArcadeLocationEntity {
+  factory ArcadeLocationEntity({
+    required int id,
+    required String name,
+    required ArcadeCenterEntity gameCenter,
+    required String description,
+    required double latitude,
+    required double longitude,
+    required List<ArcadeMachineEntity> machines,
+    required CityEntity city,
+  }) = _ArcadeLocationEntity;
 }
