@@ -25,7 +25,7 @@
             "price": 10000
         },
         {
-            "id": 0,
+            "id": 1,
             "version": {
                 "id": 0,
                 "name": "",
@@ -39,7 +39,7 @@
             "price": 10000
         },
         {
-            "id": 0,
+            "id": 2,
             "version": {
                 "id": 0,
                 "name": "6RR",
@@ -53,13 +53,13 @@
             "price": 10000
         },
         {
-            "id": 0,
+            "id": 3,
             "version": {
-                "id": 0,
+                "id": 8,
                 "name": "EXCEED GEAR",
-                "info": "",
+                "info": "Hii",
                 "title": {
-                    "id": 0,
+                    "id": 2,
                     "name": "SOUND VOLTEX"
                 }
             },
@@ -67,7 +67,7 @@
             "price": 10000
         },
         {
-            "id": 0,
+            "id": 4,
             "version": {
                 "id": 0,
                 "name": "FiNALE",
