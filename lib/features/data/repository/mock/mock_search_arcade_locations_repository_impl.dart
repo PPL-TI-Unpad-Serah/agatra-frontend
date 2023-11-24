@@ -38,22 +38,32 @@ class MockSearchArcadeLocationsRepository
 
   @override
   Future<DataState<List<GameTitleVersionEntity>>> getGameTitleVersionsOf(
-    GameTitleEntity gameTitle,
+    GameTitleCompactEntity gameTitle,
   ) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
-    GameTitleCompactEntity compactedTitle =
-        GameTitleCompactEntity(id: gameTitle.id, name: gameTitle.name);
-    List<GameTitleVersionEntity> items = gameTitle.versions
-        .map((e) => GameTitleVersionEntity(
-              id: e.id,
-              name: e.name,
-              info: e.info,
-              title: compactedTitle,
-            ))
-        .toList();
+    final dataString = await _loadAsset('assets/game_titles.json');
+    final Map<String, dynamic> json = jsonDecode(dataString);
 
-    return DataSuccess(items);
+    for (Map<String, dynamic> item in json["game_titles"]) {
+      final convtdItem = GameTitleModel.fromJson(item).toEntity();
+      if (convtdItem.id == gameTitle.id) {
+        List<GameTitleVersionEntity> items = convtdItem.versions
+            .map(
+              (e) => GameTitleVersionEntity(
+                id: e.id,
+                name: e.name,
+                info: e.info,
+                title: gameTitle,
+              ),
+            )
+            .toList();
+
+        return DataSuccess(items);
+      }
+    }
+
+    throw UnimplementedError();
   }
 
   @override

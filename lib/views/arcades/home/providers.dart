@@ -2,6 +2,7 @@ import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
+import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -35,7 +36,7 @@ Future<List<GameTitleEntity>> getGameTitles(GetGameTitlesRef ref) async {
 }
 
 @riverpod
-Future<List<GameTitleVersionEntity>> getGameTitleVersionsOf(GetGameTitleVersionsOfRef ref, GameTitleEntity gameTitle) async {
+Future<List<GameTitleVersionEntity>> getGameTitleVersionsOf(GetGameTitleVersionsOfRef ref, GameTitleCompactEntity gameTitle) async {
   final searchArcadeLocationRepository = ref.watch(searchArcadeLocationsRepositoryProvider); 
   
   final result = await searchArcadeLocationRepository.getGameTitleVersionsOf(gameTitle);

@@ -37,7 +37,7 @@ final getGameTitlesProvider =
 
 typedef GetGameTitlesRef = AutoDisposeFutureProviderRef<List<GameTitleEntity>>;
 String _$getGameTitleVersionsOfHash() =>
-    r'727bea19ceee99b44c8a81ea7c711bc09e6992c1';
+    r'7683124a602ee6647357b37153e06ae52b545e50';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -72,7 +72,7 @@ class GetGameTitleVersionsOfFamily
 
   /// See also [getGameTitleVersionsOf].
   GetGameTitleVersionsOfProvider call(
-    GameTitleEntity gameTitle,
+    GameTitleCompactEntity gameTitle,
   ) {
     return GetGameTitleVersionsOfProvider(
       gameTitle,
@@ -108,7 +108,7 @@ class GetGameTitleVersionsOfProvider
     extends AutoDisposeFutureProvider<List<GameTitleVersionEntity>> {
   /// See also [getGameTitleVersionsOf].
   GetGameTitleVersionsOfProvider(
-    GameTitleEntity gameTitle,
+    GameTitleCompactEntity gameTitle,
   ) : this._internal(
           (ref) => getGameTitleVersionsOf(
             ref as GetGameTitleVersionsOfRef,
@@ -136,7 +136,7 @@ class GetGameTitleVersionsOfProvider
     required this.gameTitle,
   }) : super.internal();
 
-  final GameTitleEntity gameTitle;
+  final GameTitleCompactEntity gameTitle;
 
   @override
   Override overrideWith(
@@ -182,7 +182,7 @@ class GetGameTitleVersionsOfProvider
 mixin GetGameTitleVersionsOfRef
     on AutoDisposeFutureProviderRef<List<GameTitleVersionEntity>> {
   /// The parameter `gameTitle` of this provider.
-  GameTitleEntity get gameTitle;
+  GameTitleCompactEntity get gameTitle;
 }
 
 class _GetGameTitleVersionsOfProviderElement
@@ -191,7 +191,7 @@ class _GetGameTitleVersionsOfProviderElement
   _GetGameTitleVersionsOfProviderElement(super.provider);
 
   @override
-  GameTitleEntity get gameTitle =>
+  GameTitleCompactEntity get gameTitle =>
       (origin as GetGameTitleVersionsOfProvider).gameTitle;
 }
 

@@ -9,6 +9,7 @@ import 'package:agatra/features/domain/entities/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
+import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/features/domain/repository/search_arcade_locations_repository.dart';
 import 'package:agatra/views/arcades/home/applied_search_query.dart';
@@ -50,7 +51,7 @@ class SearchArcadeLocationsRepositoryImpl
 
   @override
   Future<DataState<List<GameTitleVersionEntity>>> getGameTitleVersionsOf(
-    GameTitleEntity gameTitle,
+    GameTitleCompactEntity gameTitle,
   ) async {
     throw UnimplementedError();
   }
