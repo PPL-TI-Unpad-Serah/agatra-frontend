@@ -1,6 +1,7 @@
-import 'package:agatra/features/data/sources/location/location_service.dart';
+import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
+import 'package:agatra/providers.dart';
 import 'package:agatra/views/maintainer/edit_location/controller.dart';
 import 'package:agatra/views/maintainer/map_picker/controller.dart';
 import 'package:flutter/material.dart';
@@ -215,28 +216,28 @@ class MaintainerEditLocationView extends ConsumerWidget {
                           return;
                         }
 
-                        // final res = await ref
-                        //     .read(arcadeCentersRepositoryProvider)
-                        //     .updateArcadeCenter(value.item);
+                        final res = await ref
+                            .read(arcadeLocationsRepositoryProvider)
+                            .updateArcadeLocation(value.item);
 
                         if (context.mounted) {
-                          // if (res is DataSuccess) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content:
-                                  Text('Successfully edited arcade center'),
-                            ),
-                          );
-                          context.pop();
-                          // }
+                          if (res is DataSuccess) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content:
+                                    Text('Successfully edited arcade center'),
+                              ),
+                            );
+                            context.pop();
+                          }
 
-                          // else {
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(
-                          //       content: Text('Failed to edit arcade center'),
-                          //     ),
-                          //   );
-                          // }
+                          else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Failed to edit arcade center'),
+                              ),
+                            );
+                          }
                         }
                       },
                     ),
