@@ -7,7 +7,7 @@ part of 'controller.dart';
 // **************************************************************************
 
 String _$mapPickerControllerHash() =>
-    r'b6c8f9b8aa481572d7f94df7dd6b8a829b3c8ca7';
+    r'90eed31e628c471961b5ebd71240623f8b5842dc';
 
 /// See also [MapPickerController].
 @ProviderFor(MapPickerController)
