@@ -131,6 +131,11 @@ class AgatraRouter {
             ),
           ),
           GoRoute(
+            path: 'maintainer/new-location',
+            builder: (BuildContext context, GoRouterState state) =>
+                MaintainerNewLocationView(),
+          ),
+          GoRoute(
             path: 'map-picker',
             builder: (BuildContext context, GoRouterState state) =>
                 MapPicker(),
