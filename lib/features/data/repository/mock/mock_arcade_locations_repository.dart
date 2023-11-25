@@ -5,6 +5,7 @@ import 'package:agatra/features/data/data_mapper.dart';
 import 'package:agatra/features/data/models/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_machine.dart';
+import 'package:agatra/features/domain/entities/form/new_arcade_location.dart';
 import 'package:agatra/features/domain/repository/arcade_locations_repository.dart';
 import 'package:flutter/services.dart';
 
@@ -41,7 +42,22 @@ class MockArcadeLocationsRepository extends ArcadeLocationsRepository {
     return const DataSuccess(null);
   }
 
+  @override
+  Future<DataState> createArcadeLocation(NewArcadeLocationEntity body) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return const DataSuccess(null);
+  }
+
+  @override
+  Future<DataState> deleteArcadeMachine(ArcadeMachineEntity body) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return const DataSuccess(null);
+  }
+
   Future<String> _loadAsset(String path) async {
     return rootBundle.loadString(path);
   }
+
 }
