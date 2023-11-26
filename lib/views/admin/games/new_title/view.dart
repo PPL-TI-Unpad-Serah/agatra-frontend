@@ -19,42 +19,42 @@ class AdminGamesNewTitleView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('New Game'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            if (name.text.isNotEmpty || info.text.isNotEmpty) {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Discard changes?'),
-                  content: const Text(
-                    'You have unsaved changes. Are you sure you want to discard them?',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                        context.pop();
-                      },
-                      child: const Text('Discard'),
-                    ),
-                  ],
-                ),
-              );
-              return;
-            }
-            context.pop();
-          },
-        ),
       ),
       body: Form(
         key: _formKey,
+        onWillPop: () async {
+              bool shouldPop = true;
+
+              if (name.text.isNotEmpty || info.text.isNotEmpty) {
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Discard changes?'),
+                      content: const Text(
+                        'You have unsaved changes. Are you sure you want to discard them?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            shouldPop = false;
+                            context.pop();
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            shouldPop = true;
+                            context.pop();
+                          },
+                          child: const Text('Discard'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+              return shouldPop;
+            },
         child: ListView(
           padding: const EdgeInsets.all(16.0),
           children: [
