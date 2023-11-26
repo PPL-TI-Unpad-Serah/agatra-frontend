@@ -21,39 +21,6 @@ class MaintainerEditMachineView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Arcade Machine'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-              if (form.value!.item.hashCode != form.value!.originalItemHash) {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text('Discard changes?'),
-                    content: const Text(
-                      'You have unsaved changes. Are you sure you want to discard them?',
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          context.pop();
-                        },
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          context.pop();
-                          context.pop();
-                        },
-                        child: const Text('Discard'),
-                      ),
-                    ],
-                  ),
-                );
-                return;
-              }
-              context.pop();
-            },
-        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete, color: Colors.red),
@@ -88,6 +55,39 @@ class MaintainerEditMachineView extends ConsumerWidget {
       ),
       body: switch (form) {
         AsyncData(:final value) => Form(
+            onWillPop: () async {
+              bool shouldPop = true;
+
+              if (form.value.item.hashCode != form.value.originalItemHash) {
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Discard changes?'),
+                      content: const Text(
+                        'You have unsaved changes. Are you sure you want to discard them?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            shouldPop = false;
+                            context.pop();
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            shouldPop = true;
+                            context.pop();
+                          },
+                          child: const Text('Discard'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+              return shouldPop;
+            },
             key: _formKey,
             child: ListView(
               padding: const EdgeInsets.all(16.0),
