@@ -19,6 +19,7 @@ mixin _$MaintainerNewLocation {
   List<ArcadeCenterEntity> get arcadeCenters =>
       throw _privateConstructorUsedError;
   List<CityEntity> get cities => throw _privateConstructorUsedError;
+  int get originalItemHash => throw _privateConstructorUsedError;
   NewArcadeLocationEntity get item => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -35,6 +36,7 @@ abstract class $MaintainerNewLocationCopyWith<$Res> {
   $Res call(
       {List<ArcadeCenterEntity> arcadeCenters,
       List<CityEntity> cities,
+      int originalItemHash,
       NewArcadeLocationEntity item});
 
   $NewArcadeLocationEntityCopyWith<$Res> get item;
@@ -56,6 +58,7 @@ class _$MaintainerNewLocationCopyWithImpl<$Res,
   $Res call({
     Object? arcadeCenters = null,
     Object? cities = null,
+    Object? originalItemHash = null,
     Object? item = null,
   }) {
     return _then(_value.copyWith(
@@ -67,6 +70,10 @@ class _$MaintainerNewLocationCopyWithImpl<$Res,
           ? _value.cities
           : cities // ignore: cast_nullable_to_non_nullable
               as List<CityEntity>,
+      originalItemHash: null == originalItemHash
+          ? _value.originalItemHash
+          : originalItemHash // ignore: cast_nullable_to_non_nullable
+              as int,
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -95,6 +102,7 @@ abstract class _$$MaintainerNewLocationImplCopyWith<$Res>
   $Res call(
       {List<ArcadeCenterEntity> arcadeCenters,
       List<CityEntity> cities,
+      int originalItemHash,
       NewArcadeLocationEntity item});
 
   @override
@@ -115,6 +123,7 @@ class __$$MaintainerNewLocationImplCopyWithImpl<$Res>
   $Res call({
     Object? arcadeCenters = null,
     Object? cities = null,
+    Object? originalItemHash = null,
     Object? item = null,
   }) {
     return _then(_$MaintainerNewLocationImpl(
@@ -126,6 +135,10 @@ class __$$MaintainerNewLocationImplCopyWithImpl<$Res>
           ? _value._cities
           : cities // ignore: cast_nullable_to_non_nullable
               as List<CityEntity>,
+      originalItemHash: null == originalItemHash
+          ? _value.originalItemHash
+          : originalItemHash // ignore: cast_nullable_to_non_nullable
+              as int,
       item: null == item
           ? _value.item
           : item // ignore: cast_nullable_to_non_nullable
@@ -140,6 +153,7 @@ class _$MaintainerNewLocationImpl implements _MaintainerNewLocation {
   _$MaintainerNewLocationImpl(
       {required final List<ArcadeCenterEntity> arcadeCenters,
       required final List<CityEntity> cities,
+      required this.originalItemHash,
       required this.item})
       : _arcadeCenters = arcadeCenters,
         _cities = cities;
@@ -161,11 +175,13 @@ class _$MaintainerNewLocationImpl implements _MaintainerNewLocation {
   }
 
   @override
+  final int originalItemHash;
+  @override
   final NewArcadeLocationEntity item;
 
   @override
   String toString() {
-    return 'MaintainerNewLocation(arcadeCenters: $arcadeCenters, cities: $cities, item: $item)';
+    return 'MaintainerNewLocation(arcadeCenters: $arcadeCenters, cities: $cities, originalItemHash: $originalItemHash, item: $item)';
   }
 
   @override
@@ -176,6 +192,8 @@ class _$MaintainerNewLocationImpl implements _MaintainerNewLocation {
             const DeepCollectionEquality()
                 .equals(other._arcadeCenters, _arcadeCenters) &&
             const DeepCollectionEquality().equals(other._cities, _cities) &&
+            (identical(other.originalItemHash, originalItemHash) ||
+                other.originalItemHash == originalItemHash) &&
             (identical(other.item, item) || other.item == item));
   }
 
@@ -184,6 +202,7 @@ class _$MaintainerNewLocationImpl implements _MaintainerNewLocation {
       runtimeType,
       const DeepCollectionEquality().hash(_arcadeCenters),
       const DeepCollectionEquality().hash(_cities),
+      originalItemHash,
       item);
 
   @JsonKey(ignore: true)
@@ -198,6 +217,7 @@ abstract class _MaintainerNewLocation implements MaintainerNewLocation {
   factory _MaintainerNewLocation(
           {required final List<ArcadeCenterEntity> arcadeCenters,
           required final List<CityEntity> cities,
+          required final int originalItemHash,
           required final NewArcadeLocationEntity item}) =
       _$MaintainerNewLocationImpl;
 
@@ -205,6 +225,8 @@ abstract class _MaintainerNewLocation implements MaintainerNewLocation {
   List<ArcadeCenterEntity> get arcadeCenters;
   @override
   List<CityEntity> get cities;
+  @override
+  int get originalItemHash;
   @override
   NewArcadeLocationEntity get item;
   @override

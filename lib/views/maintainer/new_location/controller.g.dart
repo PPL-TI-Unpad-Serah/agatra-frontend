@@ -7,7 +7,7 @@ part of 'controller.dart';
 // **************************************************************************
 
 String _$maintainerNewLocationControllerHash() =>
-    r'7ef561530ffd037fd19fa4a39da15c4d46a7b68c';
+    r'1162fc724953a23e671901b86d1244deb68419ef';
 
 /// See also [MaintainerNewLocationController].
 @ProviderFor(MaintainerNewLocationController)

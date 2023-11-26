@@ -15,6 +15,7 @@ class MaintainerNewLocation with _$MaintainerNewLocation {
   factory MaintainerNewLocation({
     required List<ArcadeCenterEntity> arcadeCenters,
     required List<CityEntity> cities,
+    required int originalItemHash,
     required NewArcadeLocationEntity item,
   }) = _MaintainerNewLocation;
 }
@@ -33,10 +34,13 @@ class MaintainerNewLocationController extends _$MaintainerNewLocationController 
       }
     });
 
+    final originalItem = NewArcadeLocationEntity();
+
     return MaintainerNewLocation(
       arcadeCenters: arcadeCenters.data!,
       cities: cities.data!,
-      item: NewArcadeLocationEntity()
+      originalItemHash: originalItem.hashCode,
+      item: originalItem
     );
   }
 
