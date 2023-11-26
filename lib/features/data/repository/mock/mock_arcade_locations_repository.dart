@@ -6,6 +6,7 @@ import 'package:agatra/features/data/models/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_machine.dart';
 import 'package:agatra/features/domain/entities/form/new_arcade_location.dart';
+import 'package:agatra/features/domain/entities/form/new_arcade_machine.dart';
 import 'package:agatra/features/domain/repository/arcade_locations_repository.dart';
 import 'package:flutter/services.dart';
 
@@ -37,6 +38,13 @@ class MockArcadeLocationsRepository extends ArcadeLocationsRepository {
 
   @override
   Future<DataState> updateArcadeMachine(ArcadeMachineEntity body) async {
+    await Future.delayed(const Duration(milliseconds: 1000));
+
+    return const DataSuccess(null);
+  }
+
+  @override
+  Future<DataState> createArcadeMachine(NewArcadeMachineEntity body) async {
     await Future.delayed(const Duration(milliseconds: 1000));
 
     return const DataSuccess(null);
