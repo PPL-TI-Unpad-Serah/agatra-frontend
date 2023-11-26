@@ -30,9 +30,10 @@ class _HomeDrawer extends ConsumerWidget {
             if (sessionManager.value!.user.role == UserRole.maintainer ||
                 sessionManager.value!.user.role == UserRole.admin) ...[
               ListTile(
-                title: const Text('Manage Arcade Locations'),
+                title: const Text('Create New Arcade Location'),
                 onTap: () {
                   Navigator.pop(context);
+                  context.go('/maintainer/new-location');
                 },
               ),
               const Divider(),

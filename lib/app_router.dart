@@ -48,7 +48,7 @@ class AgatraRouter {
               GoRoute(
                 path: ':id',
                 builder: (BuildContext context, GoRouterState state) =>
-                    const ArcadesDetailsView(),
+                    ArcadesDetailsView(id: int.parse(state.pathParameters['id']!)),
               ),
             ],
           ),
@@ -113,7 +113,41 @@ class AgatraRouter {
                     AdminArcadeCentersEditView(id: int.parse(state.pathParameters['id']!)),
               ),
             ],
-          )
+          ),
+          GoRoute(
+              path: 'maintainer/edit-location/:id',
+              builder: (BuildContext context, GoRouterState state) =>
+                  MaintainerEditLocationView(
+                      id: int.parse(
+                    state.pathParameters['id']!,
+              ),
+            ),
+          ),
+          GoRoute(
+            path: 'maintainer/edit-machine/:id',
+            builder: (BuildContext context, GoRouterState state) =>
+                MaintainerEditMachineView(
+              id: int.parse(state.pathParameters['id']!),
+            ),
+          ),
+          GoRoute(
+            path: 'maintainer/new-location',
+            builder: (BuildContext context, GoRouterState state) =>
+                MaintainerNewLocationView(),
+          ),
+          GoRoute(
+            path: 'maintainer/new-machine/:arcadeLocationId',
+            builder: (BuildContext context, GoRouterState state) =>
+                MaintainerNewMachineView(
+              arcadeLocationId:
+                  int.parse(state.pathParameters['arcadeLocationId']!),
+                ),
+          ),
+          GoRoute(
+            path: 'map-picker',
+            builder: (BuildContext context, GoRouterState state) =>
+                MapPicker(),
+          ),
         ],
       ),
     ],

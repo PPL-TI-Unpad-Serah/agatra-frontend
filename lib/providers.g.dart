@@ -85,6 +85,24 @@ final arcadeCentersRepositoryProvider =
 
 typedef ArcadeCentersRepositoryRef
     = AutoDisposeProviderRef<ArcadeCentersRepository>;
+String _$arcadeLocationsRepositoryHash() =>
+    r'0154ff20a7bf6d84bdabc70a51dfe1a35d7e6870';
+
+/// See also [arcadeLocationsRepository].
+@ProviderFor(arcadeLocationsRepository)
+final arcadeLocationsRepositoryProvider =
+    AutoDisposeProvider<ArcadeLocationsRepository>.internal(
+  arcadeLocationsRepository,
+  name: r'arcadeLocationsRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$arcadeLocationsRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef ArcadeLocationsRepositoryRef
+    = AutoDisposeProviderRef<ArcadeLocationsRepository>;
 String _$gamesRepositoryHash() => r'93fe37003ce91f327685b7bf72359149e779bb78';
 
 /// See also [gamesRepository].

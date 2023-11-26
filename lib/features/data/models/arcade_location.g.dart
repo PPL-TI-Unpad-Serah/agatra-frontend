@@ -1,0 +1,35 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'arcade_location.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ArcadeLocationModel _$ArcadeLocationModelFromJson(Map<String, dynamic> json) =>
+    ArcadeLocationModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      arcadeCenter: ArcadeCenterModel.fromJson(
+          json['arcade_center'] as Map<String, dynamic>),
+      description: json['description'] as String,
+      lat: (json['lat'] as num).toDouble(),
+      long: (json['long'] as num).toDouble(),
+      arcadeMachines: (json['arcade_machines'] as List<dynamic>)
+          .map((e) => ArcadeMachineModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      city: CityModel.fromJson(json['city'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ArcadeLocationModelToJson(
+        ArcadeLocationModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'arcade_center': instance.arcadeCenter,
+      'description': instance.description,
+      'lat': instance.lat,
+      'long': instance.long,
+      'arcade_machines': instance.arcadeMachines,
+      'city': instance.city,
+    };

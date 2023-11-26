@@ -5,6 +5,13 @@ export 'register/view.dart';
 export 'arcades/home/view.dart';
 export 'arcades/details/view.dart';
 
+export 'maintainer/edit_location/view.dart';
+export 'maintainer/edit_machine/view.dart';
+export 'maintainer/new_location/view.dart';
+export 'maintainer/new_machine/view.dart';
+
+export 'maintainer/map_picker/view.dart';
+
 export 'admin/users/home/view.dart';
 export 'admin/users/details/view.dart';
 

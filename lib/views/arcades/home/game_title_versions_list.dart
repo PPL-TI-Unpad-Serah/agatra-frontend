@@ -1,3 +1,4 @@
+import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/views/arcades/home/providers.dart';
 import 'package:agatra/views/arcades/home/search_query_provider.dart';
@@ -15,7 +16,7 @@ class _GameTitleVersionsListState extends ConsumerState<GameTitleVersionsList> {
   @override
   Widget build(BuildContext context) {
     final title = ref.watch(searchQueryStateProvider).gameTitle;
-    final listValue = ref.watch(getGameTitleVersionsOfProvider(title!));
+    final listValue = ref.watch(getGameTitleVersionsOfProvider(GameTitleCompactEntity(id: title!.id, name: title.name)));
 
     return switch (listValue) {
       AsyncData(:final value) => ListView.builder(
