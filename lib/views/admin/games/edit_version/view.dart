@@ -20,43 +20,43 @@ class AdminGamesEditVersionView extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Game Version'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            if (form.value!.item.hashCode != form.value!.originalItemHash) {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: const Text('Discard changes?'),
-                  content: const Text(
-                    'You have unsaved changes. Are you sure you want to discard them?',
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                        context.pop();
-                      },
-                      child: const Text('Discard'),
-                    ),
-                  ],
-                ),
-              );
-              return;
-            }
-            context.pop();
-          },
-        ),
       ),
       body: switch (form) {
         AsyncData(:final value) => Form(
             key: _formKey,
+            onWillPop: () async {
+              bool shouldPop = true;
+
+              if (form.value.item.hashCode != form.value.originalItemHash) {
+                  await showDialog<bool>(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Discard changes?'),
+                      content: const Text(
+                        'You have unsaved changes. Are you sure you want to discard them?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            shouldPop = false;
+                            context.pop();
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            shouldPop = true;
+                            context.pop();
+                          },
+                          child: const Text('Discard'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+
+              return shouldPop;
+            },
             child: ListView(
               padding: const EdgeInsets.all(16.0),
               children: [
