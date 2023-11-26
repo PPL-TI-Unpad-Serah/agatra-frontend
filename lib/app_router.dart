@@ -136,6 +136,14 @@ class AgatraRouter {
                 MaintainerNewLocationView(),
           ),
           GoRoute(
+            path: 'maintainer/new-machine/:arcadeLocationId',
+            builder: (BuildContext context, GoRouterState state) =>
+                MaintainerNewMachineView(
+              arcadeLocationId:
+                  int.parse(state.pathParameters['arcadeLocationId']!),
+                ),
+          ),
+          GoRoute(
             path: 'map-picker',
             builder: (BuildContext context, GoRouterState state) =>
                 MapPicker(),

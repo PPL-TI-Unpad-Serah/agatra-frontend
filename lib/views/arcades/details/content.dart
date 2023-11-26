@@ -22,7 +22,7 @@ class _ArcadeLocationContent extends ConsumerWidget {
               children: [
                 FilledButton.icon(
                   onPressed: () {
-                    context.push('/maintainer/edit-location/5');
+                    context.push('/maintainer/edit-location/${location.id}');
                   },
                   icon: const Icon(Icons.edit),
                   label: const Text('Location'),
@@ -81,7 +81,7 @@ class _ArcadeLocationContent extends ConsumerWidget {
                   height: 30,
                   child: FilledButton(
                     onPressed: () {
-                      context.push('/maintainer/edit-location/5');
+                      context.push('/maintainer/new-machine/${location.id}');
                     },
                     child: const Icon(Icons.add)
                   ),
