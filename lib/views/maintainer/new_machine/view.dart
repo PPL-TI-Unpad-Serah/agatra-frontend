@@ -29,7 +29,7 @@ class MaintainerNewMachineView extends ConsumerWidget {
             onWillPop: () async {
               bool shouldPop = true;
 
-              if (form.value.item.hashCode != form.value.originalItemHash) {
+              if (value.item.hashCode != value.originalItemHash) {
                   await showDialog<bool>(
                     context: context,
                     builder: (context) => AlertDialog(
