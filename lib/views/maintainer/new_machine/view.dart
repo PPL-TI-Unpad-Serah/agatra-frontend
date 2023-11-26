@@ -134,6 +134,10 @@ class MaintainerNewMachineView extends ConsumerWidget {
                     ),
                   ]),
                   onChanged: (newVal) {
+                    if (newVal.isEmpty) {
+                      newVal = "0";
+                    }
+
                     ref
                         .read(maintainerNewMachineControllerProvider(arcadeLocationId)
                             .notifier)
@@ -158,6 +162,10 @@ class MaintainerNewMachineView extends ConsumerWidget {
                     ),
                   ]),
                   onChanged: (newVal) {
+                    if (newVal.isEmpty) {
+                      newVal = "0";
+                    }
+
                     ref
                         .read(maintainerNewMachineControllerProvider(arcadeLocationId)
                             .notifier)

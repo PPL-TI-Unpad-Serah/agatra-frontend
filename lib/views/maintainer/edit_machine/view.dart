@@ -146,6 +146,10 @@ class MaintainerEditMachineView extends ConsumerWidget {
                     ),
                   ]),
                   onChanged: (newVal) {
+                    if (newVal.isEmpty) {
+                      newVal = "0";
+                    }
+
                     ref
                         .read(maintainerMachineEditControllerProvider(id)
                             .notifier)
@@ -171,6 +175,10 @@ class MaintainerEditMachineView extends ConsumerWidget {
                     ),
                   ]),
                   onChanged: (newVal) {
+                    if (newVal.isEmpty) {
+                      newVal = "0";
+                    }
+
                     ref
                         .read(maintainerMachineEditControllerProvider(id)
                             .notifier)
