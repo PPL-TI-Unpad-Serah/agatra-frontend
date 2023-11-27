@@ -46,20 +46,20 @@ enum UserRole {
 }
 
 class UserEntity extends Equatable {
-  final String id;
-  final String name;
+  final int id;
+  final String username;
   final UserRole role;
 
   const UserEntity({
     required this.id,
-    required this.name,
+    required this.username,
     required this.role,
   });
 
   @override
   List<Object?> get props => [
         id,
-        name,
+        username,
         role,
       ];
 }
