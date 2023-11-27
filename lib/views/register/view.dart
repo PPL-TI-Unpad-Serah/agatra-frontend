@@ -1,18 +1,23 @@
+import 'package:agatra/core/resources/data_state.dart';
+import 'package:agatra/features/domain/entities/form/auth_register.dart';
+import 'package:agatra/providers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends ConsumerWidget {
   RegisterView({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final name = TextEditingController();
+  final username = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
+  final confirmPassword = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -30,9 +35,9 @@ class RegisterView extends StatelessWidget {
                   ),
                   const SizedBox(height: 64),
                   TextFormField(
-                    controller: name,
+                    controller: username,
                     decoration: const InputDecoration(
-                      labelText: 'Name',
+                      labelText: 'Username',
                       helperText: '',
                       border: OutlineInputBorder(),
                     ),
@@ -78,6 +83,25 @@ class RegisterView extends StatelessWidget {
                       ),
                     ]),
                   ),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: confirmPassword,
+                    decoration: const InputDecoration(
+                      labelText: 'Confirm Password',
+                      helperText: '',
+                      border: OutlineInputBorder(),
+                    ),
+                    obscureText: true,
+                    validator: MultiValidator([
+                      RequiredValidator(
+                        errorText: 'Required',
+                      ),
+                      MinLengthValidator(
+                        8,
+                        errorText: 'Length should be greater than 8',
+                      ),
+                    ]),
+                  ),
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16.0).copyWith(
@@ -85,11 +109,38 @@ class RegisterView extends StatelessWidget {
                     ),
                     child: FilledButton(
                       child: const Text('Register'),
-                      onPressed: () {
+                      onPressed: () async {
                         if (!_formKey.currentState!.validate()) {
                           return;
                         }
-                        context.pop();
+
+                        final res =
+                            await ref.read(authRepositoryProvider).register(
+                                  AuthRegister(
+                                    username: username.text,
+                                    email: email.text,
+                                    password: password.text,
+                                    confirmPassword: confirmPassword.text,
+                                  ),
+                                );
+
+                        if (context.mounted) {
+                          if (res is DataFailure) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(res.error?.response?.data["message"] ??  "Register Failed!"),
+                              ),
+                            );
+                            return;
+                          }
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("Register succeed! Please login"),
+                            ),
+                          );
+                          context.pop();
+                        }
                       },
                     ),
                   ),
