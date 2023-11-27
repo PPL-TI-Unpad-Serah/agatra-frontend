@@ -5,15 +5,17 @@ import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
+import 'package:agatra/features/data/models/form/register_body.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
 import 'package:agatra/features/data/models/session.dart';
+import 'package:agatra/features/data/models/user.dart';
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
 
-@RestApi()
+@RestApi(baseUrl: "https://oyster-app-3g63e.ondigitalocean.app/agatra")
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
@@ -39,9 +41,19 @@ abstract class ApiService {
     @Query('arcade_center') String? arcadeCenterId,
   );
 
+  @POST('/register')
+  Future<HttpResponse<SingleResponse>> register({
+    @Body() required RegisterBodyModel body,
+  });
+
   @POST('/login')
-  Future<HttpResponse<SessionModel>> login({
+  Future<HttpResponse<SingleResponse<SessionModel>>> login({
     @Body() required LoginBodyModel body,
+  });
+
+  @GET('/profile')
+  Future<HttpResponse<SingleResponse<UserModel>>> getProfile({
+    @Header('Authorization') required String token,
   });
 
   @POST('/logout')

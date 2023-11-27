@@ -4,11 +4,11 @@ part 'login_body.g.dart';
 
 @JsonSerializable()
 class LoginBodyModel {
-  final String email;
+  final String username;
   final String password;
 
   const LoginBodyModel({
-    required this.email,
+    required this.username,
     required this.password,
   });
 

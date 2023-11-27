@@ -12,7 +12,9 @@ class _ApiService implements ApiService {
   _ApiService(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'https://oyster-app-3g63e.ondigitalocean.app/agatra';
+  }
 
   final Dio _dio;
 
@@ -165,7 +167,40 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<SessionModel>> login(
+  Future<HttpResponse<SingleResponse<dynamic>>> register(
+      {required RegisterBodyModel body}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SingleResponse<dynamic>>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/register',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SingleResponse<dynamic>.fromJson(
+      _result.data!,
+      (json) => json as dynamic,
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<SingleResponse<SessionModel>>> login(
       {required LoginBodyModel body}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -173,7 +208,7 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SessionModel>>(Options(
+        _setStreamType<HttpResponse<SingleResponse<SessionModel>>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -189,7 +224,43 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SessionModel.fromJson(_result.data!);
+    final value = SingleResponse<SessionModel>.fromJson(
+      _result.data!,
+      (json) => SessionModel.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<SingleResponse<UserModel>>> getProfile(
+      {required String token}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SingleResponse<UserModel>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/profile',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SingleResponse<UserModel>.fromJson(
+      _result.data!,
+      (json) => UserModel.fromJson(json as Map<String, dynamic>),
+    );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

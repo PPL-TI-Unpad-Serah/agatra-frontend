@@ -63,7 +63,7 @@ class _UserLine extends ConsumerWidget {
       children: [
         if (sessionManager.value != null) ...[
           Text(
-            sessionManager.value!.user.name,
+            sessionManager.value!.user.username,
             style: Theme.of(context)
                 .textTheme
                 .titleLarge

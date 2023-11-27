@@ -50,12 +50,12 @@ final storageServiceProvider = Provider<StorageService>.internal(
 
 typedef StorageServiceRef = ProviderRef<StorageService>;
 String _$searchArcadeLocationsRepositoryHash() =>
-    r'271951c1e64f114c588de8cf24f12e9cbdcebe1f';
+    r'c5cb5a1ee49d02871ad53e063b40bb41393f83ce';
 
 /// See also [searchArcadeLocationsRepository].
 @ProviderFor(searchArcadeLocationsRepository)
 final searchArcadeLocationsRepositoryProvider =
-    AutoDisposeProvider<SearchArcadeLocationsRepository>.internal(
+    Provider<SearchArcadeLocationsRepository>.internal(
   searchArcadeLocationsRepository,
   name: r'searchArcadeLocationsRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -66,14 +66,14 @@ final searchArcadeLocationsRepositoryProvider =
 );
 
 typedef SearchArcadeLocationsRepositoryRef
-    = AutoDisposeProviderRef<SearchArcadeLocationsRepository>;
+    = ProviderRef<SearchArcadeLocationsRepository>;
 String _$arcadeCentersRepositoryHash() =>
-    r'31fb18f2f219fe5489f62d321d0c7d836d920864';
+    r'457dc90a074d49c52106693387e229728b930bbd';
 
 /// See also [arcadeCentersRepository].
 @ProviderFor(arcadeCentersRepository)
 final arcadeCentersRepositoryProvider =
-    AutoDisposeProvider<ArcadeCentersRepository>.internal(
+    Provider<ArcadeCentersRepository>.internal(
   arcadeCentersRepository,
   name: r'arcadeCentersRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -83,15 +83,14 @@ final arcadeCentersRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
-typedef ArcadeCentersRepositoryRef
-    = AutoDisposeProviderRef<ArcadeCentersRepository>;
+typedef ArcadeCentersRepositoryRef = ProviderRef<ArcadeCentersRepository>;
 String _$arcadeLocationsRepositoryHash() =>
-    r'0154ff20a7bf6d84bdabc70a51dfe1a35d7e6870';
+    r'6f7a820a95afbd5bcf2205b4b692875021597290';
 
 /// See also [arcadeLocationsRepository].
 @ProviderFor(arcadeLocationsRepository)
 final arcadeLocationsRepositoryProvider =
-    AutoDisposeProvider<ArcadeLocationsRepository>.internal(
+    Provider<ArcadeLocationsRepository>.internal(
   arcadeLocationsRepository,
   name: r'arcadeLocationsRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -101,13 +100,12 @@ final arcadeLocationsRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
-typedef ArcadeLocationsRepositoryRef
-    = AutoDisposeProviderRef<ArcadeLocationsRepository>;
-String _$gamesRepositoryHash() => r'93fe37003ce91f327685b7bf72359149e779bb78';
+typedef ArcadeLocationsRepositoryRef = ProviderRef<ArcadeLocationsRepository>;
+String _$gamesRepositoryHash() => r'9d1b122b6df1b0a05bc06656dbc106450b2bebf3';
 
 /// See also [gamesRepository].
 @ProviderFor(gamesRepository)
-final gamesRepositoryProvider = AutoDisposeProvider<GamesRepository>.internal(
+final gamesRepositoryProvider = Provider<GamesRepository>.internal(
   gamesRepository,
   name: r'gamesRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -117,12 +115,12 @@ final gamesRepositoryProvider = AutoDisposeProvider<GamesRepository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef GamesRepositoryRef = AutoDisposeProviderRef<GamesRepository>;
-String _$authRepositoryHash() => r'195d359be887e7eb60fa4a346d0f78598d25626e';
+typedef GamesRepositoryRef = ProviderRef<GamesRepository>;
+String _$authRepositoryHash() => r'381def9eb33cb30f64142ff1d055b2e222b97cdf';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
-final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
+final authRepositoryProvider = Provider<AuthRepository>.internal(
   authRepository,
   name: r'authRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -132,6 +130,6 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
+typedef AuthRepositoryRef = ProviderRef<AuthRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

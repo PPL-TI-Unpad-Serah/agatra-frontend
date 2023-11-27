@@ -1,3 +1,4 @@
+import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/form/auth_login.dart';
 import 'package:agatra/managers/session_manager.dart';
 import 'package:agatra/providers.dart';
@@ -11,7 +12,7 @@ class LoginView extends ConsumerWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final email = TextEditingController();
+  final username = TextEditingController();
   final password = TextEditingController();
 
   @override
@@ -33,9 +34,9 @@ class LoginView extends ConsumerWidget {
                   ),
                   const SizedBox(height: 64),
                   TextFormField(
-                    controller: email,
+                    controller: username,
                     decoration: const InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Username',
                       helperText: '',
                       border: OutlineInputBorder(),
                     ),
@@ -74,17 +75,28 @@ class LoginView extends ConsumerWidget {
                           return;
                         }
 
-                        final res = await ref.read(authRepositoryProvider).login(
-                              AuthLogin(
-                                email: email.text,
-                                password: password.text,
+                        final res =
+                            await ref.read(authRepositoryProvider).login(
+                                  AuthLogin(
+                                    username: username.text,
+                                    password: password.text,
+                                  ),
+                                );
+
+                        if (context.mounted) {
+                          if (res is DataFailure) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(res.error?.response?.data["message"] ??  "Login Failed!"),
                               ),
                             );
-
-                        ref.read(sessionManagerProvider.notifier).login(
-                              res
-                            );
-                        context.pop();
+                            return;
+                          }
+                          ref.read(sessionManagerProvider.notifier).login(
+                                res.data!,
+                              );
+                          context.pop();
+                        }
                       },
                     ),
                   ),
