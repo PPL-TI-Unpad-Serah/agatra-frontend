@@ -3,21 +3,27 @@ import 'package:agatra/features/data/models/arcade_location.dart';
 import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/arcade_machine.dart';
 import 'package:agatra/features/data/models/city.dart';
+import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_compact.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
 import 'package:agatra/features/data/models/game_title_version_compact.dart';
+import 'package:agatra/features/data/models/session.dart';
+import 'package:agatra/features/data/models/user.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/arcade_location.dart';
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
 import 'package:agatra/features/domain/entities/arcade_machine.dart';
 import 'package:agatra/features/domain/entities/city.dart';
+import 'package:agatra/features/domain/entities/form/auth_login.dart';
 import 'package:agatra/features/domain/entities/form/new_arcade_center.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/features/domain/entities/game_title_version_compact.dart';
+import 'package:agatra/features/domain/entities/session.dart';
+import 'package:agatra/features/domain/entities/user.dart';
 
 extension GameTitleVersionCompactModelToEntity on GameTitleVersionCompactModel {
   GameTitleVersionCompactEntity toEntity() {
@@ -121,6 +127,34 @@ extension ArcadeMachineModelToEntity on ArcadeMachineModel {
       game: version.toEntity(),
       notes: "",
       machineCount: machineCount
+    );
+  }
+}
+
+extension UserModelToEntity on UserModel {
+  UserEntity toEntity() {
+    return UserEntity(
+      id: id,
+      username: username,
+      role: UserRole.fromName(role),
+    );
+  }
+}
+
+extension SessionModelToEntity on SessionModel {
+  SessionEntity toEntity() {
+    return SessionEntity(
+      token: token,
+      user: user.toEntity(),
+    );
+  }
+}
+
+extension LoginFormEntityToModel on AuthLogin {
+  LoginBodyModel toModel() {
+    return LoginBodyModel(
+      username: username,
+      password: password,
     );
   }
 }
