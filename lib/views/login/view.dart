@@ -11,7 +11,7 @@ class LoginView extends ConsumerWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final email = TextEditingController();
+  final username = TextEditingController();
   final password = TextEditingController();
 
   @override
@@ -33,9 +33,9 @@ class LoginView extends ConsumerWidget {
                   ),
                   const SizedBox(height: 64),
                   TextFormField(
-                    controller: email,
+                    controller: username,
                     decoration: const InputDecoration(
-                      labelText: 'Email',
+                      labelText: 'Username',
                       helperText: '',
                       border: OutlineInputBorder(),
                     ),
@@ -76,7 +76,7 @@ class LoginView extends ConsumerWidget {
 
                         final res = await ref.read(authRepositoryProvider).login(
                               AuthLogin(
-                                email: email.text,
+                                username: username.text,
                                 password: password.text,
                               ),
                             );
