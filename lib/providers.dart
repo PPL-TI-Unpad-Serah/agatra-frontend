@@ -1,8 +1,8 @@
+import 'package:agatra/features/data/repository/auth_repository_impl.dart';
 import 'package:agatra/features/data/repository/mock/mock_arcade_centers_repository.dart';
 import 'package:agatra/features/data/repository/mock/mock_arcade_locations_repository.dart';
-import 'package:agatra/features/data/repository/mock/mock_auth_repository.dart';
 import 'package:agatra/features/data/repository/mock/mock_games_repository.dart';
-import 'package:agatra/features/data/repository/mock/mock_search_arcade_locations_repository_impl.dart';
+import 'package:agatra/features/data/repository/search_arcade_locations_repository_impl.dart';
 import 'package:agatra/features/data/sources/remote/api_service.dart';
 import 'package:agatra/features/data/sources/storage/storage_service.dart';
 import 'package:agatra/features/domain/repository/arcade_centers_repository.dart';
@@ -37,30 +37,30 @@ StorageService storageService(StorageServiceRef ref) {
   );
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 SearchArcadeLocationsRepository searchArcadeLocationsRepository(
     SearchArcadeLocationsRepositoryRef ref) {
-  return MockSearchArcadeLocationsRepository();
+  return SearchArcadeLocationsRepositoryImpl(apiService: ref.watch(apiServiceProvider));
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 ArcadeCentersRepository arcadeCentersRepository(
   ArcadeCentersRepositoryRef ref) {
   return MockArcadeCentersRepository();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 ArcadeLocationsRepository arcadeLocationsRepository(
     ArcadeLocationsRepositoryRef ref) {
   return MockArcadeLocationsRepository();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 GamesRepository gamesRepository(GamesRepositoryRef ref) {
   return MockGamesRepository();
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 AuthRepository authRepository(AuthRepositoryRef ref) {
-  return MockAuthRepository();
+  return AuthRepositoryImpl(apiService: ref.watch(apiServiceProvider));
 }
