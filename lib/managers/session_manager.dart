@@ -1,6 +1,6 @@
+import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/data/models/storage_item.dart';
 import 'package:agatra/features/domain/entities/session.dart';
-import 'package:agatra/features/domain/entities/user.dart';
 import 'package:agatra/providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,18 +11,18 @@ class SessionManager extends _$SessionManager {
   @override
   FutureOr<SessionEntity?> build() async {
     final storageService = ref.watch(storageServiceProvider);
+    final authRepository = ref.watch(authRepositoryProvider);
 
     if (await storageService.containsKey('token')) {
       final token = await storageService.read('token');
+      final user = await authRepository.getUserOf(token!.value);
 
-      return SessionEntity(
-        token: token!.value,
-        user: UserEntity(
-          id: '0',
-          name: 'John Doe',
-          role: UserRole.fromName(token.value),
-        ),
-      );
+      if (user is DataSuccess) {
+        return SessionEntity(
+          token: token.value,
+          user: user.data!,
+        );
+      }
     }
 
     return null;
