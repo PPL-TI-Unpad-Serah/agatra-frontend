@@ -12,7 +12,7 @@ class SessionModel {
 
   factory SessionModel.fromJson(Map<String, dynamic> json) =>     
     SessionModel(
-      token: "Bearer ${json['token']}",
+      token: "Bearer ${json['apiKey']}",
       user: UserModel.fromJson(json['user'] as Map<String, dynamic>),
     );
   Map<String, dynamic> toJson() => {
