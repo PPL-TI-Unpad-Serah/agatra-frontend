@@ -1,7 +1,7 @@
 part of 'view.dart';
 
 class _ArcadeCentersList extends ConsumerWidget {
-  const _ArcadeCentersList({Key? key}) : super(key: key);
+  const _ArcadeCentersList({Key? key}) : super(key: key); // TODO refresh pull + refresh on add/save
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
