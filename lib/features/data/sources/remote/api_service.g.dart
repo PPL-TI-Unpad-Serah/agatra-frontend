@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: unused_element, prefer_const_declarations
+
 part of 'api_service.dart';
 
 // **************************************************************************
@@ -84,9 +86,9 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ListResponse<GameTitleVersionModel>>> gameTitleVersionOf(
-      {required String id}) async {
+      {required int gameTitleIid}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'game_title': gameTitleIid};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -98,7 +100,7 @@ class _ApiService implements ApiService {
     )
                 .compose(
                   _dio.options,
-                  '/game_title_versions/${id}',
+                  '/game_title_versions',
                   queryParameters: queryParameters,
                   data: _data,
                 )
@@ -110,6 +112,38 @@ class _ApiService implements ApiService {
     final value = ListResponse<GameTitleVersionModel>.fromJson(
       _result.data!,
       (json) => GameTitleVersionModel.fromJson(json as Map<String, dynamic>),
+    );
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ListResponse<ArcadeCenterModel>>>
+      getArcadeCenters() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ListResponse<ArcadeCenterModel>>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/arcade_centers',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ListResponse<ArcadeCenterModel>.fromJson(
+      _result.data!,
+      (json) => ArcadeCenterModel.fromJson(json as Map<String, dynamic>),
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -290,38 +324,6 @@ class _ApiService implements ApiService {
               baseUrl,
             ))));
     final httpResponse = HttpResponse(null, _result);
-    return httpResponse;
-  }
-
-  @override
-  Future<HttpResponse<ListResponse<ArcadeCenterModel>>>
-      getArcadeCenters() async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ListResponse<ArcadeCenterModel>>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              '/arcade_centers',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ListResponse<ArcadeCenterModel>.fromJson(
-      _result.data!,
-      (json) => ArcadeCenterModel.fromJson(json as Map<String, dynamic>),
-    );
-    final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
