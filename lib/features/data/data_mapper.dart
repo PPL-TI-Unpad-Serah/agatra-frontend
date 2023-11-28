@@ -130,7 +130,7 @@ extension ArcadeLocationModelToEntity on ArcadeLocationModel {
       description: description,
       latitude: lat,
       longitude: long,
-      machines: arcadeMachines.map((e) => e.toEntity()).toList(),
+      machines: machine.map((e) => e.toEntity()).toList(),
       city: city.toEntity(),
     );
   }
@@ -143,7 +143,7 @@ extension ArcadeMachineModelToEntity on ArcadeMachineModel {
       id: id,
       price: price,
       game: version.toEntity(),
-      notes: "",
+      notes: notes,
       machineCount: machineCount
     );
   }

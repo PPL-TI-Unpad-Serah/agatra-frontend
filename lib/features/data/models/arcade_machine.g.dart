@@ -13,6 +13,7 @@ ArcadeMachineModel _$ArcadeMachineModelFromJson(Map<String, dynamic> json) =>
           json['version'] as Map<String, dynamic>),
       machineCount: json['machine_count'] as int,
       price: json['price'] as int,
+      notes: json['notes'] as String,
     );
 
 Map<String, dynamic> _$ArcadeMachineModelToJson(ArcadeMachineModel instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$ArcadeMachineModelToJson(ArcadeMachineModel instance) =>
       'version': instance.version,
       'machine_count': instance.machineCount,
       'price': instance.price,
+      'notes': instance.notes,
     };

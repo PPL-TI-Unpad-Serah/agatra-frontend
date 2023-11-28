@@ -13,7 +13,7 @@ class ArcadeLocationModel {
   final String description;
   final double lat;
   final double long;
-  final List<ArcadeMachineModel> arcadeMachines;
+  final List<ArcadeMachineModel> machine;
   final CityModel city;
 
   const ArcadeLocationModel({
@@ -23,7 +23,7 @@ class ArcadeLocationModel {
     required this.description,
     required this.lat,
     required this.long,
-    required this.arcadeMachines,
+    required this.machine,
     required this.city,
   });
 

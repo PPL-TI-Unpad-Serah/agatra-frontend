@@ -9,12 +9,14 @@ class ArcadeMachineModel {
   final GameTitleVersionModel version;
   final int machineCount;
   final int price;
+  final String notes;
 
   const ArcadeMachineModel({
     required this.id,
     required this.version,
     required this.machineCount,
     required this.price,
+    required this.notes,
   });
 
   factory ArcadeMachineModel.fromJson(Map<String, dynamic> json) => _$ArcadeMachineModelFromJson(json);
