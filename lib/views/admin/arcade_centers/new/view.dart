@@ -83,11 +83,11 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
                     } 
 
                     else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Failed to add arcade center'),
-                        ),
-                      );
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(res.error?.response?.data["message"] ??  'Failed to add arcade center'),
+                            ),
+                          );
                     }
                   }
                 },

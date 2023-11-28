@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: unused_element, prefer_const_declarations
-
 part of 'api_service.dart';
 
 // **************************************************************************
@@ -329,7 +327,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> getArcadeCenter(
-      {required String id}) async {
+      {required int id}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -360,7 +358,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> createArcadeCenter({
+  Future<HttpResponse<SingleResponse<dynamic>>> createArcadeCenter({
     required String token,
     required NewArcadeCenterBody body,
   }) async {
@@ -371,14 +369,14 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SingleResponse<ArcadeCenterModel>>>(Options(
+        _setStreamType<HttpResponse<SingleResponse<dynamic>>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/arcade_centers',
+              '/admin/arcade_centers',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -387,18 +385,18 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SingleResponse<ArcadeCenterModel>.fromJson(
+    final value = SingleResponse<dynamic>.fromJson(
       _result.data!,
-      (json) => ArcadeCenterModel.fromJson(json as Map<String, dynamic>),
+      (json) => json as dynamic,
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> updateArcadeCenter({
+  Future<HttpResponse<SingleResponse<dynamic>>> updateArcadeCenter({
     required String token,
-    required String id,
+    required int id,
     required NewArcadeCenterBody body,
   }) async {
     const _extra = <String, dynamic>{};
@@ -408,14 +406,14 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SingleResponse<ArcadeCenterModel>>>(Options(
+        _setStreamType<HttpResponse<SingleResponse<dynamic>>>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/arcade_centers/${id}',
+              '/admin/arcade_centers/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -424,9 +422,9 @@ class _ApiService implements ApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = SingleResponse<ArcadeCenterModel>.fromJson(
+    final value = SingleResponse<dynamic>.fromJson(
       _result.data!,
-      (json) => ArcadeCenterModel.fromJson(json as Map<String, dynamic>),
+      (json) => json as dynamic,
     );
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
