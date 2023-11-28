@@ -1,6 +1,6 @@
 part of 'view.dart';
 
-class _GamesList extends ConsumerWidget {
+class _GamesList extends ConsumerWidget { // TODO refresh pull + refresh on add/save
   const _GamesList({Key? key}) : super(key: key);
 
   @override
