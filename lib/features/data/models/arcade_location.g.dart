@@ -10,8 +10,8 @@ ArcadeLocationModel _$ArcadeLocationModelFromJson(Map<String, dynamic> json) =>
     ArcadeLocationModel(
       id: json['id'] as int,
       name: json['name'] as String,
-      arcadeCenter: ArcadeCenterModel.fromJson(
-          json['arcade_center'] as Map<String, dynamic>),
+      center:
+          ArcadeCenterModel.fromJson(json['center'] as Map<String, dynamic>),
       description: json['description'] as String,
       lat: (json['lat'] as num).toDouble(),
       long: (json['long'] as num).toDouble(),
@@ -26,7 +26,7 @@ Map<String, dynamic> _$ArcadeLocationModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'arcade_center': instance.arcadeCenter,
+      'center': instance.center,
       'description': instance.description,
       'lat': instance.lat,
       'long': instance.long,

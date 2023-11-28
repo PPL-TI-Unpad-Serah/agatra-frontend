@@ -1,4 +1,5 @@
-import 'package:agatra/features/data/models/game_title_version.dart';
+import 'package:agatra/features/data/models/arcade_center.dart';
+import 'package:agatra/features/data/models/arcade_machine.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'arcade_location_compact.g.dart';
@@ -7,12 +8,14 @@ part 'arcade_location_compact.g.dart';
 class ArcadeLocationCompactModel {
   final int id;
   final String name;
-  final List<GameTitleVersionModel> versions;
+  final ArcadeCenterModel center;
+  final List<ArcadeMachineModel> machine;
 
   const ArcadeLocationCompactModel({
     required this.id,
     required this.name,
-    required this.versions,
+    required this.center,
+    required this.machine,
   });
 
   factory ArcadeLocationCompactModel.fromJson(Map<String, dynamic> json) => _$ArcadeLocationCompactModelFromJson(json);

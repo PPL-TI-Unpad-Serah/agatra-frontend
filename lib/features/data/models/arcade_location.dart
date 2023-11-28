@@ -9,7 +9,7 @@ part 'arcade_location.g.dart';
 class ArcadeLocationModel {
   final int id;
   final String name;
-  final ArcadeCenterModel arcadeCenter;
+  final ArcadeCenterModel center;
   final String description;
   final double lat;
   final double long;
@@ -19,7 +19,7 @@ class ArcadeLocationModel {
   const ArcadeLocationModel({
     required this.id,
     required this.name,
-    required this.arcadeCenter,
+    required this.center,
     required this.description,
     required this.lat,
     required this.long,

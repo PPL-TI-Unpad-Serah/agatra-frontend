@@ -95,7 +95,8 @@ extension ArcadeLocationCompactModelToEntity on ArcadeLocationCompactModel {
     return ArcadeLocationCompactEntity(
       id: id,
       name: name,
-      games: versions.map((e) => e.toEntity()).toList(),
+      arcadeCenter: center.toEntity(),
+      games: machine.map((e) => e.toEntity()).toList(),
     );
   }
 }
@@ -126,7 +127,7 @@ extension ArcadeLocationModelToEntity on ArcadeLocationModel {
     return ArcadeLocationEntity(
       id: id,
       name: name,
-      gameCenter: arcadeCenter.toEntity(),
+      gameCenter: center.toEntity(),
       description: description,
       latitude: lat,
       longitude: long,
