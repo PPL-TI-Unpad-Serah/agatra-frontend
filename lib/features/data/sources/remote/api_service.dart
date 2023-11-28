@@ -25,10 +25,13 @@ abstract class ApiService {
   @GET('/game_titles')
   Future<HttpResponse<ListResponse<GameTitleModel>>> getGameTitles();
 
-  @GET('/game_title_versions/{game_title_id}')
+  @GET('/game_title_versions')
   Future<HttpResponse<ListResponse<GameTitleVersionModel>>> gameTitleVersionOf({
-    @Path('game_title_id') required String id
+    @Query('game_title') required int gameTitleIid
   });
+
+  @GET('/arcade_centers')
+  Future<HttpResponse<ListResponse<ArcadeCenterModel>>> getArcadeCenters();
 
   @GET('/arcade_locations')
   Future<HttpResponse<ListResponse<ArcadeLocationCompactModel>>> getArcadeLocations(
@@ -60,9 +63,6 @@ abstract class ApiService {
   Future<HttpResponse<void>> logout({
     @Header('Authorization') required String token,
   });
-
-  @GET('/arcade_centers')
-  Future<HttpResponse<ListResponse<ArcadeCenterModel>>> getArcadeCenters();
 
   @GET('/arcade_centers/{id}')
   Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> getArcadeCenter({
