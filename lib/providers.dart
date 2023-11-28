@@ -1,5 +1,5 @@
+import 'package:agatra/features/data/repository/arcade_centers_impl.dart';
 import 'package:agatra/features/data/repository/auth_repository_impl.dart';
-import 'package:agatra/features/data/repository/mock/mock_arcade_centers_repository.dart';
 import 'package:agatra/features/data/repository/mock/mock_arcade_locations_repository.dart';
 import 'package:agatra/features/data/repository/mock/mock_games_repository.dart';
 import 'package:agatra/features/data/repository/search_arcade_locations_repository_impl.dart';
@@ -10,6 +10,7 @@ import 'package:agatra/features/domain/repository/arcade_locations_repository.da
 import 'package:agatra/features/domain/repository/auth_repository.dart';
 import 'package:agatra/features/domain/repository/games_repository.dart';
 import 'package:agatra/features/domain/repository/search_arcade_locations_repository.dart';
+import 'package:agatra/managers/session_manager.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -46,7 +47,7 @@ SearchArcadeLocationsRepository searchArcadeLocationsRepository(
 @Riverpod(keepAlive: true)
 ArcadeCentersRepository arcadeCentersRepository(
   ArcadeCentersRepositoryRef ref) {
-  return MockArcadeCentersRepository();
+  return ArcadeCentersRepositoryImpl(apiService: ref.watch(apiServiceProvider), sessionEntity: ref.watch(sessionManagerProvider).value);
 }
 
 @Riverpod(keepAlive: true)
