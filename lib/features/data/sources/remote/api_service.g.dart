@@ -149,20 +149,22 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ListResponse<ArcadeLocationCompactModel>>>
-      getArcadeLocations(
-    int page,
+      getArcadeLocations({
+    required int page,
     String? search,
-    bool? nearby,
-    String? cityId,
-    String? gameTitleId,
-    String? gameTitleVersionId,
-    String? arcadeCenterId,
-  ) async {
+    double? lat,
+    double? long,
+    int? cityId,
+    int? gameTitleId,
+    int? gameTitleVersionId,
+    int? arcadeCenterId,
+  }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
       r'search': search,
-      r'nearby': nearby,
+      r'lat': lat,
+      r'long': long,
       r'city': cityId,
       r'game_title': gameTitleId,
       r'game_title_version': gameTitleVersionId,

@@ -37,15 +37,16 @@ abstract class ApiService {
   Future<HttpResponse<ListResponse<ArcadeCenterModel>>> getArcadeCenters();
 
   @GET('/arcade_locations')
-  Future<HttpResponse<ListResponse<ArcadeLocationCompactModel>>> getArcadeLocations(
-    @Query('page') int page,
+  Future<HttpResponse<ListResponse<ArcadeLocationCompactModel>>> getArcadeLocations({
+    @Query('page') required int page,
     @Query('search') String? search,
-    @Query('nearby') bool? nearby,
-    @Query('city') String? cityId,
-    @Query('game_title') String? gameTitleId,
-    @Query('game_title_version') String? gameTitleVersionId,
-    @Query('arcade_center') String? arcadeCenterId,
-  );
+    @Query('lat') double? lat,
+    @Query('long') double? long,
+    @Query('city') int? cityId,
+    @Query('game_title') int? gameTitleId,
+    @Query('game_title_version') int? gameTitleVersionId,
+    @Query('arcade_center') int? arcadeCenterId,
+  });
 
   @POST('/register')
   Future<HttpResponse<SingleResponse>> register({
