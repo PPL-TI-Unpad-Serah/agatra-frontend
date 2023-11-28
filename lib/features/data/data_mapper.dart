@@ -172,3 +172,12 @@ extension LoginFormEntityToModel on AuthLogin {
     );
   }
 }
+
+extension ArcadeCenterEntityToForm on ArcadeCenterEntity {
+  NewArcadeCenterBody toFormBody() {
+    return NewArcadeCenterBody(
+      name: name,
+      info: info,
+    );
+  }
+}
