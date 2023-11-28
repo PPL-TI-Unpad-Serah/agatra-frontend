@@ -66,19 +66,19 @@ abstract class ApiService {
 
   @GET('/arcade_centers/{id}')
   Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> getArcadeCenter({
-    @Path('id') required String id,
+    @Path('id') required int id,
   });
 
-  @POST('/arcade_centers')
-  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> createArcadeCenter({
+  @POST('/admin/arcade_centers')
+  Future<HttpResponse<SingleResponse>> createArcadeCenter({
     @Header('Authorization') required String token,
     @Body() required NewArcadeCenterBody body,
   });
 
-  @PUT('/arcade_centers/{id}')
-  Future<HttpResponse<SingleResponse<ArcadeCenterModel>>> updateArcadeCenter({
+  @PUT('/admin/arcade_centers/{id}')
+  Future<HttpResponse<SingleResponse>> updateArcadeCenter({
     @Header('Authorization') required String token,
-    @Path('id') required String id,
+    @Path('id') required int id,
     @Body() required NewArcadeCenterBody body,
   });
 }
