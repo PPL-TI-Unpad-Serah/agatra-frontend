@@ -1,5 +1,5 @@
 import 'package:agatra/features/domain/entities/arcade_location_compact.dart';
-import 'package:agatra/features/domain/entities/game_title_version.dart';
+import 'package:agatra/features/domain/entities/arcade_machine.dart';
 import 'package:agatra/views/arcades/home/arcade_locations_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -102,7 +102,7 @@ class _ArcadeItemCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(location.name,
+              Text("${location.arcadeCenter.name} ${location.name}",
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: 16.0),
               SizedBox(
@@ -126,7 +126,7 @@ class _ArcadeItemCard extends StatelessWidget {
 }
 
 class _ArcadeChipWidget extends StatelessWidget {
-  final GameTitleVersionEntity item;
+  final ArcadeMachineEntity item;
 
   const _ArcadeChipWidget({
     super.key,
@@ -143,7 +143,7 @@ class _ArcadeChipWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
         child: Text(
-          "${item.name} ${item.title.name}",
+          "${item.game.name} ${item.game.title.name}",
           style: TextStyle(
             height: 1.2,
             color: Theme.of(context)
