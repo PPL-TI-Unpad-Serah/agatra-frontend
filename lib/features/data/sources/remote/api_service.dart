@@ -1,6 +1,7 @@
 import 'package:agatra/core/resources/list_response.dart';
 import 'package:agatra/core/resources/single_response.dart';
 import 'package:agatra/features/data/models/arcade_center.dart';
+import 'package:agatra/features/data/models/arcade_location.dart';
 import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/data/models/form/login_body.dart';
@@ -118,5 +119,10 @@ abstract class ApiService {
     @Header('Authorization') required String token,
     @Path('id') required int id,
     @Body() required NewGameTitleVersionBody body,
+  });
+
+  @GET('/arcade_locations/{id}')
+  Future<HttpResponse<SingleResponse<ArcadeLocationModel>>> getArcadeLocation({
+    @Path('id') required int id,
   });
 }

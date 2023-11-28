@@ -121,6 +121,22 @@ class SearchArcadeLocationsRepositoryImpl
 
   @override
   Future<DataState<ArcadeLocationEntity>> getArcadeLocation(int id) async {
-    throw UnimplementedError();
+    try {
+      final httpResponse = await apiService.getArcadeLocation(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data.data.toEntity());
+      } else {
+        return DataFailure(
+          DioException(
+            error: httpResponse.data.message,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return DataFailure(e);
+    }
   }
 }
