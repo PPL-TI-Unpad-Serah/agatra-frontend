@@ -132,8 +132,8 @@ class AdminArcadeCentersEditView extends ConsumerWidget {
 
                         else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Failed to edit arcade center'),
+                            SnackBar(
+                              content: Text(res.error?.response?.data["message"] ??  'Failed to edit arcade center'),
                             ),
                           );
                         }
