@@ -101,7 +101,7 @@ final arcadeLocationsRepositoryProvider =
 );
 
 typedef ArcadeLocationsRepositoryRef = ProviderRef<ArcadeLocationsRepository>;
-String _$gamesRepositoryHash() => r'9d1b122b6df1b0a05bc06656dbc106450b2bebf3';
+String _$gamesRepositoryHash() => r'9645bcbf5c58d489da409d22de21b38747d58191';
 
 /// See also [gamesRepository].
 @ProviderFor(gamesRepository)
