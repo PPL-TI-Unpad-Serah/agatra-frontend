@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/data/data_mapper.dart';
-import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/sources/remote/api_service.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/arcade_location.dart';
@@ -29,12 +28,8 @@ class SearchArcadeLocationsRepositoryImpl
       final httpResponse = await apiService.getGameTitles();
 
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        List<GameTitleEntity> items = [];
+        return DataSuccess(httpResponse.data.data.map((e) => e.toEntity()).toList());
 
-        for (GameTitleModel item in httpResponse.data.data) {
-          items.add(item.toEntity());
-        }
-        return DataSuccess(items);
       } else {
         return DataFailure(
           DioException(
@@ -53,17 +48,67 @@ class SearchArcadeLocationsRepositoryImpl
   Future<DataState<List<GameTitleVersionEntity>>> getGameTitleVersionsOf(
     GameTitleCompactEntity gameTitle,
   ) async {
-    throw UnimplementedError();
+    try {
+      final httpResponse = await apiService.gameTitleVersionOf(
+        gameTitleIid: gameTitle.id,
+      );
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data.data.map((e) => e.toEntity()).toList());
+      } else {
+        return DataFailure(
+          DioException(
+            error: httpResponse.data.message,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return DataFailure(e);
+    }
   }
 
   @override
   Future<DataState<List<ArcadeCenterEntity>>> getArcadeCenters() async {
-    throw UnimplementedError();
+    try {
+      final httpResponse = await apiService.getArcadeCenters();
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data.data.map((e) => e.toEntity()).toList());
+      } else {
+        return DataFailure(
+          DioException(
+            error: httpResponse.data.message,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return DataFailure(e);
+    }
   }
 
   @override
   Future<DataState<List<CityEntity>>> getCities() async {
-    throw UnimplementedError();
+    try {
+      final httpResponse = await apiService.getCities();
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data.data.map((e) => e.toEntity()).toList());
+      } else {
+        return DataFailure(
+          DioException(
+            error: httpResponse.data.message,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return DataFailure(e);
+    }
   }
 
   @override
@@ -71,7 +116,7 @@ class SearchArcadeLocationsRepositoryImpl
     required int page,
     required AppliedSearchQuery query,
   }) async {
-    throw UnimplementedError();
+    return const DataSuccess([]);
   }
 
   @override
