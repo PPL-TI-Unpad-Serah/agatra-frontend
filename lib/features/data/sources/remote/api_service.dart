@@ -5,6 +5,8 @@ import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
+import 'package:agatra/features/data/models/form/new_game_title_body.dart';
+import 'package:agatra/features/data/models/form/new_game_title_version_body.dart';
 import 'package:agatra/features/data/models/form/register_body.dart';
 import 'package:agatra/features/data/models/game_title.dart';
 import 'package:agatra/features/data/models/game_title_version.dart';
@@ -80,5 +82,41 @@ abstract class ApiService {
     @Header('Authorization') required String token,
     @Path('id') required int id,
     @Body() required NewArcadeCenterBody body,
+  });
+
+  @GET('/game_titles/{id}')
+  Future<HttpResponse<SingleResponse<GameTitleModel>>> getGameTitle({
+    @Path('id') required int id,
+  });
+
+  @GET('/game_title_versions/{id}')
+  Future<HttpResponse<SingleResponse<GameTitleVersionModel>>> getGameTitleVersion({
+    @Path('id') required int id,
+  });
+
+  @POST('/admin/game_titles')
+  Future<HttpResponse<SingleResponse>> createGameTitle({
+    @Header('Authorization') required String token,
+    @Body() required NewGameTitleBody body,
+  });
+
+  @PUT('/admin/game_titles/{id}')
+  Future<HttpResponse<SingleResponse>> updateGameTitle({
+    @Header('Authorization') required String token,
+    @Path('id') required int id,
+    @Body() required NewGameTitleBody body,
+  });
+
+  @POST('/admin/game_title_versions')
+  Future<HttpResponse<SingleResponse>> createGameTitleVersion({
+    @Header('Authorization') required String token,
+    @Body() required NewGameTitleVersionBody body,
+  });
+
+  @PUT('/admin/game_title_versions/{id}')
+  Future<HttpResponse<SingleResponse>> updateGameTitleVersion({
+    @Header('Authorization') required String token,
+    @Path('id') required int id,
+    @Body() required NewGameTitleVersionBody body,
   });
 }
