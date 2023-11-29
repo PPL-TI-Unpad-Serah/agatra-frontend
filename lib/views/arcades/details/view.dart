@@ -18,13 +18,17 @@ class ArcadesDetailsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final arcadeLocation = ref
-        .watch(getArcadeLocationProvider(id));
+    final arcadeLocation = ref.watch(getArcadeLocationProvider(id));
 
     return Scaffold(
       appBar: AppBar(),
       body: switch (arcadeLocation) {
-        AsyncData(:final value) => _ArcadeLocationContent(location: value),
+        AsyncData(:final value) => RefreshIndicator(
+            onRefresh: () async {
+              return ref.invalidate(getArcadeLocationProvider(id));
+            },
+            child: _ArcadeLocationContent(location: value),
+          ),
         AsyncError(:final error) => Text(
             error.toString(),
           ),

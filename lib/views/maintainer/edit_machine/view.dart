@@ -1,6 +1,8 @@
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/arcades/details/providers.dart';
+import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:agatra/views/maintainer/edit_machine/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -40,12 +42,33 @@ class MaintainerEditMachineView extends ConsumerWidget {
                       child: const Text('Cancel'),
                     ),
                     TextButton(
-                      onPressed: () {
-                        ref
+                      onPressed: () async {
+                        final res = await ref
                             .read(arcadeLocationsRepositoryProvider)
                             .deleteArcadeMachine(form.value!.item);
-                        context.pop();
-                        context.pop();
+
+                        if (context.mounted) {
+                          if (res is DataSuccess) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content:
+                                    Text('Successfully deleted arcade center'),
+                              ),
+                            );
+                            ref.invalidate(getArcadeLocationProvider);
+                            ref.invalidate(searchQueryStateProvider);
+                            context.pop();
+                            context.pop();
+                          } 
+                          else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Failed to delete arcade center'),
+                              ),
+                            );
+                            context.pop();
+                          }
+                        }
                       },
                       child: const Text('Delete'),
                     ),
@@ -191,6 +214,7 @@ class MaintainerEditMachineView extends ConsumerWidget {
                   },
                 ),
                 TextFormField(
+                  initialValue: value.item.notes,
                   minLines: 6,
                   maxLines: 6,
                   decoration: const InputDecoration(
@@ -236,6 +260,8 @@ class MaintainerEditMachineView extends ConsumerWidget {
                                   Text('Successfully edited arcade center'),
                             ),
                           );
+                          ref.invalidate(getArcadeLocationProvider);
+                          ref.invalidate(searchQueryStateProvider);
                           context.pop();
                         } 
                         else {
