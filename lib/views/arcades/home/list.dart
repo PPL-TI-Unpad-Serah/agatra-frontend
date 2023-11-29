@@ -95,7 +95,7 @@ class _ArcadeItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go('/arcades/1'),
+      onTap: () => context.go('/arcades/${location.id}'),
       child: Card(
         elevation: 1,
         child: Container(
