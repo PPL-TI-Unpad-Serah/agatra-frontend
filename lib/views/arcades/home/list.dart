@@ -49,6 +49,7 @@ class _ArcadeLocationsListViewState
           },
           child: ListView.builder(
             controller: _scrollController,
+            physics: const AlwaysScrollableScrollPhysics(),
             itemCount: state.posts.length + 1,
             itemBuilder: (context, index) {
               // last element (progress bar, error or 'Done!' if reached to the last element)
