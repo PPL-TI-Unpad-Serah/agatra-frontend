@@ -143,7 +143,7 @@ class _ArcadeChipWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
         child: Text(
-          "${item.game.name} ${item.game.title.name}",
+          "${item.game.title.name} ${item.game.name}",
           style: TextStyle(
             height: 1.2,
             color: Theme.of(context)
