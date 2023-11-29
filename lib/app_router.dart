@@ -146,7 +146,7 @@ class AgatraRouter {
           GoRoute(
             path: 'map-picker',
             builder: (BuildContext context, GoRouterState state) =>
-                MapPicker(),
+                const MapPicker(),
           ),
         ],
       ),

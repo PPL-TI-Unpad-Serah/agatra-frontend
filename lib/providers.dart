@@ -2,7 +2,6 @@ import 'package:agatra/features/data/repository/arcade_centers_impl.dart';
 import 'package:agatra/features/data/repository/arcade_locations_repository_impl.dart';
 import 'package:agatra/features/data/repository/auth_repository_impl.dart';
 import 'package:agatra/features/data/repository/games_repository_impl.dart';
-import 'package:agatra/features/data/repository/mock/mock_arcade_locations_repository.dart';
 import 'package:agatra/features/data/repository/search_arcade_locations_repository_impl.dart';
 import 'package:agatra/features/data/sources/remote/api_service.dart';
 import 'package:agatra/features/data/sources/storage/storage_service.dart';

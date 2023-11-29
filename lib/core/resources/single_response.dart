@@ -14,4 +14,5 @@ class SingleResponse<T> extends BaseResponse {
   }) : super(message: message);
 
   factory SingleResponse.fromJson(Map<String, dynamic> json, T Function(Object?) create) => _$SingleResponseFromJson(json, create);
+  Map<String, dynamic> toJson(Object Function(T value) toJson) => _$SingleResponseToJson(this, toJson);
 }
