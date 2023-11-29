@@ -1,6 +1,7 @@
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/form/new_arcade_center.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/admin/arcade_centers/home/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -79,6 +80,7 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
                           content: Text('Successfully added arcade center'),
                         ),
                       );
+                      ref.invalidate(getArcadeCentersProvider);
                       context.pop();
                     } 
 

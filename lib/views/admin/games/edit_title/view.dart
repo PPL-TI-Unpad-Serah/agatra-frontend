@@ -1,5 +1,6 @@
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/admin/games/home/providers.dart';
 
 import 'controller.dart';
 import 'package:flutter/material.dart';
@@ -104,6 +105,7 @@ class AdminGamesEditTitleView extends ConsumerWidget {
                               content: Text('Successfully edited game title'),
                             ),
                           );
+                          ref.invalidate(getGameTitlesProvider);
                           context.pop();
                         }
 
