@@ -1,18 +1,24 @@
 part of 'view.dart';
 
 class _ArcadeCentersList extends ConsumerWidget {
-  const _ArcadeCentersList({Key? key}) : super(key: key); // TODO refresh pull + refresh on add/save
+  const _ArcadeCentersList({Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final listValue = ref.watch(getArcadeCentersProvider);
 
     return switch (listValue) {
-      AsyncData(:final value) => ListView.builder(
-          itemCount: value.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ArcadeCenterItem(item: value[index]);
+      AsyncData(:final value) => RefreshIndicator(
+          onRefresh: () async {
+            return await ref.refresh(getArcadeCentersProvider);
           },
+          child: ListView.builder(
+            itemCount: value.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ArcadeCenterItem(item: value[index]);
+            },
+          ),
         ),
       AsyncError(:final error) => Text(
           error.toString(),
@@ -23,8 +29,6 @@ class _ArcadeCentersList extends ConsumerWidget {
     };
   }
 }
-
-
 
 class ArcadeCenterItem extends StatelessWidget {
   final ArcadeCenterEntity item;

@@ -1,6 +1,7 @@
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/form/new_game_title_version.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/admin/games/home/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -112,6 +113,7 @@ class AdminGamesNewVersionView extends ConsumerWidget {
                           content: Text('Successfully added a game version'),
                         ),
                       );
+                      ref.invalidate(getGameTitlesProvider);
                       context.pop();
                     } 
 

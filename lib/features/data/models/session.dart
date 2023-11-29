@@ -1,6 +1,5 @@
 import 'package:agatra/features/data/models/user.dart';
 
-// TODO find ways to make this still have JsonSerializable decorator
 class SessionModel {
   final String token;
   final UserModel user;

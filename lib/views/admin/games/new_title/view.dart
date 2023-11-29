@@ -1,6 +1,7 @@
 import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/form/new_game_title.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/admin/games/home/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -97,6 +98,7 @@ class AdminGamesNewTitleView extends ConsumerWidget {
                           content: Text('Successfully added a new game'),
                         ),
                       );
+                      ref.invalidate(getGameTitlesProvider);
                       context.pop();
                     } 
 
