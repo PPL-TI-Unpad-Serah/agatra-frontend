@@ -116,11 +116,51 @@ class SearchArcadeLocationsRepositoryImpl
     required int page,
     required AppliedSearchQuery query,
   }) async {
-    return const DataSuccess([]);
+    try {
+      final httpResponse = await apiService.getArcadeLocations(
+        page: page,
+        lat: query.position?.latitude,
+        long: query.position?.longitude,
+        cityId: query.city?.id,
+        gameTitleId: query.gameTitle?.id,
+        gameTitleVersionId: query.gameTitleVersion?.id,
+        arcadeCenterId: query.arcadeCenter?.id,
+      );
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data.data.map((e) => e.toEntity()).toList());
+      } else {
+        return DataFailure(
+          DioException(
+            error: httpResponse.data.message,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return DataFailure(e);
+    }
   }
 
   @override
   Future<DataState<ArcadeLocationEntity>> getArcadeLocation(int id) async {
-    throw UnimplementedError();
+    try {
+      final httpResponse = await apiService.getArcadeLocation(id: id);
+
+      if (httpResponse.response.statusCode == HttpStatus.ok) {
+        return DataSuccess(httpResponse.data.data.toEntity());
+      } else {
+        return DataFailure(
+          DioException(
+            error: httpResponse.data.message,
+            response: httpResponse.response,
+            requestOptions: httpResponse.response.requestOptions,
+          ),
+        );
+      }
+    } on DioException catch (e) {
+      return DataFailure(e);
+    }
   }
 }

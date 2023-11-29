@@ -11,8 +11,10 @@ ArcadeLocationCompactModel _$ArcadeLocationCompactModelFromJson(
     ArcadeLocationCompactModel(
       id: json['id'] as int,
       name: json['name'] as String,
-      versions: (json['versions'] as List<dynamic>)
-          .map((e) => GameTitleVersionModel.fromJson(e as Map<String, dynamic>))
+      center:
+          ArcadeCenterModel.fromJson(json['center'] as Map<String, dynamic>),
+      machine: (json['machine'] as List<dynamic>)
+          .map((e) => ArcadeMachineModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -21,5 +23,6 @@ Map<String, dynamic> _$ArcadeLocationCompactModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'versions': instance.versions,
+      'center': instance.center,
+      'machine': instance.machine,
     };

@@ -2,6 +2,8 @@ import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/game_title_compact.dart';
 import 'package:agatra/features/domain/entities/game_title_version.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/arcades/details/providers.dart';
+import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:agatra/views/maintainer/new_machine/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -220,6 +222,8 @@ class MaintainerNewMachineView extends ConsumerWidget {
                                   Text('Successfully created new machine'),
                             ),
                           );
+                          ref.invalidate(getArcadeLocationProvider);
+                          ref.invalidate(searchQueryStateProvider);
                           context.pop();
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

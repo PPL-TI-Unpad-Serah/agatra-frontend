@@ -33,6 +33,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
     return ArcadeLocationsList(
       posts: posts.data!,
       searchQuery: searchQuery,
+      noMorePostsToFetch: posts.data!.length < 10,
     );
   }
 
@@ -62,6 +63,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
 
       return state.value!.copyWith(
         isLoadingMore: false,
+        noMorePostsToFetch: posts.data!.length < 10,
         page: state.value!.page + 1,
         posts: [...state.value!.posts, ...posts.data!],
       );
@@ -98,6 +100,7 @@ class ArcadeLocationsListState extends _$ArcadeLocationsListState {
 
       return state.value!.copyWith(
         page: 1,
+        noMorePostsToFetch: posts.data!.length < 10,
         posts: posts.data!,
       );
     });

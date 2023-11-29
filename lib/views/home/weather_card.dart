@@ -1,7 +1,7 @@
 part of 'view.dart';
 
 class _WeatherCard extends ConsumerWidget {
-  const _WeatherCard({super.key});
+  const _WeatherCard();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

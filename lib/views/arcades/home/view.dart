@@ -11,8 +11,8 @@ class ArcadesSearchView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // merely to have the state initialized and destroyed on the view rather than the bottom sheet widget that gets destroyed on every close
-    final _searchQuery = ref.watch(searchQueryStateProvider);
-    final _list = ref.watch(arcadeLocationsListStateProvider);
+    ref.watch(searchQueryStateProvider);
+    ref.watch(arcadeLocationsListStateProvider);
 
     return Scaffold(
       appBar: AppBar(),

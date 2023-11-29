@@ -2,6 +2,8 @@ import 'package:agatra/core/resources/data_state.dart';
 import 'package:agatra/features/domain/entities/arcade_center.dart';
 import 'package:agatra/features/domain/entities/city.dart';
 import 'package:agatra/providers.dart';
+import 'package:agatra/views/arcades/details/providers.dart';
+import 'package:agatra/views/arcades/home/search_query_provider.dart';
 import 'package:agatra/views/maintainer/edit_location/controller.dart';
 import 'package:agatra/views/maintainer/map_picker/controller.dart';
 import 'package:flutter/material.dart';
@@ -183,6 +185,7 @@ class MaintainerEditLocationView extends ConsumerWidget {
                   ),
                   const SizedBox(height: 16.0),
                   TextFormField(
+                    initialValue: value.item.description,
                     minLines: 6,
                     maxLines: 6,
                     decoration: const InputDecoration(
@@ -228,6 +231,8 @@ class MaintainerEditLocationView extends ConsumerWidget {
                                     Text('Successfully edited arcade center'),
                               ),
                             );
+                            ref.invalidate(getArcadeLocationProvider);
+                            ref.invalidate(searchQueryStateProvider);
                             context.pop();
                           }
 
