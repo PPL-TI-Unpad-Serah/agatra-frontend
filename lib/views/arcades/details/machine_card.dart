@@ -33,6 +33,41 @@ class _MachineCard extends ConsumerWidget {
                         const SizedBox(width: 4.0),
                         Text('x${machine.machineCount}')
                       ],
+                      const SizedBox(
+                        width: 4.0,
+                      ),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 25),
+                        child: IconButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('${machine.game.title.name} ${machine.game.name}'),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      machine.game.info,
+                                    )
+                                  ]
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      context.pop();
+                                    },
+                                    child: const Text('Close'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          padding: const EdgeInsets.all(0),
+                          icon: const Icon(Icons.info_outline),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 4.0),
@@ -44,6 +79,15 @@ class _MachineCard extends ConsumerWidget {
                         Text(
                           'Rp${machine.price}/Credit',
                         ),
+                        const SizedBox(height: 8.0),
+                        const Text(
+                          'Notes:',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 2.0),
+                        Text(machine.notes),
                       ],
                     ),
                   ),
