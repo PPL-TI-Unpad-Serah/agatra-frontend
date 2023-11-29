@@ -20,55 +20,69 @@ class _MachineCard extends ConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Wrap(
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
-                      Text(
-                        '${machine.game.title.name} ${machine.game.name} ',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                      ),
-                      if (machine.machineCount > 1) ...[
-                        const SizedBox(width: 4.0),
-                        Text('x${machine.machineCount}')
-                      ],
-                      const SizedBox(
-                        width: 4.0,
-                      ),
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 25),
-                        child: IconButton(
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text('${machine.game.title.name} ${machine.game.name}'),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      machine.game.info,
-                                    )
-                                  ]
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      context.pop();
-                                    },
-                                    child: const Text('Close'),
-                                  ),
-                                ],
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text:
+                              '${machine.game.title.name} ${machine.game.name} ',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
-                            );
-                          },
-                          padding: const EdgeInsets.all(0),
-                          icon: const Icon(Icons.info_outline),
                         ),
-                      ),
-                    ],
+                        if (machine.machineCount > 1) ...[
+                          const WidgetSpan(
+                            child: SizedBox(width: 4.0),
+                          ),
+                          TextSpan(
+                            text: 'x${machine.machineCount}',
+                          )
+                        ],
+                        const WidgetSpan(
+                            child: SizedBox(width: 4.0),
+                          ),
+                        WidgetSpan(
+                            child: SizedBox(
+                              width: 18.0,
+                              height: 18.0,
+                              child: IconButton(
+                                iconSize: 16.0,
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text(
+                                          '${machine.game.title.name} ${machine.game.name}'),
+                                      content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              machine.game.info,
+                                            )
+                                          ]),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            context.pop();
+                                          },
+                                          child: const Text('Close'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                padding: const EdgeInsets.all(0),
+                                icon: const Icon(Icons.info_outline),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 4.0),
                   Padding(
