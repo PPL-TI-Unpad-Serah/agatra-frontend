@@ -41,6 +41,9 @@ class MaintainerEditMachineView extends ConsumerWidget {
                     ),
                     TextButton(
                       onPressed: () {
+                        ref
+                            .read(arcadeLocationsRepositoryProvider)
+                            .deleteArcadeMachine(form.value!.item);
                         context.pop();
                         context.pop();
                       },
