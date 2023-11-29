@@ -42,6 +42,8 @@ class AdminArcadeCentersNewView extends ConsumerWidget {
             const SizedBox(height: 16.0),
             TextFormField(
               controller: info,
+              minLines: 6,
+              maxLines: 6,
               decoration: const InputDecoration(
                 labelText: 'Info',
                 helperText: '',
