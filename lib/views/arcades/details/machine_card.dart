@@ -1,7 +1,7 @@
 part of 'view.dart';
 
 class _MachineCard extends ConsumerWidget {
-  const _MachineCard({super.key, required this.machine});
+  const _MachineCard({required this.machine});
 
   final ArcadeMachineEntity machine;
 

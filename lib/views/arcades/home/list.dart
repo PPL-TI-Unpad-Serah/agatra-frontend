@@ -88,7 +88,6 @@ class _ArcadeItemCard extends StatelessWidget {
   final ArcadeLocationCompactEntity location;
 
   const _ArcadeItemCard({
-    super.key,
     required this.location,
   });
 
@@ -130,7 +129,6 @@ class _ArcadeChipWidget extends StatelessWidget {
   final ArcadeMachineEntity item;
 
   const _ArcadeChipWidget({
-    super.key,
     required this.item,
   });
 

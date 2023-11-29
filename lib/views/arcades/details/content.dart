@@ -2,7 +2,7 @@ part of 'view.dart';
 
 class _ArcadeLocationContent extends ConsumerWidget {
   final ArcadeLocationEntity location;
-  const _ArcadeLocationContent({super.key, required this.location});
+  const _ArcadeLocationContent({required this.location});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

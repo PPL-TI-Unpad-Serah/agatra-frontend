@@ -3,7 +3,6 @@ part of 'view.dart';
 class _GameEntry extends StatelessWidget {
   final GameTitleEntity title;
   const _GameEntry({
-    super.key,
     required this.title,
   });
 
