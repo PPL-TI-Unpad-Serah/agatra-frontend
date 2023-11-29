@@ -3,9 +3,13 @@ import 'package:agatra/core/resources/single_response.dart';
 import 'package:agatra/features/data/models/arcade_center.dart';
 import 'package:agatra/features/data/models/arcade_location.dart';
 import 'package:agatra/features/data/models/arcade_location_compact.dart';
+import 'package:agatra/features/data/models/arcade_machine.dart';
 import 'package:agatra/features/data/models/city.dart';
+import 'package:agatra/features/data/models/form/edit_arcade_machine_body.dart';
 import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
+import 'package:agatra/features/data/models/form/new_arcade_location_body.dart';
+import 'package:agatra/features/data/models/form/new_arcade_machine_body.dart';
 import 'package:agatra/features/data/models/form/new_game_title_body.dart';
 import 'package:agatra/features/data/models/form/new_game_title_version_body.dart';
 import 'package:agatra/features/data/models/form/register_body.dart';
@@ -124,6 +128,43 @@ abstract class ApiService {
 
   @GET('/arcade_locations/{id}')
   Future<HttpResponse<SingleResponse<ArcadeLocationModel>>> getArcadeLocation({
+    @Path('id') required int id,
+  });
+
+  @POST('/maintainer/arcade_locations')
+  Future<HttpResponse<SingleResponse>> createArcadeLocation({
+    @Header('Authorization') required String token,
+    @Body() required NewArcadeLocationBody body,
+  });
+
+  @PUT('/maintainer/arcade_locations/{id}')
+  Future<HttpResponse<SingleResponse>> updateArcadeLocation({
+    @Header('Authorization') required String token,
+    @Path('id') required int id,
+    @Body() required NewArcadeLocationBody body,
+  });
+
+  @GET('/arcade_machines/{id}')
+  Future<HttpResponse<SingleResponse<ArcadeMachineModel>>> getArcadeMachine({
+    @Path('id') required int id,
+  });
+
+  @POST('/maintainer/arcade_machines')
+  Future<HttpResponse<SingleResponse>> createArcadeMachine({
+    @Header('Authorization') required String token,
+    @Body() required NewArcadeMachineBody body,
+  });
+
+  @PUT('/maintainer/arcade_machines/{id}')
+  Future<HttpResponse<SingleResponse>> updateArcadeMachine({
+    @Header('Authorization') required String token,
+    @Path('id') required int id,
+    @Body() required EditArcadeMachineBody body,
+  });
+
+  @DELETE('/maintainer/arcade_machines/{id}')
+  Future<HttpResponse<SingleResponse>> deleteArcadeMachine({
+    @Header('Authorization') required String token,
     @Path('id') required int id,
   });
 }
