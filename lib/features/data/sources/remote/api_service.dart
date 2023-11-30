@@ -10,6 +10,7 @@ import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_location_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_machine_body.dart';
+import 'package:agatra/features/data/models/form/new_city_body.dart';
 import 'package:agatra/features/data/models/form/new_game_title_body.dart';
 import 'package:agatra/features/data/models/form/new_game_title_version_body.dart';
 import 'package:agatra/features/data/models/form/register_body.dart';
@@ -166,5 +167,23 @@ abstract class ApiService {
   Future<HttpResponse<SingleResponse>> deleteArcadeMachine({
     @Header('Authorization') required String token,
     @Path('id') required int id,
+  });
+
+  @GET('/cities/{id}')
+  Future<HttpResponse<SingleResponse<CityModel>>> getCity({
+    @Path('id') required int id,
+  });
+
+  @POST('/admin/cities')
+  Future<HttpResponse<SingleResponse>> createCity({
+    @Header('Authorization') required String token,
+    @Body() required NewCityBody body,
+  });
+
+  @PUT('/admin/cities/{id}')
+  Future<HttpResponse<SingleResponse>> updateCity({
+    @Header('Authorization') required String token,
+    @Path('id') required int id,
+    @Body() required NewCityBody body,
   });
 }

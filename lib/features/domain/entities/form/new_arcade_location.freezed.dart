@@ -43,6 +43,7 @@ abstract class $NewArcadeLocationEntityCopyWith<$Res> {
       CityEntity? city});
 
   $ArcadeCenterEntityCopyWith<$Res>? get gameCenter;
+  $CityEntityCopyWith<$Res>? get city;
 }
 
 /// @nodoc
@@ -105,6 +106,18 @@ class _$NewArcadeLocationEntityCopyWithImpl<$Res,
       return _then(_value.copyWith(gameCenter: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CityEntityCopyWith<$Res>? get city {
+    if (_value.city == null) {
+      return null;
+    }
+
+    return $CityEntityCopyWith<$Res>(_value.city!, (value) {
+      return _then(_value.copyWith(city: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -126,6 +139,8 @@ abstract class _$$NewArcadeLocationEntityImplCopyWith<$Res>
 
   @override
   $ArcadeCenterEntityCopyWith<$Res>? get gameCenter;
+  @override
+  $CityEntityCopyWith<$Res>? get city;
 }
 
 /// @nodoc

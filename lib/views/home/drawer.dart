@@ -57,6 +57,7 @@ class _HomeDrawer extends ConsumerWidget {
                 title: const Text('Manage Supported Cities'),
                 onTap: () {
                   Navigator.pop(context);
+                  context.go('/admin/cities');
                 },
               ),
               ListTile(
