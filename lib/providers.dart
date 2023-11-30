@@ -1,6 +1,7 @@
 import 'package:agatra/features/data/repository/arcade_centers_impl.dart';
 import 'package:agatra/features/data/repository/arcade_locations_repository_impl.dart';
 import 'package:agatra/features/data/repository/auth_repository_impl.dart';
+import 'package:agatra/features/data/repository/cities_repository_impl.dart';
 import 'package:agatra/features/data/repository/games_repository_impl.dart';
 import 'package:agatra/features/data/repository/search_arcade_locations_repository_impl.dart';
 import 'package:agatra/features/data/sources/remote/api_service.dart';
@@ -8,6 +9,7 @@ import 'package:agatra/features/data/sources/storage/storage_service.dart';
 import 'package:agatra/features/domain/repository/arcade_centers_repository.dart';
 import 'package:agatra/features/domain/repository/arcade_locations_repository.dart';
 import 'package:agatra/features/domain/repository/auth_repository.dart';
+import 'package:agatra/features/domain/repository/cities_repository.dart';
 import 'package:agatra/features/domain/repository/games_repository.dart';
 import 'package:agatra/features/domain/repository/search_arcade_locations_repository.dart';
 import 'package:agatra/managers/session_manager.dart';
@@ -48,6 +50,11 @@ SearchArcadeLocationsRepository searchArcadeLocationsRepository(
 ArcadeCentersRepository arcadeCentersRepository(
   ArcadeCentersRepositoryRef ref) {
   return ArcadeCentersRepositoryImpl(apiService: ref.watch(apiServiceProvider), sessionEntity: ref.watch(sessionManagerProvider).value);
+}
+
+@Riverpod(keepAlive: true)
+CitiesRepository citiesRepository(CitiesRepositoryRef ref) {
+  return CitiesRepositoryImpl(apiService: ref.watch(apiServiceProvider), sessionEntity: ref.watch(sessionManagerProvider).value);
 }
 
 @Riverpod(keepAlive: true)
