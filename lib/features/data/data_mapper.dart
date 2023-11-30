@@ -8,6 +8,7 @@ import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_location_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_machine_body.dart';
+import 'package:agatra/features/data/models/form/new_city_body.dart';
 import 'package:agatra/features/data/models/form/new_game_title_body.dart';
 import 'package:agatra/features/data/models/form/new_game_title_version_body.dart';
 import 'package:agatra/features/data/models/form/register_body.dart';
@@ -27,6 +28,7 @@ import 'package:agatra/features/domain/entities/form/auth_register.dart';
 import 'package:agatra/features/domain/entities/form/new_arcade_center.dart';
 import 'package:agatra/features/domain/entities/form/new_arcade_location.dart';
 import 'package:agatra/features/domain/entities/form/new_arcade_machine.dart';
+import 'package:agatra/features/domain/entities/form/new_city.dart';
 import 'package:agatra/features/domain/entities/form/new_game_title.dart';
 import 'package:agatra/features/domain/entities/form/new_game_title_version.dart';
 import 'package:agatra/features/domain/entities/game_title.dart';
@@ -273,6 +275,22 @@ extension ArcadeMachineEntityToForm on ArcadeMachineEntity {
       notes: notes,
       machineCount: machineCount,
       versionId: game.id,
+    );
+  }
+}
+
+extension NewCityEntityToForm on NewCityEntity {
+  NewCityBody toFormBody() {
+    return NewCityBody(
+      name: name!,
+    );
+  }
+}
+
+extension CityEntityToForm on CityEntity {
+  NewCityBody toFormBody() {
+    return NewCityBody(
+      name: name,
     );
   }
 }
