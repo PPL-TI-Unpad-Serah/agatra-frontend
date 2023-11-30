@@ -110,7 +110,7 @@ class _MachineCard extends ConsumerWidget {
             ),
           ),
         ),
-        if (session != null && session.user.role != UserRole.user) ...[
+        if (session != null && session.user.role != UserRole.member) ...[
           Positioned(
             right: 4,
             bottom: 4,

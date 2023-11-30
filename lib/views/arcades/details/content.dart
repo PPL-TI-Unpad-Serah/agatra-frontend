@@ -16,7 +16,7 @@ class _ArcadeLocationContent extends ConsumerWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(height: 16.0),
-          if (session != null && session.user.role != UserRole.user) ...[
+          if (session != null && session.user.role != UserRole.member) ...[
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -75,7 +75,7 @@ class _ArcadeLocationContent extends ConsumerWidget {
                 'Games',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              if (session != null && session.user.role != UserRole.user) ...[
+              if (session != null && session.user.role != UserRole.member) ...[
                 const Spacer(),
                 SizedBox(
                   height: 30,

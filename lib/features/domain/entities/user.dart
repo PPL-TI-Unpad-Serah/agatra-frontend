@@ -1,9 +1,11 @@
-import 'package:equatable/equatable.dart';
 import 'package:agatra/components/user_role_chip.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'user.freezed.dart';
 
 enum UserRole {
-  user(null),
+  member(null),
   admin(
     UserRoleChip(
       name: "ADMIN",
@@ -29,7 +31,7 @@ enum UserRole {
       case 'maintainer':
         return UserRole.maintainer;
       default:
-        return UserRole.user;
+        return UserRole.member;
     }
   }
 
@@ -45,21 +47,12 @@ enum UserRole {
       );
 }
 
-class UserEntity extends Equatable {
-  final int id;
-  final String username;
-  final UserRole role;
-
-  const UserEntity({
-    required this.id,
-    required this.username,
-    required this.role,
-  });
-
-  @override
-  List<Object?> get props => [
-        id,
-        username,
-        role,
-      ];
+@freezed
+class UserEntity with _$UserEntity { 
+  factory UserEntity({
+    required int id,
+    required String username,
+    required String email,
+    required UserRole role,
+  }) = _UserEntity;
 }

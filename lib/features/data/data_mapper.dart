@@ -4,6 +4,7 @@ import 'package:agatra/features/data/models/arcade_location_compact.dart';
 import 'package:agatra/features/data/models/arcade_machine.dart';
 import 'package:agatra/features/data/models/city.dart';
 import 'package:agatra/features/data/models/form/edit_arcade_machine_body.dart';
+import 'package:agatra/features/data/models/form/edit_user_body.dart';
 import 'package:agatra/features/data/models/form/login_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_center_body.dart';
 import 'package:agatra/features/data/models/form/new_arcade_location_body.dart';
@@ -162,6 +163,7 @@ extension UserModelToEntity on UserModel {
     return UserEntity(
       id: id,
       username: username,
+      email: email,
       role: UserRole.fromName(role),
     );
   }
@@ -291,6 +293,13 @@ extension CityEntityToForm on CityEntity {
   NewCityBody toFormBody() {
     return NewCityBody(
       name: name,
+    );
+  }
+}
+extension UserEntityToForm on UserEntity {
+  EditUserBody toFormBody() {
+    return EditUserBody(
+      role: role.name,
     );
   }
 }

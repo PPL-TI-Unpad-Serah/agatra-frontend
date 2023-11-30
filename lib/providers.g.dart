@@ -84,6 +84,23 @@ final arcadeCentersRepositoryProvider =
 );
 
 typedef ArcadeCentersRepositoryRef = ProviderRef<ArcadeCentersRepository>;
+String _$userManagementRepositoryHash() =>
+    r'31d06cc54855a35031e1198dc2c75c1a61c09bf8';
+
+/// See also [userManagementRepository].
+@ProviderFor(userManagementRepository)
+final userManagementRepositoryProvider =
+    Provider<UserManagementRepository>.internal(
+  userManagementRepository,
+  name: r'userManagementRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$userManagementRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef UserManagementRepositoryRef = ProviderRef<UserManagementRepository>;
 String _$citiesRepositoryHash() => r'e462c0fcf35f7fbf31fe0a6afc5e17b7e5f8e29e';
 
 /// See also [citiesRepository].
