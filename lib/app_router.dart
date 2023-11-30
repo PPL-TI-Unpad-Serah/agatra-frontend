@@ -1,5 +1,8 @@
 import 'package:agatra/features/domain/entities/session.dart';
 import 'package:agatra/managers/session_manager.dart';
+import 'package:agatra/views/admin/cities/edit/view.dart';
+import 'package:agatra/views/admin/cities/home/view.dart';
+import 'package:agatra/views/admin/cities/new/view.dart';
 import 'package:agatra/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -111,6 +114,23 @@ class AgatraRouter {
                 path: 'edit/:id',
                 builder: (BuildContext context, GoRouterState state) =>
                     AdminArcadeCentersEditView(id: int.parse(state.pathParameters['id']!)),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: 'admin/cities',
+            builder: (BuildContext context, GoRouterState state) =>
+                const AdminCitiesHomeView(),
+            routes: [
+              GoRoute(
+                path: 'new',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminNewCityView(),
+              ),
+              GoRoute(
+                path: 'edit/:id',
+                builder: (BuildContext context, GoRouterState state) =>
+                    AdminCityEditView(id: int.parse(state.pathParameters['id']!)),
               ),
             ],
           ),
