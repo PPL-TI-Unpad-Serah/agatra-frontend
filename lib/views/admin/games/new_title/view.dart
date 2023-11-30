@@ -27,6 +27,7 @@ class AdminGamesNewTitleView extends ConsumerWidget {
               bool shouldPop = true;
 
               if (name.text.isNotEmpty || info.text.isNotEmpty) {
+                  shouldPop = false;
                   await showDialog<bool>(
                     context: context,
                     builder: (context) => AlertDialog(

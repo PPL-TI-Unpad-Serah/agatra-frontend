@@ -36,6 +36,7 @@ class MaintainerEditLocationView extends ConsumerWidget {
                 bool shouldPop = true;
 
                 if (value.item.hashCode != value.originalItemHash) {
+                    shouldPop = false;
                     await showDialog<bool>(
                       context: context,
                       builder: (context) => AlertDialog(

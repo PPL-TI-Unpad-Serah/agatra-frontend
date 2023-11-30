@@ -29,6 +29,7 @@ class AdminGamesEditTitleView extends ConsumerWidget {
               bool shouldPop = true;
 
               if (form.value.item.hashCode != form.value.originalItemHash) {
+                  shouldPop = false;
                   await showDialog<bool>(
                     context: context,
                     builder: (context) => AlertDialog(
