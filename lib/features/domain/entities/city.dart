@@ -1,17 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class CityEntity extends Equatable {
-  final int id;
-  final String name;
-  
-  const CityEntity({
-    required this.id,
-    required this.name,
-  });
+part 'city.freezed.dart';
 
-  @override
-  List<Object?> get props => [
-    id,
-    name,
-  ];
+@freezed
+class CityEntity with _$CityEntity {
+  factory CityEntity({
+    required int id,
+    required String name,
+  }) = _CityEntity;
 }

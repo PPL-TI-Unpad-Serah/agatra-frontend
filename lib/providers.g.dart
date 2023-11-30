@@ -84,8 +84,23 @@ final arcadeCentersRepositoryProvider =
 );
 
 typedef ArcadeCentersRepositoryRef = ProviderRef<ArcadeCentersRepository>;
+String _$citiesRepositoryHash() => r'e462c0fcf35f7fbf31fe0a6afc5e17b7e5f8e29e';
+
+/// See also [citiesRepository].
+@ProviderFor(citiesRepository)
+final citiesRepositoryProvider = Provider<CitiesRepository>.internal(
+  citiesRepository,
+  name: r'citiesRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$citiesRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CitiesRepositoryRef = ProviderRef<CitiesRepository>;
 String _$arcadeLocationsRepositoryHash() =>
-    r'6f7a820a95afbd5bcf2205b4b692875021597290';
+    r'ceee446b65ac7a81a2768b2778416f9bbae2e03e';
 
 /// See also [arcadeLocationsRepository].
 @ProviderFor(arcadeLocationsRepository)

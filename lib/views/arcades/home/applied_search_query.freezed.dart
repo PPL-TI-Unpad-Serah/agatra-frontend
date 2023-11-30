@@ -41,6 +41,7 @@ abstract class $AppliedSearchQueryCopyWith<$Res> {
       ArcadeCenterEntity? arcadeCenter,
       Position? position});
 
+  $CityEntityCopyWith<$Res>? get city;
   $GameTitleEntityCopyWith<$Res>? get gameTitle;
   $GameTitleVersionEntityCopyWith<$Res>? get gameTitleVersion;
   $ArcadeCenterEntityCopyWith<$Res>? get arcadeCenter;
@@ -87,6 +88,18 @@ class _$AppliedSearchQueryCopyWithImpl<$Res, $Val extends AppliedSearchQuery>
           : position // ignore: cast_nullable_to_non_nullable
               as Position?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CityEntityCopyWith<$Res>? get city {
+    if (_value.city == null) {
+      return null;
+    }
+
+    return $CityEntityCopyWith<$Res>(_value.city!, (value) {
+      return _then(_value.copyWith(city: value) as $Val);
+    });
   }
 
   @override
@@ -142,6 +155,8 @@ abstract class _$$AppliedSearchQueryImplCopyWith<$Res>
       ArcadeCenterEntity? arcadeCenter,
       Position? position});
 
+  @override
+  $CityEntityCopyWith<$Res>? get city;
   @override
   $GameTitleEntityCopyWith<$Res>? get gameTitle;
   @override
