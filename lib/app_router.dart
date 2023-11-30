@@ -63,7 +63,7 @@ class AgatraRouter {
               GoRoute(
                 path: ':id',
                 builder: (BuildContext context, GoRouterState state) =>
-                    const AdminUsersDetailsView(),
+                    AdminUsersDetailsView(id: int.parse(state.pathParameters['id']!)),
               ),
             ],
           ),
