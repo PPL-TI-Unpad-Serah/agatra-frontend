@@ -29,6 +29,7 @@ class AdminGamesNewVersionView extends ConsumerWidget {
           bool shouldPop = true;
 
           if (name.text.isNotEmpty) {
+            shouldPop = false;
             await showDialog<bool>(
               context: context,
               builder: (context) => AlertDialog(
